@@ -3,157 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+
+    <title>Conta Onlinside</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #ffffff;
+            font-family: "Garet", Arial, sans-serif;
+            color: #111111;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            text-align: center;
+        }
+
+        .brand {
+            font-size: 38px;
+            line-height: 1.1;
+            margin-bottom: 14px;
+            letter-spacing: -1.2px;
+        }
+
+        .brand-conta {
+            color: #ff9a30;
+            font-weight: 400;
+        }
+
+        .brand-onlinside {
+            color: #ff8200;
+            font-weight: 800;
+        }
+
+        .description {
+            color: #666666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin: 0 auto 34px;
+            max-width: 330px;
+        }
+
+        .form {
+            width: 100%;
+        }
+
+        .input {
+            width: 100%;
+            height: 52px;
+
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+
+            padding: 0 16px;
+
+            font-family: inherit;
+            font-size: 15px;
+
+            outline: none;
+
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input:focus {
+            border-color: #000000;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.07);
+        }
+
+        .button {
+            width: 100%;
+            height: 52px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #000000;
+            color: #ffffff;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: transform 0.15s, opacity 0.15s;
+        }
+
+        .button:hover {
+            opacity: 0.88;
+        }
+
+        .button:active {
+            transform: scale(0.99);
+        }
+
+        .continue-button {
+            margin-top: 12px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            margin: 28px 0;
+            
+            color: #999999;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e5e5e5;
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icon {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .create-account {
+            display: inline-block;
+
+            margin-top: 28px;
+
+            color: #111111;
+            font-size: 14px;
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+        .create-account:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 14px;
+
+            color: #d00000;
+            font-size: 13px;
+        }
+
+        .footer {
+            margin-top: 42px;
+
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #777777;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #111111;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 24px 18px;
+                align-items: flex-start;
+                padding-top: 70px;
+            }
+
+            .brand {
+                font-size: 32px;
+            }
+
+            .description {
+                font-size: 14px;
+                margin-bottom: 28px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Login</h1>
+    <main class="container">
 
-    <form id="loginForm">
+        <h1 class="brand">
+            <span class="brand-conta">Conta</span>
+            <span class="brand-onlinside">Onlinside</span>
+        </h1>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Seu e-mail"
-            required
+        <p class="description">
+            Apenas uma única conta para todos os produtos Onlinside.
+        </p>
+
+
+        <form id="loginForm" class="form">
+
+            <input
+                type="email"
+                id="email"
+                class="input"
+                placeholder="E-mail"
+                autocomplete="email"
+                required
+            >
+
+            <button
+                type="submit"
+                class="button continue-button"
+            >
+                Continuar
+            </button>
+
+        </form>
+
+
+        <p id="mensagem" class="message"></p>
+
+
+        <div class="divider">
+            <span>ou</span>
+        </div>
+
+
+        <div class="social-buttons">
+
+            <button
+                type="button"
+                class="button social-button"
+                id="googleLogin"
+            >
+                <span class="social-icon">G</span>
+                Continuar com Google
+            </button>
+
+
+            <button
+                type="button"
+                class="button social-button"
+                id="facebookLogin"
+            >
+                <span class="social-icon">f</span>
+                Continuar com Facebook
+            </button>
+
+
+            <button
+                type="button"
+                class="button social-button"
+                id="appleLogin"
+            >
+                <span class="social-icon"></span>
+                Continuar com Apple
+            </button>
+
+        </div>
+
+
+        <a
+            href="cadastro.html"
+            class="create-account"
         >
-
-        <br><br>
-
-        <input
-            type="password"
-            id="senha"
-            placeholder="Sua senha"
-            required
-        >
-
-        <br><br>
-
-        <button type="submit">Entrar</button>
-        <br><br>
-        <a href="#" id="esquecisenha">Esqueci minha senha</a>
-
-    </form>
-
-    <p id="mensagem"></p>
-
-    <p>
-        Ainda não tem uma conta?
-        <a href="cadastro.html">Criar conta</a>
-    </p>
-
-    <script type="module">
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-       import {
-    getAuth,
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCUZ98Y78ZxCU166qC5EAAupCDPbv0aF9U",
-            authDomain: "login-4e334.firebaseapp.com",
-            projectId: "login-4e334",
-            storageBucket: "login-4e334.firebasestorage.app",
-            messagingSenderId: "937085407465",
-            appId: "1:937085407465:web:c93de7f716be2480c2a078",
-        };
+            Criar uma conta Onlinside
+        </a>
 
 
-        const app = initializeApp(firebaseConfig);
+        <footer class="footer">
 
-        const auth = getAuth(app);
+            <a href="#">
+                Política de Privacidade
+            </a>
 
+            <a href="#">
+                Termos de Uso
+            </a>
 
-        const formulario = document.getElementById("loginForm");
+        </footer>
 
-        const mensagem = document.getElementById("mensagem");
-
-
-        formulario.addEventListener("submit", async (evento) => {
-
-            evento.preventDefault();
-
-            const email = document.getElementById("email").value;
-
-            const senha = document.getElementById("senha").value;
+    </main>
 
 
-            try {
+    <!--
+        IMPORTANTE:
 
-                await signInWithEmailAndPassword(auth, email, senha);
-          
-const usuario = auth.currentUser;
+        A lógica do Firebase será adicionada
+        novamente depois que confirmarmos
+        que o novo visual está funcionando.
 
-if (!usuario.emailVerified) {
+        Não configuramos Google, Facebook e Apple
+        aqui ainda.
+    -->
 
-    mensagem.textContent =
-        "Você precisa verificar seu e-mail antes de entrar.";
-
-    return;
-}
-
-                mensagem.textContent = "Login realizado!";
-
-                window.location.href = "dashboard.html";
-
-            } catch (erro) {
-
-                console.error(erro);
-
-                if (erro.code === "auth/invalid-credential") {
-
-                    mensagem.textContent = "E-mail ou senha incorretos.";
-
-                } else if (erro.code === "auth/invalid-email") {
-
-                    mensagem.textContent = "Digite um e-mail válido.";
-
-                } else {
-
-                    mensagem.textContent = "Não foi possível fazer o login.";
-
-                }
-
-            }
-
-const esqueciSenha = document.getElementById("esqueciSenha");
-
-esqueciSenha.addEventListener("click", async (evento) => {
-
-    evento.preventDefault();
-
-    const email = document.getElementById("email").value;
-
-    if (!email) {
-        mensagem.textContent = "Digite seu e-mail primeiro.";
-        return;
-    }
-
-    try {
-
-        await sendPasswordResetEmail(auth, email);
-
-        mensagem.textContent =
-            "Enviamos um e-mail para você redefinir sua senha.";
-
-    } catch (erro) {
-
-        console.error(erro);
-
-        mensagem.textContent =
-            "Não foi possível enviar o e-mail de recuperação.";
-
-    }
-
-});
-
-        });
-
-    </script>
 
 </body>
 </html>
+Sugestões atualizadas
