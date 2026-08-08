@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar — Conta Onlinside</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 24px;
+
+            background: #ffffff;
+            color: #111111;
+
+            font-family: "Garet", Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+
+            text-align: center;
+        }
+
+        .brand {
+            margin-bottom: 14px;
+
+            font-size: 38px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .brand-conta {
+            color: #ff9a30;
+            font-weight: 400;
+        }
+
+        .brand-onlinside {
+            color: #ff8200;
+            font-weight: 800;
+        }
+
+        .email {
+            margin-bottom: 28px;
+
+            color: #666666;
+
+            font-size: 14px;
+        }
+
+        .input {
+            display: block;
+
+            width: 100%;
+            height: 52px;
+
+            padding: 0 16px;
+
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+
+            background: #ffffff;
+            color: #111111;
+
+            font-family: inherit;
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        .input:focus {
+            border-color: #000000;
+
+            box-shadow:
+                0 0 0 3px rgba(0, 0, 0, 0.07);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper .input {
+            padding-right: 50px;
+        }
+
+        .show-password {
+            position: absolute;
+
+            top: 50%;
+            right: 15px;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #777777;
+
+            font-family: inherit;
+            font-size: 13px;
+
+            cursor: pointer;
+        }
+
+        .button {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 52px;
+
+            margin-top: 12px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #000000;
+            color: #ffffff;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .button:hover {
+            opacity: 0.88;
+        }
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 12px;
+
+            color: #d00000;
+
+            font-size: 13px;
+        }
+
+        .forgot-password {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #111111;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .back {
+            display: block;
+
+            margin-top: 28px;
+
+            color: #777777;
+
+            font-size: 13px;
+
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: #111111;
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 20px 18px;
+            }
+
+            .brand {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <h1 class="brand">
+            <span class="brand-conta">Conta</span>
+            <span class="brand-onlinside">Onlinside</span>
+        </h1>
+
+        <p
+            id="emailDisplay"
+            class="email"
+        ></p>
+
+        <form id="passwordForm">
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="password"
+                    class="input"
+                    placeholder="Senha"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    id="showPassword"
+                    class="show-password"
+                >
+                    Mostrar
+                </button>
+
+            </div>
+
+            <button
+                type="submit"
+                class="button"
+            >
+                Entrar
+            </button>
+
+        </form>
+
+        <p
+            id="mensagem"
+            class="message"
+        ></p>
+
+        <a
+            href="recuperar-senha.html"
+            class="forgot-password"
+        >
+            Esqueci minha senha
+        </a>
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            Voltar
+        </a>
+
+    </main>
+
+
+    <script type="module">
+
+        import {
+            auth
+        } from "./firebase.js";
+
+        import {
+            signInWithEmailAndPassword
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+        const email =
+            localStorage.getItem("onlinside_email");
+
+
+        const emailDisplay =
+            document.getElementById("emailDisplay");
+
+
+        const passwordForm =
+            document.getElementById("passwordForm");
+
+
+        const password =
+            document.getElementById("password");
+
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+
+        const showPassword =
+            document.getElementById("showPassword");
+
+
+        if (!email) {
+
+            window.location.href =
+                "index.html";
+
+        } else {
+
+            emailDisplay.textContent =
+                email;
+
+        }
+
+
+        showPassword.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    password.type === "password"
+                ) {
+
+                    password.type = "text";
+
+                    showPassword.textContent =
+                        "Ocultar";
+
+                } else {
+
+                    password.type = "password";
+
+                    showPassword.textContent =
+                        "Mostrar";
+
+                }
+
+            }
+        );
+
+
+        passwordForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                mensagem.textContent = "";
+
+                try {
+
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password.value
+                    );
+
+                    window.location.href =
+                        "minha-conta.html";
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    mensagem.textContent =
+                        "E-mail ou senha incorretos.";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+
+Em sáb., 8 de ago. de 2026 20:40, Samuel Santos <santossousar7@gmail.com> escreveu:
+<script type="module">
+    import { auth } from "./firebase.js";
+
+    const loginForm = document.getElementById("loginForm");
+    const emailInput = document.getElementById("email");
+    const mensagem = document.getElementById("mensagem");
+
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = emailInput.value.trim();
+
+        if (!email) {
+            mensagem.textContent = "Digite seu e-mail.";
+            return;
+        }
+
+        localStorage.setItem("onlinside_email", email);
+
+        window.location.href = "senha.html";
+    });
+</script>
+
+Em sáb., 8 de ago. de 2026 20:35, Samuel Santos <santossousar7@gmail.com> escreveu:
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "login-4e334.firebaseapp.com",
+    projectId: "login-4e334",
+    storageBucket: "login-4e334.firebasestorage.app",
+    messagingSenderId: "937085407465",
+    appId: "1:937085407465:web:c93de7f716be2480c2a078",
+    measurementId: "G-MNNYF7GEN1"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+export { app, auth };
