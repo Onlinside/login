@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha conta</title>
+</head>
+
+<body>
+
+    <h1>Bem-vindo!</h1>
+
+    <p id="usuario">Verificando login...</p>
+
+    <button id="logout">Sair</button>
+
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCUZ98Y78ZxCU166qC5EAAupCDPbv0aF9U",
+            authDomain: "login-4e334.firebaseapp.com",
+            projectId: "login-4e334",
+            storageBucket: "login-4e334.firebasestorage.app",
+            messagingSenderId: "937085407465",
+            appId: "1:937085407465:web:c93de7f716be2480c2a078",
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+
+        onAuthStateChanged(auth, (usuario) => {
+
+            if (usuario) {
+
+                document.getElementById("usuario").textContent =
+                    "Você está logado como: " + usuario.email;
+
+            } else {
+
+                window.location.href = "index.html";
+
+            }
+
+        });
+
+
+        document.getElementById("logout").addEventListener("click", async () => {
+
+            await signOut(auth);
+
+            window.location.href = "index.html";
+
+        });
+
+    </script>
+
+</body>
+</html>

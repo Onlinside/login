@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <h1>Login</h1>
+
+    <form id="loginForm">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Seu e-mail"
+            required
+        >
+
+        <br><br>
+
+        <input
+            type="password"
+            id="senha"
+            placeholder="Sua senha"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">Entrar</button>
+        <br><br>
+        <a href="#" id="esquecisenha">Esqueci minha senha</a>
+
+    </form>
+
+    <p id="mensagem"></p>
+
+    <p>
+        Ainda não tem uma conta?
+        <a href="cadastro.html">Criar conta</a>
+    </p>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+       import {
+    getAuth,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCUZ98Y78ZxCU166qC5EAAupCDPbv0aF9U",
+            authDomain: "login-4e334.firebaseapp.com",
+            projectId: "login-4e334",
+            storageBucket: "login-4e334.firebasestorage.app",
+            messagingSenderId: "937085407465",
+            appId: "1:937085407465:web:c93de7f716be2480c2a078",
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+
+        const formulario = document.getElementById("loginForm");
+
+        const mensagem = document.getElementById("mensagem");
+
+
+        formulario.addEventListener("submit", async (evento) => {
+
+            evento.preventDefault();
+
+            const email = document.getElementById("email").value;
+
+            const senha = document.getElementById("senha").value;
+
+
+            try {
+
+                await signInWithEmailAndPassword(auth, email, senha);
+          
+const usuario = auth.currentUser;
+
+if (!usuario.emailVerified) {
+
+    mensagem.textContent =
+        "Você precisa verificar seu e-mail antes de entrar.";
+
+    return;
+}
+
+                mensagem.textContent = "Login realizado!";
+
+                window.location.href = "dashboard.html";
+
+            } catch (erro) {
+
+                console.error(erro);
+
+                if (erro.code === "auth/invalid-credential") {
+
+                    mensagem.textContent = "E-mail ou senha incorretos.";
+
+                } else if (erro.code === "auth/invalid-email") {
+
+                    mensagem.textContent = "Digite um e-mail válido.";
+
+                } else {
+
+                    mensagem.textContent = "Não foi possível fazer o login.";
+
+                }
+
+            }
+
+const esqueciSenha = document.getElementById("esqueciSenha");
+
+esqueciSenha.addEventListener("click", async (evento) => {
+
+    evento.preventDefault();
+
+    const email = document.getElementById("email").value;
+
+    if (!email) {
+        mensagem.textContent = "Digite seu e-mail primeiro.";
+        return;
+    }
+
+    try {
+
+        await sendPasswordResetEmail(auth, email);
+
+        mensagem.textContent =
+            "Enviamos um e-mail para você redefinir sua senha.";
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        mensagem.textContent =
+            "Não foi possível enviar o e-mail de recuperação.";
+
+    }
+
+});
+
+        });
+
+    </script>
+
+</body>
+</html>
