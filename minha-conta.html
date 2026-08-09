@@ -1,5 +1,303 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minha conta — Conta Onlinside</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #ffffff;
+            color: #111111;
+            font-family: "Garet", Arial, sans-serif;
+            padding: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 28px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .brand {
+            font-size: 28px;
+            line-height: 1;
+            letter-spacing: -0.8px;
+        }
+
+        .brand-conta {
+            color: #ff9a30;
+            font-weight: 400;
+        }
+
+        .brand-onlinside {
+            color: #ff8200;
+            font-weight: 800;
+        }
+
+        .logout {
+            border: none;
+            border-radius: 9px;
+            background: #000000;
+            color: #ffffff;
+            padding: 11px 18px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .logout:hover {
+            opacity: 0.88;
+        }
+
+        .content {
+            padding: 52px 0;
+        }
+
+        .title {
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #666666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 34px;
+        }
+
+        .account-card {
+            width: 100%;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            padding: 26px;
+            background: #ffffff;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            color: #777777;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .email {
+            display: block;
+            width: 100%;
+            padding: 15px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f8f8f8;
+            color: #333333;
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 18px;
+            color: #333333;
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22a447;
+        }
+
+        .footer {
+            padding-top: 28px;
+            border-top: 1px solid #eeeeee;
+            color: #888888;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 18px;
+            }
+
+            .header {
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            .brand {
+                font-size: 24px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .content {
+                padding: 38px 0;
+            }
+
+            .account-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+
+            <div class="brand">
+                <span class="brand-conta">Conta</span>
+                <span class="brand-onlinside">Onlinside</span>
+            </div>
+
+            <button
+                type="button"
+                id="logout"
+                class="logout"
+            >
+                Sair
+            </button>
+
+        </header>
+
+
+        <section class="content">
+
+            <h1 class="title">
+                Minha conta
+            </h1>
+
+            <p class="description">
+                Gerencie sua Conta Onlinside e tenha acesso aos seus produtos.
+            </p>
+
+
+            <div class="account-card">
+
+                <h2 class="card-title">
+                    Dados da conta
+                </h2>
+
+                <p class="card-description">
+                    E-mail utilizado para acessar sua Conta Onlinside.
+                </p>
+
+                <span
+                    id="usuario"
+                    class="email"
+                >
+                    Verificando login...
+                </span>
+
+                <div class="status">
+                    <span class="status-dot"></span>
+                    Conta conectada
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer class="footer">
+            Conta Onlinside
+        </footer>
+
+    </main>
+
+
+    <script type="module">
+
+        import { auth } from "./firebase.js";
+
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+        const usuarioElement =
+            document.getElementById("usuario");
+
+        const logoutButton =
+            document.getElementById("logout");
+
+
+        onAuthStateChanged(auth, (usuario) => {
+
+            if (usuario) {
+
+                usuarioElement.textContent =
+                    usuario.email;
+
+            } else {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        });
+
+
+        logoutButton.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "index.html";
+
+                } catch (error) {
+
+                    console.error(error);
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+
+Em sáb., 8 de ago. de 2026 21:52, Samuel Santos <santossousar7@gmail.com> escreveu:
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
