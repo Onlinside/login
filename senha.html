@@ -2,14 +2,12 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Entrar — Conta Onlinside</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -41,7 +39,6 @@
         .container {
             width: 100%;
             max-width: 420px;
-
             text-align: center;
         }
 
@@ -71,6 +68,10 @@
             font-size: 14px;
         }
 
+        .password-wrapper {
+            position: relative;
+        }
+
         .input {
             display: block;
 
@@ -98,12 +99,8 @@
                 0 0 0 3px rgba(0, 0, 0, 0.07);
         }
 
-        .password-wrapper {
-            position: relative;
-        }
-
         .password-wrapper .input {
-            padding-right: 50px;
+            padding-right: 75px;
         }
 
         .show-password {
@@ -117,7 +114,6 @@
             border: none;
 
             background: transparent;
-
             color: #777777;
 
             font-family: inherit;
@@ -198,7 +194,6 @@
         }
 
         @media (max-width: 480px) {
-
             body {
                 padding: 20px 18px;
             }
@@ -206,11 +201,8 @@
             .brand {
                 font-size: 32px;
             }
-
         }
-
     </style>
-
 </head>
 
 <body>
@@ -283,9 +275,7 @@
 
     <script type="module">
 
-        import {
-            auth
-        } from "./firebase.js";
+        import { auth } from "./firebase.js";
 
         import {
             signInWithEmailAndPassword
@@ -318,13 +308,11 @@
 
         if (!email) {
 
-            window.location.href =
-                "index.html";
+            window.location.href = "index.html";
 
         } else {
 
-            emailDisplay.textContent =
-                email;
+            emailDisplay.textContent = email;
 
         }
 
@@ -333,21 +321,17 @@
             "click",
             function () {
 
-                if (
-                    password.type === "password"
-                ) {
+                if (password.type === "password") {
 
                     password.type = "text";
 
-                    showPassword.textContent =
-                        "Ocultar";
+                    showPassword.textContent = "Ocultar";
 
                 } else {
 
                     password.type = "password";
 
-                    showPassword.textContent =
-                        "Mostrar";
+                    showPassword.textContent = "Mostrar";
 
                 }
 
@@ -363,6 +347,7 @@
 
                 mensagem.textContent = "";
 
+
                 try {
 
                     await signInWithEmailAndPassword(
@@ -373,6 +358,7 @@
 
                     window.location.href =
                         "minha-conta.html";
+
 
                 } catch (error) {
 
@@ -391,42 +377,3 @@
 </body>
 
 </html>
-
-<script type="module">
-    import { auth } from "./firebase.js";
-
-    const loginForm = document.getElementById("loginForm");
-    const emailInput = document.getElementById("email");
-    const mensagem = document.getElementById("mensagem");
-
-    loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const email = emailInput.value.trim();
-
-        if (!email) {
-            mensagem.textContent = "Digite seu e-mail.";
-            return;
-        }
-
-        localStorage.setItem("onlinside_email", email);
-
-        window.location.href = "senha.html";
-    });
-</script>
-
-const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "login-4e334.firebaseapp.com",
-    projectId: "login-4e334",
-    storageBucket: "login-4e334.firebasestorage.app",
-    messagingSenderId: "937085407465",
-    appId: "1:937085407465:web:c93de7f716be2480c2a078",
-    measurementId: "G-MNNYF7GEN1"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-export { app, auth };
