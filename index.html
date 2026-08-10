@@ -1275,3 +1275,42 @@
 
 </body>
 </html>
+.spinner {
+    position: absolute;
+
+    width: 19px;
+    height: 19px;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    opacity: 0;
+    visibility: hidden;
+
+    /* NÃO anima enquanto o botão está parado */
+    animation: none;
+}
+
+
+/* Só aparece quando clicar em Continuar */
+.button.loading .spinner {
+    opacity: 1;
+    visibility: visible;
+
+    animation: spin 0.75s linear infinite;
+}
+
+
+/* Esconde "Continuar" somente durante o loading */
+.button.loading .button-text {
+    opacity: 0;
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
