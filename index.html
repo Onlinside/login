@@ -8,7 +8,6 @@
     <title>Conta Onlinside</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -45,20 +44,12 @@
                 forwards;
         }
 
-        /* =========================
-           ENTRADA DA PÁGINA
-        ========================= */
-
         @keyframes pageEnter {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        /* =========================
-           SAÍDA DA PÁGINA
-        ========================= */
 
         body.page-exit {
             animation:
@@ -71,6 +62,25 @@
             to {
                 opacity: 0;
                 transform: translateY(-8px);
+            }
+        }
+
+        @keyframes elementEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
 
@@ -116,6 +126,162 @@
         }
 
         /* =========================
+           CARROSSEL
+        ========================= */
+
+        .products-carousel {
+            position: relative;
+
+            width: 100%;
+            height: 170px;
+
+            margin: 22px 0 24px;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff8200,
+                    #ff9a30
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 15px 35px
+                rgba(255, 130, 0, 0.16);
+
+            opacity: 0;
+            transform: translateY(10px);
+
+            animation:
+                elementEnter 0.6s
+                0.10s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+        .product-slide {
+            position: absolute;
+            inset: 0;
+
+            padding: 25px 28px 42px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            text-align: left;
+
+            opacity: 0;
+
+            transform:
+                translateX(45px)
+                scale(0.97);
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.55s
+                cubic-bezier(.22, 1, .36, 1),
+
+                transform 0.55s
+                cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .product-slide.active {
+            opacity: 1;
+
+            transform:
+                translateX(0)
+                scale(1);
+
+            pointer-events: auto;
+        }
+
+        .product-badge {
+            align-self: flex-start;
+
+            margin-bottom: 9px;
+
+            padding: 5px 10px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.20);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 0.4px;
+        }
+
+        .product-slide h2 {
+            margin-bottom: 6px;
+
+            font-size: 21px;
+            line-height: 1.15;
+
+            letter-spacing: -0.4px;
+        }
+
+        .product-slide p {
+            max-width: 330px;
+
+            color:
+                rgba(255, 255, 255, 0.88);
+
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        /* BOLINHAS */
+
+        .carousel-dots {
+            position: absolute;
+
+            left: 28px;
+            bottom: 17px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 6px;
+
+            z-index: 10;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+
+            padding: 0;
+
+            border: none;
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.45);
+
+            cursor: pointer;
+
+            transition:
+                width 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .dot.active {
+            width: 22px;
+            background: #ffffff;
+        }
+
+        /* =========================
            DESCRIÇÃO
         ========================= */
 
@@ -135,18 +301,9 @@
 
             animation:
                 elementEnter 0.6s
-                0.12s
+                0.15s
                 cubic-bezier(.22, 1, .36, 1)
                 forwards;
-        }
-
-        @keyframes elementEnter {
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
         }
 
         /* =========================
@@ -166,10 +323,6 @@
                 forwards;
         }
 
-        /* =========================
-           INPUT
-        ========================= */
-
         .input {
             display: block;
 
@@ -178,9 +331,7 @@
 
             padding: 0 16px;
 
-            border:
-                1px solid #d8d8d8;
-
+            border: 1px solid #d8d8d8;
             border-radius: 10px;
 
             background: #ffffff;
@@ -202,16 +353,13 @@
         }
 
         .input:focus {
-
-            border-color:
-                #ff8200;
+            border-color: #ff8200;
 
             box-shadow:
                 0 0 0 3px
                 rgba(255, 130, 0, 0.12);
 
-            transform:
-                translateY(-1px);
+            transform: translateY(-1px);
         }
 
         /* =========================
@@ -219,9 +367,7 @@
         ========================= */
 
         .button {
-
             display: flex;
-
             justify-content: center;
             align-items: center;
 
@@ -231,15 +377,12 @@
             height: 52px;
 
             border: 0;
-
             border-radius: 10px;
 
             background: #ff8200;
-
             color: #ffffff;
 
             font-family: inherit;
-
             font-size: 15px;
             font-weight: 600;
 
@@ -253,61 +396,41 @@
         }
 
         .button:hover {
-
             opacity: 0.92;
-
-            transform:
-                translateY(-1px);
+            transform: translateY(-1px);
         }
 
         .button:active {
-
-            transform:
-                scale(0.98);
+            transform: scale(0.98);
         }
 
         .button:disabled {
-
             cursor: default;
-
             opacity: 0.7;
         }
 
-        /* =========================
-           BOTÃO CONTINUAR
-        ========================= */
-
         .continue-button {
-
             margin-top: 12px;
-
-            background:
-                #ff8200;
+            background: #ff8200;
         }
 
         .continue-button:hover {
-
-            background:
-                #ff9a30;
+            background: #ff9a30;
         }
 
         /* =========================
-           LOADING DOS BOTÕES
+           LOADING
         ========================= */
 
         .button.loading {
-
             pointer-events: none;
         }
 
-        .button.loading
-        .button-text {
-
+        .button.loading .button-text {
             opacity: 0;
         }
 
         .spinner {
-
             position: absolute;
 
             width: 19px;
@@ -317,8 +440,7 @@
                 2px solid
                 rgba(255, 255, 255, 0.35);
 
-            border-top-color:
-                #ffffff;
+            border-top-color: #ffffff;
 
             border-radius: 50%;
 
@@ -329,47 +451,30 @@
                 spin 0.75s linear infinite;
         }
 
-        .button.loading
-        .spinner {
-
+        .button.loading .spinner {
             opacity: 1;
         }
 
         @keyframes spinnerAppear {
-
             to {
                 opacity: 1;
             }
-
-        }
-
-        @keyframes spin {
-
-            to {
-                transform:
-                    rotate(360deg);
-            }
-
         }
 
         /* =========================
-           MENSAGEM DE ERRO
+           MENSAGEM
         ========================= */
 
         .message {
-
             min-height: 20px;
-
             margin-top: 12px;
 
             color: #d00000;
-
             font-size: 13px;
 
             opacity: 0;
 
-            transform:
-                translateY(-4px);
+            transform: translateY(-4px);
 
             transition:
                 opacity 0.2s ease,
@@ -377,42 +482,32 @@
         }
 
         .message.show {
-
             opacity: 1;
-
-            transform:
-                translateY(0);
+            transform: translateY(0);
         }
 
         .message.error-shake {
-
-            animation:
-                shake 0.35s ease;
+            animation: shake 0.35s ease;
         }
 
         @keyframes shake {
 
             0%,
             100% {
-                transform:
-                    translateX(0);
+                transform: translateX(0);
             }
 
             25% {
-                transform:
-                    translateX(-5px);
+                transform: translateX(-5px);
             }
 
             50% {
-                transform:
-                    translateX(5px);
+                transform: translateX(5px);
             }
 
             75% {
-                transform:
-                    translateX(-3px);
+                transform: translateX(-3px);
             }
-
         }
 
         /* =========================
@@ -420,40 +515,32 @@
         ========================= */
 
         .divider {
-
             display: flex;
-
             align-items: center;
 
             width: 100%;
 
             gap: 14px;
-
             margin: 24px 0;
 
             color: #999999;
-
             font-size: 13px;
 
             opacity: 0;
 
             animation:
                 fadeIn 0.5s
-                0.27s
-                forwards;
+                0.27s forwards;
         }
 
         .divider::before,
         .divider::after {
-
             content: "";
 
             flex: 1;
-
             height: 1px;
 
-            background:
-                #e5e5e5;
+            background: #e5e5e5;
         }
 
         /* =========================
@@ -461,19 +548,14 @@
         ========================= */
 
         .social-buttons {
-
             display: flex;
-
             flex-direction: column;
 
             width: 100%;
-
             gap: 10px;
 
             opacity: 0;
-
-            transform:
-                translateY(8px);
+            transform: translateY(8px);
 
             animation:
                 elementEnter 0.6s
@@ -483,109 +565,61 @@
         }
 
         .social-button {
-
             position: relative;
         }
 
-        /* GOOGLE */
-
         #googleLogin {
+            background: #ffffff;
+            color: #202124;
 
-            background:
-                #ffffff;
-
-            color:
-                #202124;
-
-            border:
-                1px solid #dadce0;
+            border: 1px solid #dadce0;
         }
 
         #googleLogin:hover {
-
-            background:
-                #f8f9fa;
+            background: #f8f9fa;
         }
 
-        /* FACEBOOK */
-
         #facebookLogin {
-
-            background:
-                #1877f2;
-
-            color:
-                #ffffff;
+            background: #1877f2;
+            color: #ffffff;
         }
 
         #facebookLogin:hover {
-
-            background:
-                #166fe5;
+            background: #166fe5;
         }
 
-        /* APPLE */
-
         #appleLogin {
-
-            background:
-                #000000;
-
-            color:
-                #ffffff;
+            background: #000000;
+            color: #ffffff;
         }
 
         #appleLogin:hover {
-
-            background:
-                #1c1c1c;
+            background: #1c1c1c;
         }
 
-        /* =========================
-           ÍCONES SOCIAIS
-        ========================= */
-
         .social-icon {
-
             width: 20px;
 
             font-size: 18px;
-
             line-height: 1;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
         }
 
-        /* Google */
-
         #googleLogin .social-icon {
-
-            color:
-                #4285f4;
-
+            color: #4285f4;
             font-weight: 700;
         }
-
-        /* Facebook */
 
         #facebookLogin .social-icon {
-
-            color:
-                #ffffff;
-
+            color: #ffffff;
             font-weight: 700;
         }
 
-        /* Apple */
-
         #appleLogin .social-icon {
-
-            color:
-                #ffffff;
+            color: #ffffff;
         }
 
         /* =========================
@@ -593,7 +627,6 @@
         ========================= */
 
         .create-account {
-
             display: inline-block;
 
             margin-top: 26px;
@@ -601,7 +634,6 @@
             color: #111111;
 
             font-size: 14px;
-
             font-weight: 600;
 
             text-decoration: none;
@@ -610,21 +642,11 @@
 
             animation:
                 fadeIn 0.5s
-                0.4s
-                forwards;
-
-            transition:
-                opacity 0.2s ease,
-                transform 0.2s ease;
+                0.4s forwards;
         }
 
         .create-account:hover {
-
-            text-decoration:
-                underline;
-
-            transform:
-                translateY(-1px);
+            text-decoration: underline;
         }
 
         /* =========================
@@ -632,11 +654,8 @@
         ========================= */
 
         .footer {
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
             gap: 18px;
@@ -649,41 +668,17 @@
 
             animation:
                 fadeIn 0.5s
-                0.46s
-                forwards;
+                0.46s forwards;
         }
 
         .footer a {
-
-            color:
-                #777777;
-
-            text-decoration:
-                none;
-
-            transition:
-                color 0.2s ease;
+            color: #777777;
+            text-decoration: none;
         }
 
         .footer a:hover {
-
-            color:
-                #111111;
-
-            text-decoration:
-                underline;
-        }
-
-        /* =========================
-           FADE IN
-        ========================= */
-
-        @keyframes fadeIn {
-
-            to {
-                opacity: 1;
-            }
-
+            color: #111111;
+            text-decoration: underline;
         }
 
         /* =========================
@@ -691,35 +686,27 @@
         ========================= */
 
         .page-loader {
-
             position: fixed;
-
             inset: 0;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
             z-index: 9999;
 
-            pointer-events:
-                none;
+            pointer-events: none;
 
             opacity: 1;
 
             animation:
                 loaderOut 0.35s
-                0.45s
-                forwards;
+                0.45s forwards;
         }
 
         .loader-spinner {
-
             width: 28px;
             height: 28px;
 
@@ -727,8 +714,7 @@
                 3px solid
                 #eeeeee;
 
-            border-top-color:
-                #ff8200;
+            border-top-color: #ff8200;
 
             border-radius: 50%;
 
@@ -738,15 +724,10 @@
         }
 
         @keyframes loaderOut {
-
             to {
-
                 opacity: 0;
-
-                visibility:
-                    hidden;
+                visibility: hidden;
             }
-
         }
 
         /* =========================
@@ -756,87 +737,67 @@
         @media (max-width: 480px) {
 
             body {
-
-                padding:
-                    20px 18px;
+                padding: 20px 18px;
             }
 
             .brand {
+                font-size: 32px;
+            }
 
-                font-size:
-                    32px;
+            .products-carousel {
+                height: 155px;
+
+                margin-top: 18px;
+
+                border-radius: 16px;
+            }
+
+            .product-slide {
+                padding:
+                    22px 22px 38px;
+            }
+
+            .product-slide h2 {
+                font-size: 19px;
+            }
+
+            .product-slide p {
+                font-size: 12px;
+            }
+
+            .carousel-dots {
+                left: 22px;
+                bottom: 15px;
             }
 
             .description {
-
-                max-width:
-                    300px;
-
-                margin-bottom:
-                    28px;
-
-                font-size:
-                    14px;
+                max-width: 300px;
+                margin-bottom: 28px;
+                font-size: 14px;
             }
 
             .footer {
-
-                gap:
-                    14px;
-
-                margin-top:
-                    32px;
-
-                font-size:
-                    11px;
+                gap: 14px;
+                margin-top: 32px;
+                font-size: 11px;
             }
-
-        }
-
-        /* =========================
-           ACESSIBILIDADE
-        ========================= */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-
-                animation-duration:
-                    0.01ms !important;
-
-                animation-iteration-count:
-                    1 !important;
-
-                transition-duration:
-                    0.01ms !important;
-            }
-
         }
 
     </style>
-
 </head>
 
 <body>
 
-    <!-- =========================
-         CARREGAMENTO INICIAL
-    ========================= -->
+    <!-- CARREGAMENTO -->
 
     <div class="page-loader">
-
         <div class="loader-spinner"></div>
-
     </div>
 
 
-    <!-- =========================
-         CONTEÚDO
-    ========================= -->
-
     <main class="container">
+
+        <!-- CONTA ONLINSIDE -->
 
         <h1 class="brand">
 
@@ -851,17 +812,108 @@
         </h1>
 
 
-        <p class="description">
+        <!-- =========================
+             CARROSSEL DOS PRODUTOS
+        ========================= -->
 
+        <div class="products-carousel">
+
+            <!-- ON360 -->
+
+            <div class="product-slide active">
+
+                <div class="product-badge">
+                    ON360
+                </div>
+
+                <h2>
+                    Informação conectada
+                </h2>
+
+                <p>
+                    Acesse o On360 usando
+                    sua Conta Onlinside.
+                </p>
+
+            </div>
+
+
+            <!-- TECH -->
+
+            <div class="product-slide">
+
+                <div class="product-badge">
+                    TECH
+                </div>
+
+                <h2>
+                    Tecnologia também faz parte
+                </h2>
+
+                <p>
+                    Use a mesma Conta Onlinside
+                    para acessar o Tech.
+                </p>
+
+            </div>
+
+
+            <!-- GENTE -->
+
+            <div class="product-slide">
+
+                <div class="product-badge">
+                    GENTE
+                </div>
+
+                <h2>
+                    Entretenimento conectado
+                </h2>
+
+                <p>
+                    Uma única conta para acessar
+                    os produtos Onlinside.
+                </p>
+
+            </div>
+
+
+            <!-- INDICADORES -->
+
+            <div class="carousel-dots">
+
+                <button
+                    type="button"
+                    class="dot active"
+                    aria-label="On360"
+                ></button>
+
+                <button
+                    type="button"
+                    class="dot"
+                    aria-label="Tech"
+                ></button>
+
+                <button
+                    type="button"
+                    class="dot"
+                    aria-label="Gente"
+                ></button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DESCRIÇÃO -->
+
+        <p class="description">
             Apenas uma única conta para
             todos os produtos Onlinside.
-
         </p>
 
 
-        <!-- =========================
-             LOGIN POR E-MAIL
-        ========================= -->
+        <!-- LOGIN POR E-MAIL -->
 
         <form
             id="loginForm"
@@ -877,7 +929,6 @@
                 required
             >
 
-
             <button
                 type="submit"
                 class="button continue-button"
@@ -885,11 +936,8 @@
             >
 
                 <span class="button-text">
-
                     Continuar
-
                 </span>
-
 
                 <span class="spinner"></span>
 
@@ -904,27 +952,16 @@
         ></p>
 
 
-        <!-- =========================
-             DIVISOR
-        ========================= -->
+        <!-- DIVISOR -->
 
         <div class="divider">
-
-            <span>
-                ou
-            </span>
-
+            <span>ou</span>
         </div>
 
 
-        <!-- =========================
-             LOGIN SOCIAL
-        ========================= -->
+        <!-- LOGIN SOCIAL -->
 
         <div class="social-buttons">
-
-
-            <!-- GOOGLE -->
 
             <button
                 type="button"
@@ -941,8 +978,6 @@
             </button>
 
 
-            <!-- FACEBOOK -->
-
             <button
                 type="button"
                 class="button social-button"
@@ -957,8 +992,6 @@
 
             </button>
 
-
-            <!-- APPLE -->
 
             <button
                 type="button"
@@ -977,37 +1010,26 @@
         </div>
 
 
-        <!-- =========================
-             CADASTRO
-        ========================= -->
+        <!-- CRIAR CONTA -->
 
         <a
             href="cadastro.html"
             class="create-account"
         >
-
             Criar uma conta Onlinside
-
         </a>
 
 
-        <!-- =========================
-             RODAPÉ
-        ========================= -->
+        <!-- RODAPÉ -->
 
         <footer class="footer">
 
             <a href="#">
-
                 Política de Privacidade
-
             </a>
 
-
             <a href="#">
-
                 Termos de Uso
-
             </a>
 
         </footer>
@@ -1015,29 +1037,26 @@
     </main>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
-
     <script>
+
+        /* =========================
+           LOGIN
+        ========================= */
 
         const loginForm =
             document.getElementById(
                 "loginForm"
             );
 
-
         const emailInput =
             document.getElementById(
                 "email"
             );
 
-
         const mensagem =
             document.getElementById(
                 "mensagem"
             );
-
 
         const continueButton =
             document.getElementById(
@@ -1045,27 +1064,16 @@
             );
 
 
-        /*
-         * LOGIN POR E-MAIL
-         */
-
         loginForm.addEventListener(
             "submit",
             function (event) {
 
                 event.preventDefault();
 
-
                 const email =
                     emailInput.value.trim();
 
-
-                /*
-                 * Limpa mensagem anterior
-                 */
-
                 mensagem.textContent = "";
-
 
                 mensagem.classList.remove(
                     "show",
@@ -1073,53 +1081,34 @@
                 );
 
 
-                /*
-                 * Validação
-                 */
-
                 if (!email) {
 
                     mensagem.textContent =
                         "Digite seu e-mail.";
 
-
                     mensagem.classList.add(
                         "show"
                     );
 
-
                     void mensagem.offsetWidth;
-
 
                     mensagem.classList.add(
                         "error-shake"
                     );
 
-
                     emailInput.focus();
 
-
                     return;
-
                 }
 
-
-                /*
-                 * Ativa carregamento
-                 */
 
                 continueButton.classList.add(
                     "loading"
                 );
 
-
                 continueButton.disabled =
                     true;
 
-
-                /*
-                 * Salva o e-mail
-                 */
 
                 localStorage.setItem(
                     "onlinside_email",
@@ -1127,31 +1116,22 @@
                 );
 
 
-                /*
-                 * Aguarda a animação
-                 */
-
                 setTimeout(
                     function () {
-
 
                         document.body.classList.add(
                             "page-exit"
                         );
 
-
                         setTimeout(
                             function () {
-
 
                                 window.location.href =
                                     "senha.html";
 
-
                             },
                             280
                         );
-
 
                     },
                     450
@@ -1161,9 +1141,9 @@
         );
 
 
-        /*
-         * BOTÕES SOCIAIS
-         */
+        /* =========================
+           BOTÕES SOCIAIS
+        ========================= */
 
         const socialButtons =
             document.querySelectorAll(
@@ -1174,24 +1154,16 @@
         socialButtons.forEach(
             function (button) {
 
-
                 button.addEventListener(
                     "click",
                     function () {
-
-
-                        /*
-                         * Ativa animação
-                         */
 
                         button.classList.add(
                             "loading"
                         );
 
-
                         button.disabled =
                             true;
-
 
                     }
                 );
@@ -1199,8 +1171,107 @@
             }
         );
 
+
+        /* =========================
+           CARROSSEL
+        ========================= */
+
+        const slides =
+            document.querySelectorAll(
+                ".product-slide"
+            );
+
+        const dots =
+            document.querySelectorAll(
+                ".dot"
+            );
+
+        let currentSlide = 0;
+
+        let carouselTimer;
+
+
+        function showSlide(index) {
+
+            slides.forEach(
+                function (slide) {
+
+                    slide.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            dots.forEach(
+                function (dot) {
+
+                    dot.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+            slides[index].classList.add(
+                "active"
+            );
+
+            dots[index].classList.add(
+                "active"
+            );
+
+            currentSlide = index;
+        }
+
+
+        function nextSlide() {
+
+            const next =
+                (currentSlide + 1)
+                % slides.length;
+
+            showSlide(next);
+        }
+
+
+        function startCarousel() {
+
+            carouselTimer =
+                setInterval(
+                    nextSlide,
+                    4000
+                );
+        }
+
+
+        dots.forEach(
+            function (dot, index) {
+
+                dot.addEventListener(
+                    "click",
+                    function () {
+
+                        clearInterval(
+                            carouselTimer
+                        );
+
+                        showSlide(index);
+
+                        startCarousel();
+
+                    }
+                );
+
+            }
+        );
+
+
+        startCarousel();
+
     </script>
 
 </body>
-
 </html>
