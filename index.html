@@ -45,7 +45,6 @@
             padding: 24px;
 
             background: #ffffff;
-
             color: #111111;
 
             font-family:
@@ -67,13 +66,12 @@
 
 
         /* ========================================
-           ANIMAÇÃO DA PÁGINA
+           ANIMAÇÕES DA PÁGINA
         ======================================== */
 
         @keyframes pageEnter {
 
             to {
-
                 opacity: 1;
 
                 transform:
@@ -96,7 +94,6 @@
         @keyframes pageExit {
 
             to {
-
                 opacity: 0;
 
                 transform:
@@ -109,7 +106,6 @@
         @keyframes elementEnter {
 
             to {
-
                 opacity: 1;
 
                 transform:
@@ -122,8 +118,17 @@
         @keyframes fadeIn {
 
             to {
-
                 opacity: 1;
+            }
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
             }
 
         }
@@ -188,292 +193,7 @@
 
 
         /* ========================================
-           CARROSSEL DE PRODUTOS
-        ======================================== */
-
-        .products-carousel {
-
-            position: relative;
-
-            width: 100%;
-
-            height: 112px;
-
-            margin:
-                18px 0 22px;
-
-            overflow: hidden;
-
-            border:
-                1px solid #eeeeee;
-
-            border-radius: 18px;
-
-            background:
-                #fafafa;
-
-            box-shadow:
-                0 8px 28px
-                rgba(0, 0, 0, 0.045);
-
-            opacity: 0;
-
-            transform:
-                translateY(10px);
-
-            animation:
-                elementEnter
-                0.6s
-                0.10s
-                cubic-bezier(.22, 1, .36, 1)
-                forwards;
-        }
-
-
-        /* SLIDE */
-
-        .product-slide {
-
-            position: absolute;
-
-            inset: 0;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 18px;
-
-            padding:
-                18px 24px 28px;
-
-            text-align: left;
-
-            opacity: 0;
-
-            transform:
-                translateX(45px);
-
-            pointer-events: none;
-
-            transition:
-
-                opacity
-                0.55s
-                cubic-bezier(.22, 1, .36, 1),
-
-                transform
-                0.55s
-                cubic-bezier(.22, 1, .36, 1);
-        }
-
-
-        .product-slide.active {
-
-            opacity: 1;
-
-            transform:
-                translateX(0);
-
-            pointer-events: auto;
-        }
-
-
-        /* ========================================
-           MINIATURA / LOGO
-        ======================================== */
-
-        .product-thumbnail {
-
-            width: 62px;
-
-            height: 62px;
-
-            flex-shrink: 0;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            overflow: hidden;
-
-            border-radius: 16px;
-
-            background: #ffffff;
-
-            border:
-                1px solid #eeeeee;
-
-            box-shadow:
-                0 6px 16px
-                rgba(0, 0, 0, 0.07);
-        }
-
-
-        .product-thumbnail img {
-
-            display: block;
-
-            width: 80%;
-
-            height: 80%;
-
-            object-fit: contain;
-
-            animation:
-                logoFloat
-                3s
-                ease-in-out
-                infinite;
-        }
-
-
-        /*
-           Pequena animação da logo
-        */
-
-        @keyframes logoFloat {
-
-            0%,
-            100% {
-
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
-
-            50% {
-
-                transform:
-                    translateY(-3px)
-                    scale(1.04);
-            }
-
-        }
-
-
-        /* CONTEÚDO DO PRODUTO */
-
-        .product-info {
-
-            min-width: 0;
-
-            flex: 1;
-        }
-
-
-        .product-name {
-
-            display: block;
-
-            margin-bottom: 4px;
-
-            color: #ff8200;
-
-            font-size: 12px;
-
-            font-weight: 800;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.3px;
-        }
-
-
-        .product-title {
-
-            margin-bottom: 4px;
-
-            color: #111111;
-
-            font-size: 16px;
-
-            line-height: 1.15;
-
-            font-weight: 700;
-
-            letter-spacing: -0.3px;
-        }
-
-
-        .product-description {
-
-            color: #777777;
-
-            font-size: 11px;
-
-            line-height: 1.35;
-        }
-
-
-        /* ========================================
-           BOLINHAS DO CARROSSEL
-        ======================================== */
-
-        .carousel-dots {
-
-            position: absolute;
-
-            left: 104px;
-
-            bottom: 10px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 6px;
-
-            z-index: 20;
-        }
-
-
-        .dot {
-
-            width: 6px;
-
-            height: 6px;
-
-            padding: 0;
-
-            border: 0;
-
-            border-radius: 999px;
-
-            background: #d2d2d2;
-
-            cursor: pointer;
-
-            transition:
-
-                width
-                0.25s ease,
-
-                background
-                0.25s ease;
-        }
-
-
-        .dot:hover {
-
-            background:
-                #ff9a30;
-        }
-
-
-        .dot.active {
-
-            width: 20px;
-
-            background:
-                #ff8200;
-        }
-
-
-        /* ========================================
-           DESCRIÇÃO PRINCIPAL
+           DESCRIÇÃO
         ======================================== */
 
         .description {
@@ -481,11 +201,11 @@
             max-width: 330px;
 
             margin:
-                0 auto 28px;
+                0 auto 18px;
 
-            color: #666666;
+            color: #555555;
 
-            font-size: 15px;
+            font-size: 16px;
 
             line-height: 1.5;
 
@@ -497,9 +217,130 @@
             animation:
                 elementEnter
                 0.6s
-                0.15s
+                0.12s
                 cubic-bezier(.22, 1, .36, 1)
                 forwards;
+        }
+
+
+        /* ========================================
+           MINIATURAS DOS PRODUTOS
+        ======================================== */
+
+        .products-miniatures {
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 6px;
+
+            width: 100%;
+
+            margin:
+                0 auto 28px;
+        }
+
+
+        .product-miniature {
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+            background: #ffffff;
+
+            border:
+                1px solid #eeeeee;
+
+            box-shadow:
+                0 5px 14px
+                rgba(0, 0, 0, 0.07);
+
+            opacity: 0;
+
+            transform:
+                translateY(10px)
+                scale(0.90);
+
+            animation:
+                miniatureEnter
+                0.50s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .product-miniature img {
+
+            display: block;
+
+            width: 88%;
+            height: 88%;
+
+            object-fit: contain;
+        }
+
+
+        .product-miniature:nth-child(1) {
+            animation-delay: 0.18s;
+        }
+
+        .product-miniature:nth-child(2) {
+            animation-delay: 0.24s;
+        }
+
+        .product-miniature:nth-child(3) {
+            animation-delay: 0.30s;
+        }
+
+        .product-miniature:nth-child(4) {
+            animation-delay: 0.36s;
+        }
+
+        .product-miniature:nth-child(5) {
+            animation-delay: 0.42s;
+        }
+
+
+        @keyframes miniatureEnter {
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        .product-miniature:hover {
+
+            transform:
+                translateY(-5px)
+                scale(1.08);
+
+            box-shadow:
+                0 9px 22px
+                rgba(0, 0, 0, 0.12);
         }
 
 
@@ -519,7 +360,7 @@
             animation:
                 elementEnter
                 0.6s
-                0.19s
+                0.22s
                 cubic-bezier(.22, 1, .36, 1)
                 forwards;
         }
@@ -543,34 +384,22 @@
             border:
                 1px solid #d8d8d8;
 
-            border-radius:
-                10px;
+            border-radius: 10px;
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            color:
-                #111111;
+            color: #111111;
 
-            font-family:
-                inherit;
+            font-family: inherit;
 
-            font-size:
-                15px;
+            font-size: 15px;
 
-            outline:
-                none;
+            outline: none;
 
             transition:
-
-                border-color
-                0.2s ease,
-
-                box-shadow
-                0.2s ease,
-
-                transform
-                0.2s ease;
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
         }
 
 
@@ -604,7 +433,6 @@
             display: flex;
 
             justify-content: center;
-
             align-items: center;
 
             position: relative;
@@ -615,40 +443,25 @@
 
             border: 0;
 
-            border-radius:
-                10px;
+            border-radius: 10px;
 
-            background:
-                #ff8200;
+            background: #ff8200;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
-            font-family:
-                inherit;
+            font-family: inherit;
 
-            font-size:
-                15px;
+            font-size: 15px;
 
-            font-weight:
-                600;
+            font-weight: 600;
 
-            cursor:
-                pointer;
+            cursor: pointer;
 
             transition:
-
-                transform
-                0.18s ease,
-
-                opacity
-                0.18s ease,
-
-                background
-                0.18s ease,
-
-                box-shadow
-                0.18s ease;
+                transform 0.18s ease,
+                opacity 0.18s ease,
+                background 0.18s ease,
+                box-shadow 0.18s ease;
         }
 
 
@@ -668,86 +481,62 @@
 
         .button:disabled {
 
-            cursor:
-                default;
+            cursor: default;
 
-            opacity:
-                0.75;
+            opacity: 0.75;
         }
 
 
-        /* CONTINUAR */
+        /* ========================================
+           BOTÃO CONTINUAR
+        ======================================== */
 
         .continue-button {
 
-            margin-top:
-                12px;
+            margin-top: 12px;
 
-            background:
-                #ff8200;
+            background: #ff8200;
         }
 
 
         .continue-button:hover {
 
-            background:
-                #ff9a30;
+            background: #ff9a30;
         }
 
 
         /* ========================================
-           LOADING CORRIGIDO
+           SPINNER CORRIGIDO
         ======================================== */
-
-        /*
-           O spinner começa TOTALMENTE parado.
-           Ele não gira ao carregar a página.
-        */
 
         .spinner {
 
             position: absolute;
 
-            width:
-                19px;
-
-            height:
-                19px;
+            width: 19px;
+            height: 19px;
 
             border:
                 2px solid
                 rgba(255, 255, 255, 0.35);
 
-            border-top-color:
-                #ffffff;
+            border-top-color: #ffffff;
 
-            border-radius:
-                50%;
+            border-radius: 50%;
 
-            opacity:
-                0;
+            opacity: 0;
 
-            visibility:
-                hidden;
+            visibility: hidden;
 
-            animation:
-                none;
+            animation: none;
         }
 
 
-        /*
-           Só gira quando JavaScript
-           adiciona a classe loading.
-        */
+        .button.loading .spinner {
 
-        .button.loading
-        .spinner {
+            opacity: 1;
 
-            opacity:
-                1;
-
-            visibility:
-                visible;
+            visibility: visible;
 
             animation:
                 spin
@@ -757,68 +546,40 @@
         }
 
 
-        /*
-           Esconde "Continuar"
-           durante o carregamento.
-        */
+        .button.loading .button-text {
 
-        .button.loading
-        .button-text {
-
-            opacity:
-                0;
-        }
-
-
-        @keyframes spin {
-
-            to {
-
-                transform:
-                    rotate(360deg);
-            }
-
+            opacity: 0;
         }
 
 
         /* ========================================
-           MENSAGEM
+           MENSAGEM DE ERRO
         ======================================== */
 
         .message {
 
-            min-height:
-                20px;
+            min-height: 20px;
 
-            margin-top:
-                12px;
+            margin-top: 12px;
 
-            color:
-                #d00000;
+            color: #d00000;
 
-            font-size:
-                13px;
+            font-size: 13px;
 
-            opacity:
-                0;
+            opacity: 0;
 
             transform:
                 translateY(-4px);
 
             transition:
-
-                opacity
-                0.2s ease,
-
-                transform
-                0.2s ease;
+                opacity 0.2s ease,
+                transform 0.2s ease;
         }
 
 
         .message.show {
 
-            opacity:
-                1;
+            opacity: 1;
 
             transform:
                 translateY(0);
@@ -875,25 +636,21 @@
 
             width: 100%;
 
-            gap:
-                14px;
+            gap: 14px;
 
             margin:
                 24px 0;
 
-            color:
-                #999999;
+            color: #999999;
 
-            font-size:
-                13px;
+            font-size: 13px;
 
-            opacity:
-                0;
+            opacity: 0;
 
             animation:
                 fadeIn
                 0.5s
-                0.27s
+                0.30s
                 forwards;
         }
 
@@ -905,8 +662,7 @@
 
             flex: 1;
 
-            height:
-                1px;
+            height: 1px;
 
             background:
                 #e5e5e5;
@@ -914,23 +670,20 @@
 
 
         /* ========================================
-           BOTÕES SOCIAIS
+           REDES SOCIAIS
         ======================================== */
 
         .social-buttons {
 
             display: flex;
 
-            flex-direction:
-                column;
+            flex-direction: column;
 
             width: 100%;
 
-            gap:
-                10px;
+            gap: 10px;
 
-            opacity:
-                0;
+            opacity: 0;
 
             transform:
                 translateY(8px);
@@ -938,7 +691,7 @@
             animation:
                 elementEnter
                 0.6s
-                0.32s
+                0.34s
                 cubic-bezier(.22, 1, .36, 1)
                 forwards;
         }
@@ -946,8 +699,7 @@
 
         .social-button {
 
-            position:
-                relative;
+            position: relative;
         }
 
 
@@ -955,11 +707,9 @@
 
         #googleLogin {
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            color:
-                #202124;
+            color: #202124;
 
             border:
                 1px solid #dadce0;
@@ -968,8 +718,7 @@
 
         #googleLogin:hover {
 
-            background:
-                #f8f9fa;
+            background: #f8f9fa;
         }
 
 
@@ -977,18 +726,15 @@
 
         #facebookLogin {
 
-            background:
-                #1877f2;
+            background: #1877f2;
 
-            color:
-                #ffffff;
+            color: #ffffff;
         }
 
 
         #facebookLogin:hover {
 
-            background:
-                #166fe5;
+            background: #166fe5;
         }
 
 
@@ -996,67 +742,53 @@
 
         #appleLogin {
 
-            background:
-                #000000;
+            background: #000000;
 
-            color:
-                #ffffff;
+            color: #ffffff;
         }
 
 
         #appleLogin:hover {
 
-            background:
-                #1c1c1c;
+            background: #1c1c1c;
         }
 
 
-        /* ÍCONES */
+        /* ========================================
+           ÍCONES SOCIAIS
+        ======================================== */
 
         .social-icon {
 
-            width:
-                20px;
+            width: 20px;
 
-            margin-right:
-                2px;
+            margin-right: 2px;
 
-            display:
-                flex;
+            display: flex;
 
-            align-items:
-                center;
+            align-items: center;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            font-size:
-                18px;
+            font-size: 18px;
 
-            line-height:
-                1;
+            line-height: 1;
         }
 
 
-        #googleLogin
-        .social-icon {
+        #googleLogin .social-icon {
 
-            color:
-                #4285f4;
+            color: #4285f4;
 
-            font-weight:
-                700;
+            font-weight: 700;
         }
 
 
-        #facebookLogin
-        .social-icon {
+        #facebookLogin .social-icon {
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
-            font-weight:
-                700;
+            font-weight: 700;
         }
 
 
@@ -1066,26 +798,19 @@
 
         .create-account {
 
-            display:
-                inline-block;
+            display: inline-block;
 
-            margin-top:
-                26px;
+            margin-top: 26px;
 
-            color:
-                #111111;
+            color: #111111;
 
-            font-size:
-                14px;
+            font-size: 14px;
 
-            font-weight:
-                600;
+            font-weight: 600;
 
-            text-decoration:
-                none;
+            text-decoration: none;
 
-            opacity:
-                0;
+            opacity: 0;
 
             animation:
                 fadeIn
@@ -1097,11 +822,9 @@
 
         .create-account:hover {
 
-            color:
-                #ff8200;
+            color: #ff8200;
 
-            text-decoration:
-                underline;
+            text-decoration: underline;
         }
 
 
@@ -1111,26 +834,19 @@
 
         .footer {
 
-            display:
-                flex;
+            display: flex;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            align-items:
-                center;
+            align-items: center;
 
-            gap:
-                18px;
+            gap: 18px;
 
-            margin-top:
-                38px;
+            margin-top: 38px;
 
-            font-size:
-                12px;
+            font-size: 12px;
 
-            opacity:
-                0;
+            opacity: 0;
 
             animation:
                 fadeIn
@@ -1142,53 +858,41 @@
 
         .footer a {
 
-            color:
-                #777777;
+            color: #777777;
 
-            text-decoration:
-                none;
+            text-decoration: none;
         }
 
 
         .footer a:hover {
 
-            color:
-                #111111;
+            color: #111111;
 
-            text-decoration:
-                underline;
+            text-decoration: underline;
         }
 
 
         /* ========================================
-           CARREGAMENTO INICIAL
+           CARREGAMENTO DA PÁGINA
         ======================================== */
 
         .page-loader {
 
-            position:
-                fixed;
+            position: fixed;
 
-            inset:
-                0;
+            inset: 0;
 
-            display:
-                flex;
+            display: flex;
 
-            justify-content:
-                center;
+            justify-content: center;
 
-            align-items:
-                center;
+            align-items: center;
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            z-index:
-                9999;
+            z-index: 9999;
 
-            pointer-events:
-                none;
+            pointer-events: none;
 
             animation:
                 loaderOut
@@ -1200,11 +904,9 @@
 
         .loader-spinner {
 
-            width:
-                26px;
+            width: 26px;
 
-            height:
-                26px;
+            height: 26px;
 
             border:
                 3px solid
@@ -1213,8 +915,7 @@
             border-top-color:
                 #ff8200;
 
-            border-radius:
-                50%;
+            border-radius: 50%;
 
             animation:
                 spin
@@ -1228,11 +929,9 @@
 
             to {
 
-                opacity:
-                    0;
+                opacity: 0;
 
-                visibility:
-                    hidden;
+                visibility: hidden;
             }
 
         }
@@ -1254,98 +953,52 @@
 
             .brand {
 
-                font-size:
-                    32px;
-            }
-
-
-            .products-carousel {
-
-                height:
-                    108px;
-
-                margin:
-                    16px 0 20px;
-            }
-
-
-            .product-slide {
-
-                gap:
-                    13px;
-
-                padding:
-                    16px 18px 27px;
-            }
-
-
-            .product-thumbnail {
-
-                width:
-                    55px;
-
-                height:
-                    55px;
-
-                border-radius:
-                    14px;
-            }
-
-
-            .product-title {
-
-                font-size:
-                    14px;
-            }
-
-
-            .product-description {
-
-                font-size:
-                    10.5px;
-            }
-
-
-            .carousel-dots {
-
-                left:
-                    86px;
-
-                bottom:
-                    9px;
+                font-size: 32px;
             }
 
 
             .description {
 
-                max-width:
-                    300px;
+                max-width: 300px;
 
-                margin-bottom:
-                    28px;
+                font-size: 14px;
 
-                font-size:
-                    14px;
+                margin-bottom: 16px;
+            }
+
+
+            .products-miniatures {
+
+                gap: 5px;
+
+                margin-bottom: 26px;
+            }
+
+
+            .product-miniature {
+
+                width: 44px;
+
+                height: 44px;
+
+                border-radius: 11px;
             }
 
 
             .footer {
 
-                gap:
-                    14px;
+                gap: 14px;
 
-                margin-top:
-                    32px;
+                margin-top: 32px;
 
-                font-size:
-                    11px;
+                font-size: 11px;
             }
 
         }
 
 
         /* ========================================
-           REDUZIR ANIMAÇÕES
+           ACESSIBILIDADE
         ======================================== */
 
         @media
@@ -1376,7 +1029,7 @@
 
 
     <!-- ========================================
-         CARREGAMENTO DA PÁGINA
+         CARREGAMENTO INICIAL
     ======================================== -->
 
     <div class="page-loader">
@@ -1406,179 +1059,6 @@
         </h1>
 
 
-
-        <!-- ========================================
-             CARROSSEL
-        ======================================== -->
-
-        <div
-            class="products-carousel"
-            id="productsCarousel"
-        >
-
-
-            <!-- ==============================
-                 ON360
-            ============================== -->
-
-            <div class="product-slide active">
-
-
-                <div class="product-thumbnail">
-
-                    <!--
-                        COLOQUE A LOGO DO ON360
-                        NESTE CAMINHO
-                    -->
-
-                    <img
-                        src="img/on360.png"
-                        alt="On360"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <span class="product-name">
-                        On360
-                    </span>
-
-                    <h2 class="product-title">
-                        Informação conectada
-                    </h2>
-
-                    <p class="product-description">
-                        Acesse com sua Conta Onlinside.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- ==============================
-                 TECH
-            ============================== -->
-
-            <div class="product-slide">
-
-
-                <div class="product-thumbnail">
-
-                    <!--
-                        COLOQUE A LOGO DO TECH
-                    -->
-
-                    <img
-                        src="img/tech.png"
-                        alt="Onlinside Tech"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <span class="product-name">
-                        Tech
-                    </span>
-
-                    <h2 class="product-title">
-                        Tecnologia conectada
-                    </h2>
-
-                    <p class="product-description">
-                        A mesma conta em todos os produtos.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- ==============================
-                 GENTE
-            ============================== -->
-
-            <div class="product-slide">
-
-
-                <div class="product-thumbnail">
-
-                    <!--
-                        COLOQUE A LOGO DO GENTE
-                    -->
-
-                    <img
-                        src="img/gente.png"
-                        alt="Onlinside Gente"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <span class="product-name">
-                        Gente
-                    </span>
-
-                    <h2 class="product-title">
-                        Entretenimento conectado
-                    </h2>
-
-                    <p class="product-description">
-                        Uma Conta Onlinside para tudo.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- ========================================
-                 INDICADORES
-            ======================================== -->
-
-            <div class="carousel-dots">
-
-
-                <button
-                    type="button"
-                    class="dot active"
-                    aria-label="Mostrar On360"
-                ></button>
-
-
-                <button
-                    type="button"
-                    class="dot"
-                    aria-label="Mostrar Tech"
-                ></button>
-
-
-                <button
-                    type="button"
-                    class="dot"
-                    aria-label="Mostrar Gente"
-                ></button>
-
-
-            </div>
-
-
-        </div>
-
-
-
         <!-- ========================================
              DESCRIÇÃO
         ======================================== -->
@@ -1590,6 +1070,75 @@
 
         </p>
 
+
+        <!-- ========================================
+             MINIATURAS DOS PRODUTOS
+        ======================================== -->
+
+        <div class="products-miniatures">
+
+
+            <!-- ON360 -->
+
+            <div class="product-miniature">
+
+                <img
+                    src="img/on360.png"
+                    alt="On360"
+                >
+
+            </div>
+
+
+            <!-- TECH -->
+
+            <div class="product-miniature">
+
+                <img
+                    src="img/tech.png"
+                    alt="Tech"
+                >
+
+            </div>
+
+
+            <!-- GENTE -->
+
+            <div class="product-miniature">
+
+                <img
+                    src="img/gente.png"
+                    alt="Gente"
+                >
+
+            </div>
+
+
+            <!-- SPORTS -->
+
+            <div class="product-miniature">
+
+                <img
+                    src="img/sports.png"
+                    alt="Sports"
+                >
+
+            </div>
+
+
+            <!-- SPLASH -->
+
+            <div class="product-miniature">
+
+                <img
+                    src="img/splash.png"
+                    alt="Splash"
+                >
+
+            </div>
+
+
+        </div>
 
 
         <!-- ========================================
@@ -1626,10 +1175,6 @@
                 </span>
 
 
-                <!--
-                    Spinner começa escondido.
-                -->
-
                 <span class="spinner"></span>
 
 
@@ -1639,16 +1184,14 @@
         </form>
 
 
-
         <!-- ========================================
-             ERRO
+             MENSAGEM
         ======================================== -->
 
         <p
             id="mensagem"
             class="message"
         ></p>
-
 
 
         <!-- ========================================
@@ -1662,7 +1205,6 @@
             </span>
 
         </div>
-
 
 
         <!-- ========================================
@@ -1689,7 +1231,6 @@
             </button>
 
 
-
             <!-- FACEBOOK -->
 
             <button
@@ -1705,7 +1246,6 @@
                 Continuar com Facebook
 
             </button>
-
 
 
             <!-- APPLE -->
@@ -1728,7 +1268,6 @@
         </div>
 
 
-
         <!-- ========================================
              CRIAR CONTA
         ======================================== -->
@@ -1741,7 +1280,6 @@
             Criar uma conta Onlinside
 
         </a>
-
 
 
         <!-- ========================================
@@ -1771,7 +1309,6 @@
     </main>
 
 
-
     <!-- ========================================
          JAVASCRIPT
     ======================================== -->
@@ -1780,7 +1317,7 @@
 
 
         /* ========================================
-           ELEMENTOS DO LOGIN
+           ELEMENTOS
         ======================================== */
 
         const loginForm =
@@ -1807,9 +1344,8 @@
             );
 
 
-
         /* ========================================
-           BOTÃO CONTINUAR
+           LOGIN POR E-MAIL
         ======================================== */
 
         loginForm.addEventListener(
@@ -1826,8 +1362,7 @@
                     .trim();
 
 
-
-                /* Limpa erro */
+                /* Limpa erros */
 
                 mensagem.textContent =
                     "";
@@ -1837,7 +1372,6 @@
                     "show",
                     "error-shake"
                 );
-
 
 
                 /* ========================================
@@ -1872,9 +1406,8 @@
                 }
 
 
-
                 /*
-                   Evita clicar várias vezes.
+                   Evita vários cliques
                 */
 
                 if (
@@ -1885,9 +1418,8 @@
                 }
 
 
-
                 /* ========================================
-                   MOSTRA O SPINNER SOMENTE AGORA
+                   MOSTRA SPINNER SOMENTE DEPOIS DO CLIQUE
                 ======================================== */
 
                 continueButton
@@ -1901,9 +1433,8 @@
                     true;
 
 
-
                 /* ========================================
-                   SALVA E-MAIL
+                   SALVA O E-MAIL
                 ======================================== */
 
                 localStorage.setItem(
@@ -1912,9 +1443,8 @@
                 );
 
 
-
                 /* ========================================
-                   MUDA PARA SENHA.HTML
+                   VAI PARA SENHA.HTML
                 ======================================== */
 
                 setTimeout(
@@ -1951,9 +1481,8 @@
         );
 
 
-
         /* ========================================
-           CORREÇÃO DO BOTÃO AO VOLTAR
+           CORRIGE BOTÃO AO VOLTAR
         ======================================== */
 
         window.addEventListener(
@@ -1984,153 +1513,27 @@
         );
 
 
-
         /* ========================================
-           CARROSSEL
+           BOTÕES SOCIAIS
         ======================================== */
 
-        const slides =
+        const socialButtons =
             document.querySelectorAll(
-                ".product-slide"
+                ".social-button"
             );
 
 
-        const dots =
-            document.querySelectorAll(
-                ".dot"
-            );
+        socialButtons.forEach(
+            function (button) {
 
 
-        const carousel =
-            document.getElementById(
-                "productsCarousel"
-            );
-
-
-        let currentSlide =
-            0;
-
-
-        let carouselTimer;
-
-
-
-        function showSlide(index) {
-
-
-            slides.forEach(
-                function (slide) {
-
-
-                    slide
-                        .classList
-                        .remove(
-                            "active"
-                        );
-
-
-                }
-            );
-
-
-            dots.forEach(
-                function (dot) {
-
-
-                    dot
-                        .classList
-                        .remove(
-                            "active"
-                        );
-
-
-                }
-            );
-
-
-            slides[index]
-                .classList
-                .add(
-                    "active"
-                );
-
-
-            dots[index]
-                .classList
-                .add(
-                    "active"
-                );
-
-
-            currentSlide =
-                index;
-
-        }
-
-
-
-        function nextSlide() {
-
-
-            const next =
-
-                (
-                    currentSlide + 1
-                )
-
-                %
-
-                slides.length;
-
-
-            showSlide(
-                next
-            );
-
-        }
-
-
-
-        function startCarousel() {
-
-
-            clearInterval(
-                carouselTimer
-            );
-
-
-            carouselTimer =
-                setInterval(
-                    nextSlide,
-                    4000
-                );
-
-        }
-
-
-
-        /*
-           Clique nas bolinhas
-        */
-
-        dots.forEach(
-            function (
-                dot,
-                index
-            ) {
-
-
-                dot.addEventListener(
+                button.addEventListener(
                     "click",
                     function () {
 
 
-                        showSlide(
-                            index
-                        );
-
-
-                        startCarousel();
+                        button.disabled =
+                            true;
 
 
                     }
@@ -2139,48 +1542,6 @@
 
             }
         );
-
-
-
-        /*
-           Quando passa o mouse,
-           o carrossel para.
-        */
-
-        carousel.addEventListener(
-            "mouseenter",
-            function () {
-
-
-                clearInterval(
-                    carouselTimer
-                );
-
-
-            }
-        );
-
-
-
-        /*
-           Quando tira o mouse,
-           volta a girar.
-        */
-
-        carousel.addEventListener(
-            "mouseleave",
-            function () {
-
-
-                startCarousel();
-
-
-            }
-        );
-
-
-
-        startCarousel();
 
 
     </script>
