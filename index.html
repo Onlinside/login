@@ -1,53 +1,1629 @@
-<!-- ========================================
-     MINIATURAS EM CARROSSEL
-======================================== -->
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<div class="products-carousel-mini">
+<head>
 
-    <div class="products-track">
+    <meta charset="UTF-8">
 
-        <div class="product-miniature">
-            <img src="img/on360.png" alt="On360">
-        </div>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-        <div class="product-miniature">
-            <img src="img/tech.png" alt="Tech">
-        </div>
+    <title>Conta Onlinside</title>
 
-        <div class="product-miniature">
-            <img src="img/gente.png" alt="Gente">
-        </div>
+    <style>
 
-        <div class="product-miniature">
-            <img src="img/sports.png" alt="Sports">
-        </div>
+        /* ========================================
+           CONFIGURAÇÕES GERAIS
+        ======================================== */
 
-        <div class="product-miniature">
-            <img src="img/splash.png" alt="Splash">
-        </div>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        <!-- repetidos para criar loop contínuo -->
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
 
-        <div class="product-miniature">
-            <img src="img/on360.png" alt="On360">
-        </div>
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
 
-        <div class="product-miniature">
-            <img src="img/tech.png" alt="Tech">
-        </div>
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        <div class="product-miniature">
-            <img src="img/gente.png" alt="Gente">
-        </div>
+            padding: 24px;
 
-        <div class="product-miniature">
-            <img src="img/sports.png" alt="Sports">
-        </div>
+            background: #ffffff;
+            color: #111111;
 
-        <div class="product-miniature">
-            <img src="img/splash.png" alt="Splash">
-        </div>
+            font-family:
+                "Garet",
+                Arial,
+                sans-serif;
 
+            opacity: 0;
+
+            transform:
+                translateY(8px);
+
+            animation:
+                pageEnter
+                0.55s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+
+        /* ========================================
+           ANIMAÇÕES
+        ======================================== */
+
+        @keyframes pageEnter {
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+        body.page-exit {
+            animation:
+                pageExit
+                0.35s
+                cubic-bezier(.4, 0, 1, 1)
+                forwards;
+        }
+
+        @keyframes pageExit {
+            to {
+                opacity: 0;
+
+                transform:
+                    translateY(-8px);
+            }
+        }
+
+        @keyframes elementEnter {
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform:
+                    rotate(360deg);
+            }
+        }
+
+
+        /* ========================================
+           CONTAINER
+        ======================================== */
+
+        .container {
+            width: 100%;
+
+            max-width: 420px;
+
+            text-align: center;
+        }
+
+
+        /* ========================================
+           CONTA ONLINSIDE
+        ======================================== */
+
+        .brand {
+            margin-bottom: 14px;
+
+            font-size: 38px;
+
+            line-height: 1.1;
+
+            letter-spacing: -1px;
+
+            opacity: 0;
+
+            transform:
+                translateY(12px);
+
+            animation:
+                elementEnter
+                0.6s
+                0.05s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+        .brand-conta {
+            color: #ff9a30;
+
+            font-weight: 400;
+        }
+
+        .brand-onlinside {
+            color: #ff8200;
+
+            font-weight: 800;
+        }
+
+
+        /* ========================================
+           DESCRIÇÃO
+        ======================================== */
+
+        .description {
+            max-width: 330px;
+
+            margin:
+                0 auto 18px;
+
+            color: #555555;
+
+            font-size: 16px;
+
+            line-height: 1.5;
+
+            opacity: 0;
+
+            transform:
+                translateY(10px);
+
+            animation:
+                elementEnter
+                0.6s
+                0.12s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+
+        /* ========================================
+           CARROSSEL MINI DOS PRODUTOS
+        ======================================== */
+
+        .products-carousel-mini {
+            position: relative;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            margin:
+                0 auto 28px;
+
+            padding:
+                7px 0;
+
+            opacity: 0;
+
+            transform:
+                translateY(8px);
+
+            animation:
+                elementEnter
+                0.6s
+                0.18s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+
+            -webkit-mask-image:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    #000 9%,
+                    #000 91%,
+                    transparent
+                );
+
+            mask-image:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    #000 9%,
+                    #000 91%,
+                    transparent
+                );
+        }
+
+
+        .products-track {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            width: max-content;
+
+            animation:
+                productsScroll
+                18s
+                linear
+                infinite;
+
+            will-change:
+                transform;
+        }
+
+
+        .products-carousel-mini:hover
+        .products-track {
+            animation-play-state:
+                paused;
+        }
+
+
+        /* ========================================
+           MINIATURA
+        ======================================== */
+
+        .product-miniature {
+            width: 50px;
+            height: 50px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+
+            border-radius: 13px;
+
+            background: #ffffff;
+
+            border:
+                1px solid #eeeeee;
+
+            box-shadow:
+                0 5px 14px
+                rgba(0, 0, 0, 0.07);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .product-miniature img {
+            display: block;
+
+            width: 88%;
+            height: 88%;
+
+            object-fit: contain;
+        }
+
+
+        .product-miniature:hover {
+            transform:
+                translateY(-4px)
+                scale(1.08);
+
+            box-shadow:
+                0 9px 22px
+                rgba(0, 0, 0, 0.13);
+        }
+
+
+        /* ========================================
+           MOVIMENTO CONTÍNUO DO CARROSSEL
+        ======================================== */
+
+        @keyframes productsScroll {
+
+            from {
+                transform:
+                    translateX(0);
+            }
+
+            to {
+                transform:
+                    translateX(calc(-50% - 3.5px));
+            }
+
+        }
+
+
+        /* ========================================
+           FORMULÁRIO
+        ======================================== */
+
+        .form {
+            width: 100%;
+
+            opacity: 0;
+
+            transform:
+                translateY(10px);
+
+            animation:
+                elementEnter
+                0.6s
+                0.22s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+
+        /* ========================================
+           CAMPO DE E-MAIL
+        ======================================== */
+
+        .input {
+            display: block;
+
+            width: 100%;
+
+            height: 52px;
+
+            padding:
+                0 16px;
+
+            border:
+                1px solid #d8d8d8;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #111111;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .input:hover {
+            border-color:
+                #bdbdbd;
+        }
+
+        .input:focus {
+            border-color:
+                #ff8200;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 130, 0, 0.12);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* ========================================
+           BOTÕES
+        ======================================== */
+
+        .button {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+
+            width: 100%;
+
+            height: 52px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            background: #ff8200;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.18s ease,
+                opacity 0.18s ease,
+                background 0.18s ease,
+                box-shadow 0.18s ease;
+        }
+
+        .button:hover {
+            transform:
+                translateY(-1px);
+        }
+
+        .button:active {
+            transform:
+                scale(0.98);
+        }
+
+        .button:disabled {
+            cursor: default;
+
+            opacity: 0.75;
+        }
+
+
+        /* ========================================
+           BOTÃO CONTINUAR
+        ======================================== */
+
+        .continue-button {
+            margin-top: 12px;
+
+            background: #ff8200;
+        }
+
+        .continue-button:hover {
+            background:
+                #ff9a30;
+        }
+
+
+        /* ========================================
+           SPINNER CORRIGIDO
+        ======================================== */
+
+        .spinner {
+            position: absolute;
+
+            width: 19px;
+            height: 19px;
+
+            border:
+                2px solid
+                rgba(255, 255, 255, 0.35);
+
+            border-top-color:
+                #ffffff;
+
+            border-radius:
+                50%;
+
+            opacity:
+                0;
+
+            visibility:
+                hidden;
+
+            animation:
+                none;
+        }
+
+
+        .button.loading .spinner {
+            opacity:
+                1;
+
+            visibility:
+                visible;
+
+            animation:
+                spin
+                0.75s
+                linear
+                infinite;
+        }
+
+
+        .button.loading .button-text {
+            opacity:
+                0;
+        }
+
+
+        /* ========================================
+           MENSAGEM
+        ======================================== */
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 12px;
+
+            color: #d00000;
+
+            font-size: 13px;
+
+            opacity: 0;
+
+            transform:
+                translateY(-4px);
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+        .message.error-shake {
+            animation:
+                shake
+                0.35s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform:
+                    translateX(0);
+            }
+
+            25% {
+                transform:
+                    translateX(-5px);
+            }
+
+            50% {
+                transform:
+                    translateX(5px);
+            }
+
+            75% {
+                transform:
+                    translateX(-3px);
+            }
+
+        }
+
+
+        /* ========================================
+           DIVISOR
+        ======================================== */
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            width: 100%;
+
+            gap: 14px;
+
+            margin:
+                24px 0;
+
+            color:
+                #999999;
+
+            font-size:
+                13px;
+
+            opacity:
+                0;
+
+            animation:
+                fadeIn
+                0.5s
+                0.30s
+                forwards;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            flex: 1;
+
+            height:
+                1px;
+
+            background:
+                #e5e5e5;
+        }
+
+
+        /* ========================================
+           REDES SOCIAIS
+        ======================================== */
+
+        .social-buttons {
+            display: flex;
+
+            flex-direction:
+                column;
+
+            width: 100%;
+
+            gap:
+                10px;
+
+            opacity:
+                0;
+
+            transform:
+                translateY(8px);
+
+            animation:
+                elementEnter
+                0.6s
+                0.34s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+        .social-button {
+            position:
+                relative;
+        }
+
+
+        /* GOOGLE */
+
+        #googleLogin {
+            background:
+                #ffffff;
+
+            color:
+                #202124;
+
+            border:
+                1px solid #dadce0;
+        }
+
+        #googleLogin:hover {
+            background:
+                #f8f9fa;
+        }
+
+
+        /* FACEBOOK */
+
+        #facebookLogin {
+            background:
+                #1877f2;
+
+            color:
+                #ffffff;
+        }
+
+        #facebookLogin:hover {
+            background:
+                #166fe5;
+        }
+
+
+        /* APPLE */
+
+        #appleLogin {
+            background:
+                #000000;
+
+            color:
+                #ffffff;
+        }
+
+        #appleLogin:hover {
+            background:
+                #1c1c1c;
+        }
+
+
+        /* ========================================
+           ÍCONES SOCIAIS
+        ======================================== */
+
+        .social-icon {
+            width:
+                20px;
+
+            margin-right:
+                2px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                18px;
+
+            line-height:
+                1;
+        }
+
+        #googleLogin .social-icon {
+            color:
+                #4285f4;
+
+            font-weight:
+                700;
+        }
+
+        #facebookLogin .social-icon {
+            color:
+                #ffffff;
+
+            font-weight:
+                700;
+        }
+
+
+        /* ========================================
+           CRIAR CONTA
+        ======================================== */
+
+        .create-account {
+            display:
+                inline-block;
+
+            margin-top:
+                26px;
+
+            color:
+                #111111;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            text-decoration:
+                none;
+
+            opacity:
+                0;
+
+            animation:
+                fadeIn
+                0.5s
+                0.40s
+                forwards;
+        }
+
+        .create-account:hover {
+            color:
+                #ff8200;
+
+            text-decoration:
+                underline;
+        }
+
+
+        /* ========================================
+           RODAPÉ
+        ======================================== */
+
+        .footer {
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            gap:
+                18px;
+
+            margin-top:
+                38px;
+
+            font-size:
+                12px;
+
+            opacity:
+                0;
+
+            animation:
+                fadeIn
+                0.5s
+                0.46s
+                forwards;
+        }
+
+        .footer a {
+            color:
+                #777777;
+
+            text-decoration:
+                none;
+        }
+
+        .footer a:hover {
+            color:
+                #111111;
+
+            text-decoration:
+                underline;
+        }
+
+
+        /* ========================================
+           CARREGAMENTO INICIAL
+        ======================================== */
+
+        .page-loader {
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            background:
+                #ffffff;
+
+            z-index:
+                9999;
+
+            pointer-events:
+                none;
+
+            animation:
+                loaderOut
+                0.35s
+                0.35s
+                forwards;
+        }
+
+        .loader-spinner {
+            width:
+                26px;
+
+            height:
+                26px;
+
+            border:
+                3px solid
+                #eeeeee;
+
+            border-top-color:
+                #ff8200;
+
+            border-radius:
+                50%;
+
+            animation:
+                spin
+                0.8s
+                linear
+                infinite;
+        }
+
+        @keyframes loaderOut {
+
+            to {
+                opacity:
+                    0;
+
+                visibility:
+                    hidden;
+            }
+
+        }
+
+
+        /* ========================================
+           CELULAR
+        ======================================== */
+
+        @media
+        (max-width: 480px) {
+
+            body {
+                padding:
+                    20px 18px;
+            }
+
+            .brand {
+                font-size:
+                    32px;
+            }
+
+            .description {
+                max-width:
+                    300px;
+
+                font-size:
+                    14px;
+
+                margin-bottom:
+                    15px;
+            }
+
+            .products-carousel-mini {
+                margin-bottom:
+                    26px;
+            }
+
+            .product-miniature {
+                width:
+                    44px;
+
+                height:
+                    44px;
+
+                border-radius:
+                    11px;
+            }
+
+            .products-track {
+                gap:
+                    6px;
+
+                animation-duration:
+                    15s;
+            }
+
+            .footer {
+                gap:
+                    14px;
+
+                margin-top:
+                    32px;
+
+                font-size:
+                    11px;
+            }
+
+        }
+
+
+        /* ========================================
+           ACESSIBILIDADE
+        ======================================== */
+
+        @media
+        (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    0.01ms !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         CARREGAMENTO DA PÁGINA
+    ======================================== -->
+
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
     </div>
 
-</div>
+
+    <main class="container">
+
+
+        <!-- ========================================
+             CONTA ONLINSIDE
+        ======================================== -->
+
+        <h1 class="brand">
+
+            <span class="brand-conta">
+                Conta
+            </span>
+
+            <span class="brand-onlinside">
+                Onlinside
+            </span>
+
+        </h1>
+
+
+        <!-- ========================================
+             DESCRIÇÃO
+        ======================================== -->
+
+        <p class="description">
+
+            Apenas uma única conta para
+            todos os produtos Onlinside.
+
+        </p>
+
+
+        <!-- ========================================
+             CARROSSEL DE MINIATURAS
+        ======================================== -->
+
+        <div class="products-carousel-mini">
+
+            <div class="products-track">
+
+
+                <!-- =========================
+                     PRIMEIRA SEQUÊNCIA
+                ========================= -->
+
+
+                <!-- ON360 -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/on360.png"
+                        alt="On360"
+                    >
+
+                </div>
+
+
+                <!-- TECH -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/tech.png"
+                        alt="Tech"
+                    >
+
+                </div>
+
+
+                <!-- GENTE -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/gente.png"
+                        alt="Gente"
+                    >
+
+                </div>
+
+
+                <!-- SPORTS -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/sports.png"
+                        alt="Sports"
+                    >
+
+                </div>
+
+
+                <!-- SPLASH -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/splash.png"
+                        alt="Splash"
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     SEGUNDA SEQUÊNCIA
+                     REPETIDA PARA LOOP
+                ========================= -->
+
+
+                <!-- ON360 -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/on360.png"
+                        alt="On360"
+                    >
+
+                </div>
+
+
+                <!-- TECH -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/tech.png"
+                        alt="Tech"
+                    >
+
+                </div>
+
+
+                <!-- GENTE -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/gente.png"
+                        alt="Gente"
+                    >
+
+                </div>
+
+
+                <!-- SPORTS -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/sports.png"
+                        alt="Sports"
+                    >
+
+                </div>
+
+
+                <!-- SPLASH -->
+
+                <div class="product-miniature">
+
+                    <img
+                        src="img/splash.png"
+                        alt="Splash"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================
+             LOGIN POR E-MAIL
+        ======================================== -->
+
+        <form
+            id="loginForm"
+            class="form"
+        >
+
+            <input
+                type="email"
+                id="email"
+                class="input"
+                placeholder="E-mail"
+                autocomplete="email"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="button continue-button"
+                id="continueButton"
+            >
+
+                <span class="button-text">
+                    Continuar
+                </span>
+
+                <span class="spinner"></span>
+
+            </button>
+
+        </form>
+
+
+        <!-- ========================================
+             MENSAGEM
+        ======================================== -->
+
+        <p
+            id="mensagem"
+            class="message"
+        ></p>
+
+
+        <!-- ========================================
+             DIVISOR
+        ======================================== -->
+
+        <div class="divider">
+
+            <span>
+                ou
+            </span>
+
+        </div>
+
+
+        <!-- ========================================
+             LOGIN SOCIAL
+        ======================================== -->
+
+        <div class="social-buttons">
+
+
+            <!-- GOOGLE -->
+
+            <button
+                type="button"
+                class="button social-button"
+                id="googleLogin"
+            >
+
+                <span class="social-icon">
+                    G
+                </span>
+
+                Continuar com Google
+
+            </button>
+
+
+            <!-- FACEBOOK -->
+
+            <button
+                type="button"
+                class="button social-button"
+                id="facebookLogin"
+            >
+
+                <span class="social-icon">
+                    f
+                </span>
+
+                Continuar com Facebook
+
+            </button>
+
+
+            <!-- APPLE -->
+
+            <button
+                type="button"
+                class="button social-button"
+                id="appleLogin"
+            >
+
+                <span class="social-icon">
+                    
+                </span>
+
+                Continuar com Apple
+
+            </button>
+
+
+        </div>
+
+
+        <!-- ========================================
+             CRIAR CONTA
+        ======================================== -->
+
+        <a
+            href="cadastro.html"
+            class="create-account"
+        >
+
+            Criar uma conta Onlinside
+
+        </a>
+
+
+        <!-- ========================================
+             RODAPÉ
+        ======================================== -->
+
+        <footer class="footer">
+
+            <a href="#">
+                Política de Privacidade
+            </a>
+
+            <a href="#">
+                Termos de Uso
+            </a>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+    <script>
+
+
+        /* ========================================
+           ELEMENTOS
+        ======================================== */
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+
+        const emailInput =
+            document.getElementById(
+                "email"
+            );
+
+
+        const mensagem =
+            document.getElementById(
+                "mensagem"
+            );
+
+
+        const continueButton =
+            document.getElementById(
+                "continueButton"
+            );
+
+
+        /* ========================================
+           LOGIN POR E-MAIL
+        ======================================== */
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+
+
+                event.preventDefault();
+
+
+                const email =
+                    emailInput
+                    .value
+                    .trim();
+
+
+                /* LIMPA ERRO */
+
+                mensagem.textContent =
+                    "";
+
+
+                mensagem.classList.remove(
+                    "show",
+                    "error-shake"
+                );
+
+
+                /* ========================================
+                   VALIDAÇÃO
+                ======================================== */
+
+                if (!email) {
+
+
+                    mensagem.textContent =
+                        "Digite seu e-mail.";
+
+
+                    mensagem.classList.add(
+                        "show"
+                    );
+
+
+                    void
+                        mensagem.offsetWidth;
+
+
+                    mensagem.classList.add(
+                        "error-shake"
+                    );
+
+
+                    emailInput.focus();
+
+
+                    return;
+                }
+
+
+                /*
+                   EVITA VÁRIOS CLIQUES
+                */
+
+                if (
+                    continueButton.disabled
+                ) {
+
+                    return;
+                }
+
+
+                /* ========================================
+                   MOSTRA O SPINNER
+                   SOMENTE DEPOIS DO CLIQUE
+                ======================================== */
+
+                continueButton
+                    .classList
+                    .add(
+                        "loading"
+                    );
+
+
+                continueButton.disabled =
+                    true;
+
+
+                /* ========================================
+                   SALVA O E-MAIL
+                ======================================== */
+
+                localStorage.setItem(
+                    "onlinside_email",
+                    email
+                );
+
+
+                /* ========================================
+                   VAI PARA SENHA.HTML
+                ======================================== */
+
+                setTimeout(
+                    function () {
+
+
+                        document
+                            .body
+                            .classList
+                            .add(
+                                "page-exit"
+                            );
+
+
+                        setTimeout(
+                            function () {
+
+
+                                window.location.href =
+                                    "senha.html";
+
+
+                            },
+                            280
+                        );
+
+
+                    },
+                    350
+                );
+
+
+            }
+        );
+
+
+        /* ========================================
+           CORRIGE O BOTÃO AO VOLTAR
+        ======================================== */
+
+        window.addEventListener(
+            "pageshow",
+            function () {
+
+
+                continueButton
+                    .classList
+                    .remove(
+                        "loading"
+                    );
+
+
+                continueButton.disabled =
+                    false;
+
+
+                document
+                    .body
+                    .classList
+                    .remove(
+                        "page-exit"
+                    );
+
+
+            }
+        );
+
+
+        /* ========================================
+           BOTÕES SOCIAIS
+        ======================================== */
+
+        const socialButtons =
+            document.querySelectorAll(
+                ".social-button"
+            );
+
+
+        socialButtons.forEach(
+            function (button) {
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+
+                        /*
+                           Aqui depois entra
+                           o Firebase de cada provedor.
+                        */
+
+                    }
+                );
+
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
