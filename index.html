@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -39,10 +38,7 @@
             background: #ffffff;
             color: #111111;
 
-            font-family:
-                "Garet",
-                Arial,
-                sans-serif;
+            font-family: "Garet", Arial, sans-serif;
 
             opacity: 0;
             transform: translateY(8px);
@@ -95,11 +91,21 @@
             }
         }
 
+
+        /* ==============================
+           CONTAINER
+        ============================== */
+
         .container {
             width: 100%;
             max-width: 420px;
             text-align: center;
         }
+
+
+        /* ==============================
+           MARCA
+        ============================== */
 
         .brand {
             margin-bottom: 14px;
@@ -129,15 +135,19 @@
             font-weight: 800;
         }
 
+
+        /* ==============================
+           DESCRIÇÃO
+        ============================== */
+
         .description {
             max-width: 330px;
 
-            margin:
-                0 auto 18px;
+            margin: 0 auto 17px;
 
             color: #555555;
 
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.5;
 
             opacity: 0;
@@ -151,21 +161,20 @@
                 forwards;
         }
 
-        /* ========================================
-           CARROSSEL MINI
-        ======================================== */
 
-        .products-carousel-mini {
+        /* ==============================
+           CARROSSEL DE PRODUTOS
+        ============================== */
+
+        .products-carousel {
             position: relative;
 
             width: 100%;
             overflow: hidden;
 
-            margin:
-                0 auto 28px;
+            margin: 0 auto 27px;
 
-            padding:
-                7px 0;
+            padding: 8px 0;
 
             opacity: 0;
             transform: translateY(8px);
@@ -180,65 +189,70 @@
             -webkit-mask-image:
                 linear-gradient(
                     to right,
-                    transparent,
-                    #000 9%,
-                    #000 91%,
-                    transparent
+                    transparent 0%,
+                    #000 10%,
+                    #000 90%,
+                    transparent 100%
                 );
 
             mask-image:
                 linear-gradient(
                     to right,
-                    transparent,
-                    #000 9%,
-                    #000 91%,
-                    transparent
+                    transparent 0%,
+                    #000 10%,
+                    #000 90%,
+                    transparent 100%
                 );
         }
+
 
         .products-track {
             display: flex;
             align-items: center;
 
-            gap: 7px;
+            gap: 8px;
 
             width: max-content;
 
             animation:
-                productsScroll
-                20s
+                carouselMove
+                18s
                 linear
                 infinite;
 
             will-change: transform;
         }
 
-        .products-carousel-mini:hover
-        .products-track {
+
+        .products-carousel:hover .products-track {
             animation-play-state: paused;
         }
 
-        .product-miniature {
-            width: 50px;
-            height: 50px;
 
-            flex-shrink: 0;
+        /* ==============================
+           MINIATURAS
+        ============================== */
+
+        .product-logo {
+            width: 54px;
+            height: 54px;
+
+            flex: 0 0 54px;
 
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
 
             overflow: hidden;
 
-            border-radius: 13px;
+            border-radius: 14px;
 
             background: #ffffff;
 
-            border:
-                1px solid #eeeeee;
+            border: 1px solid #ededed;
 
             box-shadow:
-                0 5px 14px
+                0 4px 14px
                 rgba(0, 0, 0, 0.07);
 
             transition:
@@ -246,34 +260,47 @@
                 box-shadow 0.25s ease;
         }
 
-        .product-miniature img {
+
+        .product-logo img {
             display: block;
 
-            width: 88%;
-            height: 88%;
+            width: 100%;
+            height: 100%;
 
-            object-fit: contain;
+            object-fit: cover;
+
+            border-radius: 13px;
         }
 
-        .product-miniature:hover {
+
+        .product-logo:hover {
             transform:
                 translateY(-4px)
-                scale(1.08);
+                scale(1.07);
 
             box-shadow:
-                0 9px 22px
+                0 8px 20px
                 rgba(0, 0, 0, 0.13);
         }
 
-        @keyframes productsScroll {
+
+        @keyframes carouselMove {
+
             from {
                 transform: translateX(0);
             }
 
             to {
-                transform: translateX(calc(-50% - 3.5px));
+                transform:
+                    translateX(calc(-50% - 4px));
             }
+
         }
+
+
+        /* ==============================
+           FORMULÁRIO
+        ============================== */
 
         .form {
             width: 100%;
@@ -284,10 +311,11 @@
             animation:
                 elementEnter
                 0.6s
-                0.22s
+                0.24s
                 cubic-bezier(.22, 1, .36, 1)
                 forwards;
         }
+
 
         .input {
             display: block;
@@ -297,9 +325,7 @@
 
             padding: 0 16px;
 
-            border:
-                1px solid #d8d8d8;
-
+            border: 1px solid #d8d8d8;
             border-radius: 10px;
 
             background: #ffffff;
@@ -316,9 +342,11 @@
                 transform 0.2s ease;
         }
 
+
         .input:hover {
             border-color: #bdbdbd;
         }
+
 
         .input:focus {
             border-color: #ff8200;
@@ -330,21 +358,23 @@
             transform: translateY(-1px);
         }
 
+
+        /* ==============================
+           BOTÕES
+        ============================== */
+
         .button {
+            position: relative;
+
             display: flex;
             justify-content: center;
             align-items: center;
-
-            position: relative;
 
             width: 100%;
             height: 52px;
 
             border: 0;
             border-radius: 10px;
-
-            background: #ff8200;
-            color: #ffffff;
 
             font-family: inherit;
             font-size: 15px;
@@ -354,36 +384,45 @@
 
             transition:
                 transform 0.18s ease,
-                opacity 0.18s ease,
                 background 0.18s ease,
-                box-shadow 0.18s ease;
+                opacity 0.18s ease;
         }
+
 
         .button:hover {
             transform: translateY(-1px);
         }
 
+
         .button:active {
             transform: scale(0.98);
         }
+
 
         .button:disabled {
             cursor: default;
             opacity: 0.75;
         }
 
+
+        /* CONTINUAR */
+
         .continue-button {
             margin-top: 12px;
+
             background: #ff8200;
+            color: #ffffff;
         }
+
 
         .continue-button:hover {
             background: #ff9a30;
         }
 
-        /* ========================================
-           SPINNER CORRIGIDO
-        ======================================== */
+
+        /* ==============================
+           SPINNER
+        ============================== */
 
         .spinner {
             position: absolute;
@@ -393,7 +432,7 @@
 
             border:
                 2px solid
-                rgba(255, 255, 255, 0.35);
+                rgba(255,255,255,0.35);
 
             border-top-color: #ffffff;
 
@@ -405,7 +444,8 @@
             animation: none;
         }
 
-        .button.loading .spinner {
+
+        .continue-button.loading .spinner {
             opacity: 1;
             visibility: visible;
 
@@ -416,54 +456,39 @@
                 infinite;
         }
 
-        .button.loading .button-text {
+
+        .continue-button.loading .button-text {
             opacity: 0;
         }
+
+
+        /* ==============================
+           MENSAGEM
+        ============================== */
 
         .message {
             min-height: 20px;
+
             margin-top: 12px;
 
             color: #d00000;
+
             font-size: 13px;
 
             opacity: 0;
-            transform: translateY(-4px);
 
-            transition:
-                opacity 0.2s ease,
-                transform 0.2s ease;
+            transition: opacity 0.2s ease;
         }
+
 
         .message.show {
             opacity: 1;
-            transform: translateY(0);
         }
 
-        .message.error-shake {
-            animation:
-                shake
-                0.35s ease;
-        }
 
-        @keyframes shake {
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-5px);
-            }
-
-            50% {
-                transform: translateX(5px);
-            }
-
-            75% {
-                transform: translateX(-3px);
-            }
-        }
+        /* ==============================
+           DIVISOR
+        ============================== */
 
         .divider {
             display: flex;
@@ -473,10 +498,10 @@
 
             gap: 14px;
 
-            margin:
-                24px 0;
+            margin: 24px 0;
 
             color: #999999;
+
             font-size: 13px;
 
             opacity: 0;
@@ -488,21 +513,29 @@
                 forwards;
         }
 
+
         .divider::before,
         .divider::after {
             content: "";
 
             flex: 1;
+
             height: 1px;
 
             background: #e5e5e5;
         }
+
+
+        /* ==============================
+           REDES SOCIAIS
+        ============================== */
 
         .social-buttons {
             display: flex;
             flex-direction: column;
 
             width: 100%;
+
             gap: 10px;
 
             opacity: 0;
@@ -516,62 +549,78 @@
                 forwards;
         }
 
+
         .social-button {
-            position: relative;
+            gap: 10px;
         }
+
 
         #googleLogin {
             background: #ffffff;
+
             color: #202124;
 
-            border:
-                1px solid #dadce0;
+            border: 1px solid #dadce0;
         }
+
 
         #googleLogin:hover {
             background: #f8f9fa;
         }
 
+
         #facebookLogin {
             background: #1877f2;
+
             color: #ffffff;
         }
+
 
         #facebookLogin:hover {
             background: #166fe5;
         }
 
+
         #appleLogin {
             background: #000000;
+
             color: #ffffff;
         }
+
 
         #appleLogin:hover {
             background: #1c1c1c;
         }
 
+
         .social-icon {
             width: 20px;
-
-            margin-right: 2px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
             font-size: 18px;
+
             line-height: 1;
         }
+
 
         #googleLogin .social-icon {
             color: #4285f4;
             font-weight: 700;
         }
 
+
         #facebookLogin .social-icon {
             color: #ffffff;
             font-weight: 700;
         }
+
+
+        /* ==============================
+           CRIAR CONTA
+        ============================== */
 
         .create-account {
             display: inline-block;
@@ -594,10 +643,16 @@
                 forwards;
         }
 
+
         .create-account:hover {
             color: #ff8200;
             text-decoration: underline;
         }
+
+
+        /* ==============================
+           RODAPÉ
+        ============================== */
 
         .footer {
             display: flex;
@@ -619,18 +674,26 @@
                 forwards;
         }
 
+
         .footer a {
             color: #777777;
             text-decoration: none;
         }
+
 
         .footer a:hover {
             color: #111111;
             text-decoration: underline;
         }
 
+
+        /* ==============================
+           LOADER INICIAL
+        ============================== */
+
         .page-loader {
             position: fixed;
+
             inset: 0;
 
             display: flex;
@@ -650,14 +713,12 @@
                 forwards;
         }
 
+
         .loader-spinner {
             width: 26px;
             height: 26px;
 
-            border:
-                3px solid
-                #eeeeee;
-
+            border: 3px solid #eeeeee;
             border-top-color: #ff8200;
 
             border-radius: 50%;
@@ -669,19 +730,25 @@
                 infinite;
         }
 
+
         @keyframes loaderOut {
+
             to {
                 opacity: 0;
                 visibility: hidden;
             }
+
         }
 
-        @media
-        (max-width: 480px) {
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 480px) {
 
             body {
-                padding:
-                    20px 18px;
+                padding: 20px 18px;
             }
 
             .brand {
@@ -690,28 +757,26 @@
 
             .description {
                 max-width: 300px;
-
                 font-size: 14px;
-
-                margin-bottom: 15px;
             }
 
-            .products-carousel-mini {
-                margin-bottom: 26px;
+            .product-logo {
+                width: 48px;
+                height: 48px;
+
+                flex-basis: 48px;
+
+                border-radius: 12px;
             }
 
-            .product-miniature {
-                width: 44px;
-                height: 44px;
-
+            .product-logo img {
                 border-radius: 11px;
             }
 
             .products-track {
-                gap: 6px;
+                gap: 7px;
 
-                animation-duration:
-                    16s;
+                animation-duration: 16s;
             }
 
             .footer {
@@ -724,8 +789,8 @@
 
         }
 
-        @media
-        (prefers-reduced-motion: reduce) {
+
+        @media (prefers-reduced-motion: reduce) {
 
             *,
             *::before,
@@ -751,7 +816,7 @@
 <body>
 
 
-    <!-- LOADING INICIAL -->
+    <!-- LOADING -->
 
     <div class="page-loader">
         <div class="loader-spinner"></div>
@@ -779,18 +844,18 @@
         <!-- DESCRIÇÃO -->
 
         <p class="description">
-
-            Apenas uma única conta para
-            todos os produtos Onlinside.
-
+            Apenas uma única conta para todos os produtos Onlinside.
         </p>
 
 
-        <!-- ========================================
-             CARROSSEL
-        ======================================== -->
+        <!-- ==================================
+             CARROSSEL DOS PRODUTOS
+        ================================== -->
 
-        <div class="products-carousel-mini">
+        <div
+            class="products-carousel"
+            aria-label="Produtos Onlinside"
+        >
 
             <div class="products-track">
 
@@ -800,9 +865,9 @@
 
                 <!-- ONE -->
 
-                <div class="product-miniature">
+                <div class="product-logo">
                     <img
-                        src="img/one.png"
+                        src="./img/one.png"
                         alt="One"
                     >
                 </div>
@@ -810,9 +875,9 @@
 
                 <!-- ON360 -->
 
-                <div class="product-miniature">
+                <div class="product-logo">
                     <img
-                        src="img/on360.png"
+                        src="./img/on360.png"
                         alt="On360"
                     >
                 </div>
@@ -820,9 +885,9 @@
 
                 <!-- ONCAMARIM -->
 
-                <div class="product-miniature">
+                <div class="product-logo">
                     <img
-                        src="img/oncamarim.png"
+                        src="./img/oncamarim.png"
                         alt="OnCamarim"
                     >
                 </div>
@@ -830,9 +895,9 @@
 
                 <!-- ON -->
 
-                <div class="product-miniature">
+                <div class="product-logo">
                     <img
-                        src="img/on.png"
+                        src="./img/on.png"
                         alt="On"
                     >
                 </div>
@@ -840,9 +905,9 @@
 
                 <!-- MAISON -->
 
-                <div class="product-miniature">
+                <div class="product-logo">
                     <img
-                        src="img/maison.png"
+                        src="./img/maison.png"
                         alt="Maison"
                     >
                 </div>
@@ -850,75 +915,82 @@
 
                 <!-- JORNAL O PAIZ -->
 
-                <div class="product-miniature">
+                <div class="product-logo">
                     <img
-                        src="img/opaiz.png"
+                        src="./img/opaiz.png"
                         alt="Jornal O Paiz"
                     >
                 </div>
 
 
 
-                <!-- SEGUNDA SEQUÊNCIA
-                     REPETIDA PARA LOOP -->
+                <!-- ==================================
+                     REPETIÇÃO PARA LOOP
+                ================================== -->
 
 
-                <!-- ONE -->
-
-                <div class="product-miniature">
+                <div
+                    class="product-logo"
+                    aria-hidden="true"
+                >
                     <img
-                        src="img/one.png"
-                        alt="One"
+                        src="./img/one.png"
+                        alt=""
                     >
                 </div>
 
 
-                <!-- ON360 -->
-
-                <div class="product-miniature">
+                <div
+                    class="product-logo"
+                    aria-hidden="true"
+                >
                     <img
-                        src="img/on360.png"
-                        alt="On360"
+                        src="./img/on360.png"
+                        alt=""
                     >
                 </div>
 
 
-                <!-- ONCAMARIM -->
-
-                <div class="product-miniature">
+                <div
+                    class="product-logo"
+                    aria-hidden="true"
+                >
                     <img
-                        src="img/oncamarim.png"
-                        alt="OnCamarim"
+                        src="./img/oncamarim.png"
+                        alt=""
                     >
                 </div>
 
 
-                <!-- ON -->
-
-                <div class="product-miniature">
+                <div
+                    class="product-logo"
+                    aria-hidden="true"
+                >
                     <img
-                        src="img/on.png"
-                        alt="On"
+                        src="./img/on.png"
+                        alt=""
                     >
                 </div>
 
 
-                <!-- MAISON -->
-
-                <div class="product-miniature">
+                <div
+                    class="product-logo"
+                    aria-hidden="true"
+                >
                     <img
-                        src="img/maison.png"
-                        alt="Maison"
+                        src="./img/maison.png"
+                        alt=""
                     >
                 </div>
 
 
-                <!-- JORNAL O PAIZ -->
-
-                <div class="product-miniature">
+                <div
+                    class="product-logo"
+                    aria-hidden="true"
+                >
                     <img
-                        src="img/opaiz.png"
-                        alt="Jornal O Paiz"
+                        src="./img/opaiz.png"
+                        alt=""
                     >
                 </div>
 
@@ -928,7 +1000,9 @@
         </div>
 
 
-        <!-- LOGIN POR E-MAIL -->
+        <!-- ==================================
+             LOGIN POR E-MAIL
+        ================================== -->
 
         <form
             id="loginForm"
@@ -955,14 +1029,15 @@
                     Continuar
                 </span>
 
-                <span class="spinner"></span>
+                <span
+                    class="spinner"
+                    aria-hidden="true"
+                ></span>
 
             </button>
 
         </form>
 
-
-        <!-- MENSAGEM -->
 
         <p
             id="mensagem"
@@ -973,20 +1048,16 @@
         <!-- DIVISOR -->
 
         <div class="divider">
-
-            <span>
-                ou
-            </span>
-
+            <span>ou</span>
         </div>
 
 
-        <!-- LOGIN SOCIAL -->
+        <!-- ==================================
+             LOGIN SOCIAL
+        ================================== -->
 
         <div class="social-buttons">
 
-
-            <!-- GOOGLE -->
 
             <button
                 type="button"
@@ -1003,8 +1074,6 @@
             </button>
 
 
-            <!-- FACEBOOK -->
-
             <button
                 type="button"
                 class="button social-button"
@@ -1019,8 +1088,6 @@
 
             </button>
 
-
-            <!-- APPLE -->
 
             <button
                 type="button"
@@ -1043,12 +1110,10 @@
         <!-- CRIAR CONTA -->
 
         <a
-            href="cadastro.html"
+            href="./cadastro.html"
             class="create-account"
         >
-
             Criar uma conta Onlinside
-
         </a>
 
 
@@ -1072,105 +1137,76 @@
 
     <script>
 
-
         const loginForm =
-            document.getElementById(
-                "loginForm"
-            );
-
+            document.getElementById("loginForm");
 
         const emailInput =
-            document.getElementById(
-                "email"
-            );
-
+            document.getElementById("email");
 
         const mensagem =
-            document.getElementById(
-                "mensagem"
-            );
-
+            document.getElementById("mensagem");
 
         const continueButton =
-            document.getElementById(
-                "continueButton"
-            );
+            document.getElementById("continueButton");
 
 
-        /* ========================================
+        /* ==============================
            LOGIN POR E-MAIL
-        ======================================== */
+        ============================== */
 
         loginForm.addEventListener(
             "submit",
-            function (event) {
-
+            function(event) {
 
                 event.preventDefault();
 
-
                 const email =
-                    emailInput
-                    .value
-                    .trim();
+                    emailInput.value.trim();
 
 
-                mensagem.textContent =
-                    "";
-
+                mensagem.textContent = "";
 
                 mensagem.classList.remove(
-                    "show",
-                    "error-shake"
+                    "show"
                 );
 
 
                 if (!email) {
 
-
                     mensagem.textContent =
                         "Digite seu e-mail.";
-
 
                     mensagem.classList.add(
                         "show"
                     );
 
-
-                    void
-                        mensagem.offsetWidth;
-
-
-                    mensagem.classList.add(
-                        "error-shake"
-                    );
-
-
                     emailInput.focus();
 
-
                     return;
                 }
 
 
-                if (
-                    continueButton.disabled
-                ) {
-
+                if (continueButton.disabled) {
                     return;
                 }
 
 
-                continueButton
-                    .classList
-                    .add(
-                        "loading"
-                    );
+                /*
+                 * O spinner só começa
+                 * depois do clique.
+                 */
+
+                continueButton.classList.add(
+                    "loading"
+                );
+
+                continueButton.disabled = true;
 
 
-                continueButton.disabled =
-                    true;
-
+                /*
+                 * Guarda o e-mail para
+                 * a página senha.html.
+                 */
 
                 localStorage.setItem(
                     "onlinside_email",
@@ -1179,69 +1215,78 @@
 
 
                 setTimeout(
-                    function () {
+                    function() {
 
-
-                        document
-                            .body
-                            .classList
-                            .add(
-                                "page-exit"
-                            );
+                        document.body.classList.add(
+                            "page-exit"
+                        );
 
 
                         setTimeout(
-                            function () {
-
+                            function() {
 
                                 window.location.href =
-                                    "senha.html";
-
+                                    "./senha.html";
 
                             },
                             280
                         );
 
-
                     },
                     350
                 );
 
-
             }
         );
 
 
-        /* ========================================
-           RESETA BOTÃO AO VOLTAR
-        ======================================== */
+        /* ==============================
+           CORRIGE BOTÃO AO VOLTAR
+        ============================== */
 
         window.addEventListener(
             "pageshow",
-            function () {
+            function() {
 
+                continueButton.classList.remove(
+                    "loading"
+                );
 
-                continueButton
-                    .classList
-                    .remove(
-                        "loading"
-                    );
+                continueButton.disabled = false;
 
-
-                continueButton.disabled =
-                    false;
-
-
-                document
-                    .body
-                    .classList
-                    .remove(
-                        "page-exit"
-                    );
-
+                document.body.classList.remove(
+                    "page-exit"
+                );
 
             }
         );
+
+
+        /* ==============================
+           DIAGNÓSTICO DAS LOGOS
+
+           Se alguma imagem estiver com
+           caminho errado, aparecerá no
+           console do navegador.
+        ============================== */
+
+        document
+            .querySelectorAll(".product-logo img")
+            .forEach(function(img) {
+
+                img.addEventListener(
+                    "error",
+                    function() {
+
+                        console.error(
+                            "Logo não encontrada:",
+                            img.getAttribute("src")
+                        );
+
+                    }
+                );
+
+            });
 
 
     </script>
