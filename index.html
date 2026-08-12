@@ -14,10 +14,6 @@
 
     <style>
 
-        /* ========================================
-           CONFIGURAÇÕES GERAIS
-        ======================================== */
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -49,9 +45,7 @@
                 sans-serif;
 
             opacity: 0;
-
-            transform:
-                translateY(8px);
+            transform: translateY(8px);
 
             animation:
                 pageEnter
@@ -60,17 +54,10 @@
                 forwards;
         }
 
-
-        /* ========================================
-           ANIMAÇÕES
-        ======================================== */
-
         @keyframes pageEnter {
             to {
                 opacity: 1;
-
-                transform:
-                    translateY(0);
+                transform: translateY(0);
             }
         }
 
@@ -85,18 +72,14 @@
         @keyframes pageExit {
             to {
                 opacity: 0;
-
-                transform:
-                    translateY(-8px);
+                transform: translateY(-8px);
             }
         }
 
         @keyframes elementEnter {
             to {
                 opacity: 1;
-
-                transform:
-                    translateY(0);
+                transform: translateY(0);
             }
         }
 
@@ -108,42 +91,25 @@
 
         @keyframes spin {
             to {
-                transform:
-                    rotate(360deg);
+                transform: rotate(360deg);
             }
         }
 
-
-        /* ========================================
-           CONTAINER
-        ======================================== */
-
         .container {
             width: 100%;
-
             max-width: 420px;
-
             text-align: center;
         }
-
-
-        /* ========================================
-           CONTA ONLINSIDE
-        ======================================== */
 
         .brand {
             margin-bottom: 14px;
 
             font-size: 38px;
-
             line-height: 1.1;
-
             letter-spacing: -1px;
 
             opacity: 0;
-
-            transform:
-                translateY(12px);
+            transform: translateY(12px);
 
             animation:
                 elementEnter
@@ -155,20 +121,13 @@
 
         .brand-conta {
             color: #ff9a30;
-
             font-weight: 400;
         }
 
         .brand-onlinside {
             color: #ff8200;
-
             font-weight: 800;
         }
-
-
-        /* ========================================
-           DESCRIÇÃO
-        ======================================== */
 
         .description {
             max-width: 330px;
@@ -179,13 +138,10 @@
             color: #555555;
 
             font-size: 16px;
-
             line-height: 1.5;
 
             opacity: 0;
-
-            transform:
-                translateY(10px);
+            transform: translateY(10px);
 
             animation:
                 elementEnter
@@ -195,16 +151,14 @@
                 forwards;
         }
 
-
         /* ========================================
-           CARROSSEL MINI DOS PRODUTOS
+           CARROSSEL MINI
         ======================================== */
 
         .products-carousel-mini {
             position: relative;
 
             width: 100%;
-
             overflow: hidden;
 
             margin:
@@ -214,9 +168,7 @@
                 7px 0;
 
             opacity: 0;
-
-            transform:
-                translateY(8px);
+            transform: translateY(8px);
 
             animation:
                 elementEnter
@@ -244,10 +196,8 @@
                 );
         }
 
-
         .products-track {
             display: flex;
-
             align-items: center;
 
             gap: 7px;
@@ -256,25 +206,17 @@
 
             animation:
                 productsScroll
-                18s
+                20s
                 linear
                 infinite;
 
-            will-change:
-                transform;
+            will-change: transform;
         }
-
 
         .products-carousel-mini:hover
         .products-track {
-            animation-play-state:
-                paused;
+            animation-play-state: paused;
         }
-
-
-        /* ========================================
-           MINIATURA
-        ======================================== */
 
         .product-miniature {
             width: 50px;
@@ -283,7 +225,6 @@
             flex-shrink: 0;
 
             display: flex;
-
             justify-content: center;
             align-items: center;
 
@@ -305,7 +246,6 @@
                 box-shadow 0.25s ease;
         }
 
-
         .product-miniature img {
             display: block;
 
@@ -314,7 +254,6 @@
 
             object-fit: contain;
         }
-
 
         .product-miniature:hover {
             transform:
@@ -326,37 +265,21 @@
                 rgba(0, 0, 0, 0.13);
         }
 
-
-        /* ========================================
-           MOVIMENTO CONTÍNUO DO CARROSSEL
-        ======================================== */
-
         @keyframes productsScroll {
-
             from {
-                transform:
-                    translateX(0);
+                transform: translateX(0);
             }
 
             to {
-                transform:
-                    translateX(calc(-50% - 3.5px));
+                transform: translateX(calc(-50% - 3.5px));
             }
-
         }
-
-
-        /* ========================================
-           FORMULÁRIO
-        ======================================== */
 
         .form {
             width: 100%;
 
             opacity: 0;
-
-            transform:
-                translateY(10px);
+            transform: translateY(10px);
 
             animation:
                 elementEnter
@@ -366,20 +289,13 @@
                 forwards;
         }
 
-
-        /* ========================================
-           CAMPO DE E-MAIL
-        ======================================== */
-
         .input {
             display: block;
 
             width: 100%;
-
             height: 52px;
 
-            padding:
-                0 16px;
+            padding: 0 16px;
 
             border:
                 1px solid #d8d8d8;
@@ -387,11 +303,9 @@
             border-radius: 10px;
 
             background: #ffffff;
-
             color: #111111;
 
             font-family: inherit;
-
             font-size: 15px;
 
             outline: none;
@@ -403,51 +317,37 @@
         }
 
         .input:hover {
-            border-color:
-                #bdbdbd;
+            border-color: #bdbdbd;
         }
 
         .input:focus {
-            border-color:
-                #ff8200;
+            border-color: #ff8200;
 
             box-shadow:
                 0 0 0 3px
                 rgba(255, 130, 0, 0.12);
 
-            transform:
-                translateY(-1px);
+            transform: translateY(-1px);
         }
-
-
-        /* ========================================
-           BOTÕES
-        ======================================== */
 
         .button {
             display: flex;
-
             justify-content: center;
             align-items: center;
 
             position: relative;
 
             width: 100%;
-
             height: 52px;
 
             border: 0;
-
             border-radius: 10px;
 
             background: #ff8200;
-
             color: #ffffff;
 
             font-family: inherit;
-
             font-size: 15px;
-
             font-weight: 600;
 
             cursor: pointer;
@@ -460,37 +360,26 @@
         }
 
         .button:hover {
-            transform:
-                translateY(-1px);
+            transform: translateY(-1px);
         }
 
         .button:active {
-            transform:
-                scale(0.98);
+            transform: scale(0.98);
         }
 
         .button:disabled {
             cursor: default;
-
             opacity: 0.75;
         }
 
-
-        /* ========================================
-           BOTÃO CONTINUAR
-        ======================================== */
-
         .continue-button {
             margin-top: 12px;
-
             background: #ff8200;
         }
 
         .continue-button:hover {
-            background:
-                #ff9a30;
+            background: #ff9a30;
         }
-
 
         /* ========================================
            SPINNER CORRIGIDO
@@ -506,29 +395,19 @@
                 2px solid
                 rgba(255, 255, 255, 0.35);
 
-            border-top-color:
-                #ffffff;
+            border-top-color: #ffffff;
 
-            border-radius:
-                50%;
+            border-radius: 50%;
 
-            opacity:
-                0;
+            opacity: 0;
+            visibility: hidden;
 
-            visibility:
-                hidden;
-
-            animation:
-                none;
+            animation: none;
         }
 
-
         .button.loading .spinner {
-            opacity:
-                1;
-
-            visibility:
-                visible;
+            opacity: 1;
+            visibility: visible;
 
             animation:
                 spin
@@ -537,30 +416,19 @@
                 infinite;
         }
 
-
         .button.loading .button-text {
-            opacity:
-                0;
+            opacity: 0;
         }
-
-
-        /* ========================================
-           MENSAGEM
-        ======================================== */
 
         .message {
             min-height: 20px;
-
             margin-top: 12px;
 
             color: #d00000;
-
             font-size: 13px;
 
             opacity: 0;
-
-            transform:
-                translateY(-4px);
+            transform: translateY(-4px);
 
             transition:
                 opacity 0.2s ease,
@@ -569,9 +437,7 @@
 
         .message.show {
             opacity: 1;
-
-            transform:
-                translateY(0);
+            transform: translateY(0);
         }
 
         .message.error-shake {
@@ -581,38 +447,26 @@
         }
 
         @keyframes shake {
-
             0%,
             100% {
-                transform:
-                    translateX(0);
+                transform: translateX(0);
             }
 
             25% {
-                transform:
-                    translateX(-5px);
+                transform: translateX(-5px);
             }
 
             50% {
-                transform:
-                    translateX(5px);
+                transform: translateX(5px);
             }
 
             75% {
-                transform:
-                    translateX(-3px);
+                transform: translateX(-3px);
             }
-
         }
-
-
-        /* ========================================
-           DIVISOR
-        ======================================== */
 
         .divider {
             display: flex;
-
             align-items: center;
 
             width: 100%;
@@ -622,14 +476,10 @@
             margin:
                 24px 0;
 
-            color:
-                #999999;
+            color: #999999;
+            font-size: 13px;
 
-            font-size:
-                13px;
-
-            opacity:
-                0;
+            opacity: 0;
 
             animation:
                 fadeIn
@@ -643,35 +493,20 @@
             content: "";
 
             flex: 1;
+            height: 1px;
 
-            height:
-                1px;
-
-            background:
-                #e5e5e5;
+            background: #e5e5e5;
         }
-
-
-        /* ========================================
-           REDES SOCIAIS
-        ======================================== */
 
         .social-buttons {
             display: flex;
-
-            flex-direction:
-                column;
+            flex-direction: column;
 
             width: 100%;
+            gap: 10px;
 
-            gap:
-                10px;
-
-            opacity:
-                0;
-
-            transform:
-                translateY(8px);
+            opacity: 0;
+            transform: translateY(8px);
 
             animation:
                 elementEnter
@@ -682,131 +517,75 @@
         }
 
         .social-button {
-            position:
-                relative;
+            position: relative;
         }
 
-
-        /* GOOGLE */
-
         #googleLogin {
-            background:
-                #ffffff;
-
-            color:
-                #202124;
+            background: #ffffff;
+            color: #202124;
 
             border:
                 1px solid #dadce0;
         }
 
         #googleLogin:hover {
-            background:
-                #f8f9fa;
+            background: #f8f9fa;
         }
 
-
-        /* FACEBOOK */
-
         #facebookLogin {
-            background:
-                #1877f2;
-
-            color:
-                #ffffff;
+            background: #1877f2;
+            color: #ffffff;
         }
 
         #facebookLogin:hover {
-            background:
-                #166fe5;
+            background: #166fe5;
         }
 
-
-        /* APPLE */
-
         #appleLogin {
-            background:
-                #000000;
-
-            color:
-                #ffffff;
+            background: #000000;
+            color: #ffffff;
         }
 
         #appleLogin:hover {
-            background:
-                #1c1c1c;
+            background: #1c1c1c;
         }
 
-
-        /* ========================================
-           ÍCONES SOCIAIS
-        ======================================== */
-
         .social-icon {
-            width:
-                20px;
+            width: 20px;
 
-            margin-right:
-                2px;
+            margin-right: 2px;
 
-            display:
-                flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            font-size:
-                18px;
-
-            line-height:
-                1;
+            font-size: 18px;
+            line-height: 1;
         }
 
         #googleLogin .social-icon {
-            color:
-                #4285f4;
-
-            font-weight:
-                700;
+            color: #4285f4;
+            font-weight: 700;
         }
 
         #facebookLogin .social-icon {
-            color:
-                #ffffff;
-
-            font-weight:
-                700;
+            color: #ffffff;
+            font-weight: 700;
         }
 
-
-        /* ========================================
-           CRIAR CONTA
-        ======================================== */
-
         .create-account {
-            display:
-                inline-block;
+            display: inline-block;
 
-            margin-top:
-                26px;
+            margin-top: 26px;
 
-            color:
-                #111111;
+            color: #111111;
 
-            font-size:
-                14px;
+            font-size: 14px;
+            font-weight: 600;
 
-            font-weight:
-                600;
+            text-decoration: none;
 
-            text-decoration:
-                none;
-
-            opacity:
-                0;
+            opacity: 0;
 
             animation:
                 fadeIn
@@ -816,39 +595,22 @@
         }
 
         .create-account:hover {
-            color:
-                #ff8200;
-
-            text-decoration:
-                underline;
+            color: #ff8200;
+            text-decoration: underline;
         }
 
-
-        /* ========================================
-           RODAPÉ
-        ======================================== */
-
         .footer {
-            display:
-                flex;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            justify-content:
-                center;
+            gap: 18px;
 
-            align-items:
-                center;
+            margin-top: 38px;
 
-            gap:
-                18px;
+            font-size: 12px;
 
-            margin-top:
-                38px;
-
-            font-size:
-                12px;
-
-            opacity:
-                0;
+            opacity: 0;
 
             animation:
                 fadeIn
@@ -858,50 +620,28 @@
         }
 
         .footer a {
-            color:
-                #777777;
-
-            text-decoration:
-                none;
+            color: #777777;
+            text-decoration: none;
         }
 
         .footer a:hover {
-            color:
-                #111111;
-
-            text-decoration:
-                underline;
+            color: #111111;
+            text-decoration: underline;
         }
 
-
-        /* ========================================
-           CARREGAMENTO INICIAL
-        ======================================== */
-
         .page-loader {
-            position:
-                fixed;
+            position: fixed;
+            inset: 0;
 
-            inset:
-                0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            display:
-                flex;
+            background: #ffffff;
 
-            justify-content:
-                center;
+            z-index: 9999;
 
-            align-items:
-                center;
-
-            background:
-                #ffffff;
-
-            z-index:
-                9999;
-
-            pointer-events:
-                none;
+            pointer-events: none;
 
             animation:
                 loaderOut
@@ -911,21 +651,16 @@
         }
 
         .loader-spinner {
-            width:
-                26px;
-
-            height:
-                26px;
+            width: 26px;
+            height: 26px;
 
             border:
                 3px solid
                 #eeeeee;
 
-            border-top-color:
-                #ff8200;
+            border-top-color: #ff8200;
 
-            border-radius:
-                50%;
+            border-radius: 50%;
 
             animation:
                 spin
@@ -935,21 +670,11 @@
         }
 
         @keyframes loaderOut {
-
             to {
-                opacity:
-                    0;
-
-                visibility:
-                    hidden;
+                opacity: 0;
+                visibility: hidden;
             }
-
         }
-
-
-        /* ========================================
-           CELULAR
-        ======================================== */
 
         @media
         (max-width: 480px) {
@@ -960,62 +685,44 @@
             }
 
             .brand {
-                font-size:
-                    32px;
+                font-size: 32px;
             }
 
             .description {
-                max-width:
-                    300px;
+                max-width: 300px;
 
-                font-size:
-                    14px;
+                font-size: 14px;
 
-                margin-bottom:
-                    15px;
+                margin-bottom: 15px;
             }
 
             .products-carousel-mini {
-                margin-bottom:
-                    26px;
+                margin-bottom: 26px;
             }
 
             .product-miniature {
-                width:
-                    44px;
+                width: 44px;
+                height: 44px;
 
-                height:
-                    44px;
-
-                border-radius:
-                    11px;
+                border-radius: 11px;
             }
 
             .products-track {
-                gap:
-                    6px;
+                gap: 6px;
 
                 animation-duration:
-                    15s;
+                    16s;
             }
 
             .footer {
-                gap:
-                    14px;
+                gap: 14px;
 
-                margin-top:
-                    32px;
+                margin-top: 32px;
 
-                font-size:
-                    11px;
+                font-size: 11px;
             }
 
         }
-
-
-        /* ========================================
-           ACESSIBILIDADE
-        ======================================== */
 
         @media
         (prefers-reduced-motion: reduce) {
@@ -1044,9 +751,7 @@
 <body>
 
 
-    <!-- ========================================
-         CARREGAMENTO DA PÁGINA
-    ======================================== -->
+    <!-- LOADING INICIAL -->
 
     <div class="page-loader">
         <div class="loader-spinner"></div>
@@ -1056,9 +761,7 @@
     <main class="container">
 
 
-        <!-- ========================================
-             CONTA ONLINSIDE
-        ======================================== -->
+        <!-- CONTA ONLINSIDE -->
 
         <h1 class="brand">
 
@@ -1073,9 +776,7 @@
         </h1>
 
 
-        <!-- ========================================
-             DESCRIÇÃO
-        ======================================== -->
+        <!-- DESCRIÇÃO -->
 
         <p class="description">
 
@@ -1086,7 +787,7 @@
 
 
         <!-- ========================================
-             CARROSSEL DE MINIATURAS
+             CARROSSEL
         ======================================== -->
 
         <div class="products-carousel-mini">
@@ -1094,134 +795,131 @@
             <div class="products-track">
 
 
-                <!-- =========================
-                     PRIMEIRA SEQUÊNCIA
-                ========================= -->
+                <!-- PRIMEIRA SEQUÊNCIA -->
+
+
+                <!-- ONE -->
+
+                <div class="product-miniature">
+                    <img
+                        src="img/one.png"
+                        alt="One"
+                    >
+                </div>
 
 
                 <!-- ON360 -->
 
                 <div class="product-miniature">
-
                     <img
                         src="img/on360.png"
                         alt="On360"
                     >
-
                 </div>
 
 
-                <!-- TECH -->
+                <!-- ONCAMARIM -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/tech.png"
-                        alt="Tech"
+                        src="img/oncamarim.png"
+                        alt="OnCamarim"
                     >
-
                 </div>
 
 
-                <!-- GENTE -->
+                <!-- ON -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/gente.png"
-                        alt="Gente"
+                        src="img/on.png"
+                        alt="On"
                     >
-
                 </div>
 
 
-                <!-- SPORTS -->
+                <!-- MAISON -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/sports.png"
-                        alt="Sports"
+                        src="img/maison.png"
+                        alt="Maison"
                     >
-
                 </div>
 
 
-                <!-- SPLASH -->
+                <!-- JORNAL O PAIZ -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/splash.png"
-                        alt="Splash"
+                        src="img/opaiz.png"
+                        alt="Jornal O Paiz"
                     >
-
                 </div>
 
 
-                <!-- =========================
-                     SEGUNDA SEQUÊNCIA
-                     REPETIDA PARA LOOP
-                ========================= -->
+
+                <!-- SEGUNDA SEQUÊNCIA
+                     REPETIDA PARA LOOP -->
+
+
+                <!-- ONE -->
+
+                <div class="product-miniature">
+                    <img
+                        src="img/one.png"
+                        alt="One"
+                    >
+                </div>
 
 
                 <!-- ON360 -->
 
                 <div class="product-miniature">
-
                     <img
                         src="img/on360.png"
                         alt="On360"
                     >
-
                 </div>
 
 
-                <!-- TECH -->
+                <!-- ONCAMARIM -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/tech.png"
-                        alt="Tech"
+                        src="img/oncamarim.png"
+                        alt="OnCamarim"
                     >
-
                 </div>
 
 
-                <!-- GENTE -->
+                <!-- ON -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/gente.png"
-                        alt="Gente"
+                        src="img/on.png"
+                        alt="On"
                     >
-
                 </div>
 
 
-                <!-- SPORTS -->
+                <!-- MAISON -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/sports.png"
-                        alt="Sports"
+                        src="img/maison.png"
+                        alt="Maison"
                     >
-
                 </div>
 
 
-                <!-- SPLASH -->
+                <!-- JORNAL O PAIZ -->
 
                 <div class="product-miniature">
-
                     <img
-                        src="img/splash.png"
-                        alt="Splash"
+                        src="img/opaiz.png"
+                        alt="Jornal O Paiz"
                     >
-
                 </div>
 
 
@@ -1230,9 +928,7 @@
         </div>
 
 
-        <!-- ========================================
-             LOGIN POR E-MAIL
-        ======================================== -->
+        <!-- LOGIN POR E-MAIL -->
 
         <form
             id="loginForm"
@@ -1266,9 +962,7 @@
         </form>
 
 
-        <!-- ========================================
-             MENSAGEM
-        ======================================== -->
+        <!-- MENSAGEM -->
 
         <p
             id="mensagem"
@@ -1276,9 +970,7 @@
         ></p>
 
 
-        <!-- ========================================
-             DIVISOR
-        ======================================== -->
+        <!-- DIVISOR -->
 
         <div class="divider">
 
@@ -1289,9 +981,7 @@
         </div>
 
 
-        <!-- ========================================
-             LOGIN SOCIAL
-        ======================================== -->
+        <!-- LOGIN SOCIAL -->
 
         <div class="social-buttons">
 
@@ -1350,9 +1040,7 @@
         </div>
 
 
-        <!-- ========================================
-             CRIAR CONTA
-        ======================================== -->
+        <!-- CRIAR CONTA -->
 
         <a
             href="cadastro.html"
@@ -1364,9 +1052,7 @@
         </a>
 
 
-        <!-- ========================================
-             RODAPÉ
-        ======================================== -->
+        <!-- RODAPÉ -->
 
         <footer class="footer">
 
@@ -1384,16 +1070,8 @@
     </main>
 
 
-    <!-- ========================================
-         JAVASCRIPT
-    ======================================== -->
-
     <script>
 
-
-        /* ========================================
-           ELEMENTOS
-        ======================================== */
 
         const loginForm =
             document.getElementById(
@@ -1437,8 +1115,6 @@
                     .trim();
 
 
-                /* LIMPA ERRO */
-
                 mensagem.textContent =
                     "";
 
@@ -1448,10 +1124,6 @@
                     "error-shake"
                 );
 
-
-                /* ========================================
-                   VALIDAÇÃO
-                ======================================== */
 
                 if (!email) {
 
@@ -1481,10 +1153,6 @@
                 }
 
 
-                /*
-                   EVITA VÁRIOS CLIQUES
-                */
-
                 if (
                     continueButton.disabled
                 ) {
@@ -1492,11 +1160,6 @@
                     return;
                 }
 
-
-                /* ========================================
-                   MOSTRA O SPINNER
-                   SOMENTE DEPOIS DO CLIQUE
-                ======================================== */
 
                 continueButton
                     .classList
@@ -1509,19 +1172,11 @@
                     true;
 
 
-                /* ========================================
-                   SALVA O E-MAIL
-                ======================================== */
-
                 localStorage.setItem(
                     "onlinside_email",
                     email
                 );
 
-
-                /* ========================================
-                   VAI PARA SENHA.HTML
-                ======================================== */
 
                 setTimeout(
                     function () {
@@ -1558,7 +1213,7 @@
 
 
         /* ========================================
-           CORRIGE O BOTÃO AO VOLTAR
+           RESETA BOTÃO AO VOLTAR
         ======================================== */
 
         window.addEventListener(
@@ -1583,38 +1238,6 @@
                     .remove(
                         "page-exit"
                     );
-
-
-            }
-        );
-
-
-        /* ========================================
-           BOTÕES SOCIAIS
-        ======================================== */
-
-        const socialButtons =
-            document.querySelectorAll(
-                ".social-button"
-            );
-
-
-        socialButtons.forEach(
-            function (button) {
-
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-
-                        /*
-                           Aqui depois entra
-                           o Firebase de cada provedor.
-                        */
-
-                    }
-                );
 
 
             }
