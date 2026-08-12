@@ -1,140 +1,894 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar conta</title>
+
+    <title>Criar conta — Conta Onlinside</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 24px;
+
+            background: #ffffff;
+            color: #111111;
+
+            font-family: "Garet", Arial, sans-serif;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                pageEnter
+                0.55s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+        @keyframes pageEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes elementEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .brand {
+            text-align: center;
+
+            margin-bottom: 12px;
+
+            font-size: 36px;
+            letter-spacing: -1px;
+        }
+
+        .brand-conta {
+            color: #ff9a30;
+            font-weight: 400;
+        }
+
+        .brand-onlinside {
+            color: #ff8200;
+            font-weight: 800;
+        }
+
+        .title {
+            text-align: center;
+
+            font-size: 25px;
+            margin-bottom: 8px;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.08s
+                forwards;
+        }
+
+        .description {
+            text-align: center;
+
+            color: #666666;
+
+            font-size: 14px;
+            line-height: 1.5;
+
+            margin-bottom: 28px;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.12s
+                forwards;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+
+            gap: 14px;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.18s
+                forwards;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+        }
+
+        .field {
+            width: 100%;
+        }
+
+        .label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #555555;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input {
+            width: 100%;
+            height: 52px;
+
+            padding: 0 15px;
+
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+
+            background: #ffffff;
+            color: #111111;
+
+            font-family: inherit;
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .input:focus {
+            border-color: #ff8200;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 130, 0, 0.12);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper .input {
+            padding-right: 78px;
+        }
+
+        .show-password {
+            position: absolute;
+
+            top: 50%;
+            right: 14px;
+
+            transform: translateY(-50%);
+
+            border: 0;
+            background: transparent;
+
+            color: #777777;
+
+            font-family: inherit;
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 9px;
+
+            margin-top: 2px;
+
+            color: #666666;
+
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .terms input {
+            margin-top: 2px;
+        }
+
+        .terms a {
+            color: #ff8200;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .button {
+            position: relative;
+
+            width: 100%;
+            height: 52px;
+
+            margin-top: 4px;
+
+            border: 0;
+            border-radius: 10px;
+
+            background: #ff8200;
+            color: #ffffff;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .button:hover {
+            background: #ff9a30;
+            transform: translateY(-1px);
+        }
+
+        .button:disabled {
+            opacity: 0.7;
+            cursor: default;
+        }
+
+        .spinner {
+            position: absolute;
+
+            width: 19px;
+            height: 19px;
+
+            border:
+                2px solid
+                rgba(255,255,255,.35);
+
+            border-top-color: #ffffff;
+
+            border-radius: 50%;
+
+            opacity: 0;
+            visibility: hidden;
+
+            animation: none;
+        }
+
+        .button.loading .spinner {
+            opacity: 1;
+            visibility: visible;
+
+            animation:
+                spin
+                .75s
+                linear
+                infinite;
+        }
+
+        .button.loading .button-text {
+            opacity: 0;
+        }
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 12px;
+
+            text-align: center;
+
+            color: #d00000;
+
+            font-size: 13px;
+        }
+
+        .login-link {
+            margin-top: 22px;
+
+            text-align: center;
+
+            color: #666666;
+
+            font-size: 13px;
+        }
+
+        .login-link a {
+            color: #111111;
+
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            color: #ff8200;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 20px 18px;
+            }
+
+            .brand {
+                font-size: 31px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Criar conta</h1>
+    <main class="container">
 
-    <form id="cadastroForm">
+        <h1 class="brand">
+            <span class="brand-conta">Conta</span>
+            <span class="brand-onlinside">Onlinside</span>
+        </h1>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Seu e-mail"
-            required
+        <h2 class="title">
+            Crie sua conta
+        </h2>
+
+        <p class="description">
+            Uma única conta para acessar todos os produtos Onlinside.
+        </p>
+
+        <form
+            id="cadastroForm"
+            class="form"
         >
 
-        <br><br>
+            <div class="row">
 
-        <input
-            type="password"
-            id="senha"
-            placeholder="Crie uma senha"
-            minlength="6"
-            required
-        >
+                <div class="field">
+                    <label
+                        for="nome"
+                        class="label"
+                    >
+                        Nome
+                    </label>
 
-        <br><br>
+                    <input
+                        type="text"
+                        id="nome"
+                        class="input"
+                        autocomplete="given-name"
+                        required
+                    >
+                </div>
 
-        <button type="submit">Criar conta</button>
+                <div class="field">
+                    <label
+                        for="sobrenome"
+                        class="label"
+                    >
+                        Sobrenome
+                    </label>
 
-    </form>
+                    <input
+                        type="text"
+                        id="sobrenome"
+                        class="input"
+                        autocomplete="family-name"
+                        required
+                    >
+                </div>
 
-    <p id="mensagem"></p>
+            </div>
 
-    <p>
-        Já tem uma conta?
-        <a href="index.html">Fazer login</a>
-    </p>
+            <div class="field">
+
+                <label
+                    for="email"
+                    class="label"
+                >
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    class="input"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+            <div class="field">
+
+                <label
+                    for="birthdate"
+                    class="label"
+                >
+                    Data de nascimento
+                </label>
+
+                <input
+                    type="date"
+                    id="birthdate"
+                    class="input"
+                    autocomplete="bday"
+                    required
+                >
+
+            </div>
+
+            <div class="field">
+
+                <label
+                    for="senha"
+                    class="label"
+                >
+                    Senha
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="senha"
+                        class="input"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        data-target="senha"
+                    >
+                        Mostrar
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="field">
+
+                <label
+                    for="confirmarSenha"
+                    class="label"
+                >
+                    Confirmar senha
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="confirmarSenha"
+                        class="input"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        data-target="confirmarSenha"
+                    >
+                        Mostrar
+                    </button>
+
+                </div>
+
+            </div>
+
+            <label class="terms">
+
+                <input
+                    type="checkbox"
+                    id="termos"
+                    required
+                >
+
+                <span>
+                    Li e aceito os
+                    <a href="#">Termos de Uso</a>
+                    e a
+                    <a href="#">Política de Privacidade</a>.
+                </span>
+
+            </label>
+
+            <button
+                type="submit"
+                id="criarConta"
+                class="button"
+            >
+
+                <span class="button-text">
+                    Criar Conta Onlinside
+                </span>
+
+                <span class="spinner"></span>
+
+            </button>
+
+        </form>
+
+        <p
+            id="mensagem"
+            class="message"
+        ></p>
+
+        <p class="login-link">
+            Já possui uma conta?
+            <a href="./index.html">
+                Entrar
+            </a>
+        </p>
+
+    </main>
 
 
     <script type="module">
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { auth }
+        from "./firebase.js";
+
 
         import {
-            getAuth,
             createUserWithEmailAndPassword,
-            sendEmailVerification
-        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+            sendEmailVerification,
+            updateProfile
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-       const firebaseConfig = {
-  apiKey: "AIzaSyCUZ98Y78ZxCU166qC5EAAupCDPbv0aF9U",
-  authDomain: "login-4e334.firebaseapp.com",
-  projectId: "login-4e334",
-  storageBucket: "login-4e334.firebasestorage.app",
-  messagingSenderId: "937085407465",
-  appId: "1:937085407465:web:c93de7f716be2480c2a078",
-  measurementId: "G-MNNYF7GEN1"
-       
- };
+        const formulario =
+            document.getElementById(
+                "cadastroForm"
+            );
+
+        const mensagem =
+            document.getElementById(
+                "mensagem"
+            );
+
+        const criarContaButton =
+            document.getElementById(
+                "criarConta"
+            );
 
 
-        const app = initializeApp(firebaseConfig);
+        /* ========================================
+           MOSTRAR / OCULTAR SENHA
+        ======================================== */
 
-        const auth = getAuth(app);
+        document
+            .querySelectorAll(
+                ".show-password"
+            )
+            .forEach(
+                function(button) {
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            const target =
+                                document.getElementById(
+                                    button.dataset.target
+                                );
+
+                            if (
+                                target.type ===
+                                "password"
+                            ) {
+
+                                target.type =
+                                    "text";
+
+                                button.textContent =
+                                    "Ocultar";
+
+                            } else {
+
+                                target.type =
+                                    "password";
+
+                                button.textContent =
+                                    "Mostrar";
+                            }
+
+                        }
+                    );
+
+                }
+            );
 
 
-        const formulario = document.getElementById("cadastroForm");
+        /* ========================================
+           CADASTRO
+        ======================================== */
 
-        const mensagem = document.getElementById("mensagem");
+        formulario.addEventListener(
+            "submit",
+            async function(evento) {
 
-
-        formulario.addEventListener("submit", async (evento) => {
-
-            evento.preventDefault();
-
-            const email = document.getElementById("email").value;
-
-            const senha = document.getElementById("senha").value;
-
-
-            try {
-
-                const resultado = await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    senha
-                );
-
-
-                await sendEmailVerification(resultado.user);
+                evento.preventDefault();
 
 
                 mensagem.textContent =
-                    "Conta criada! Verifique seu e-mail para ativar a conta.";
-
-                formulario.reset();
+                    "";
 
 
-            } catch (erro) {
+                const nome =
+                    document
+                        .getElementById("nome")
+                        .value
+                        .trim();
 
-                console.error(erro);
+
+                const sobrenome =
+                    document
+                        .getElementById("sobrenome")
+                        .value
+                        .trim();
 
 
-                if (erro.code === "auth/email-already-in-use") {
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                const birthdate =
+                    document
+                        .getElementById("birthdate")
+                        .value;
+
+
+                const senha =
+                    document
+                        .getElementById("senha")
+                        .value;
+
+
+                const confirmarSenha =
+                    document
+                        .getElementById(
+                            "confirmarSenha"
+                        )
+                        .value;
+
+
+                if (
+                    senha !==
+                    confirmarSenha
+                ) {
 
                     mensagem.textContent =
-                        "Este e-mail já está cadastrado.";
+                        "As senhas não coincidem.";
 
-                } else if (erro.code === "auth/invalid-email") {
+                    return;
+                }
 
-                    mensagem.textContent =
-                        "Digite um e-mail válido.";
 
-                } else if (erro.code === "auth/weak-password") {
-
-                    mensagem.textContent =
-                        "A senha precisa ter pelo menos 6 caracteres.";
-
-                } else {
+                if (!birthdate) {
 
                     mensagem.textContent =
-                        "Erro ao criar a conta: " + erro.message;
+                        "Informe sua data de nascimento.";
+
+                    return;
+                }
+
+
+                const hoje =
+                    new Date();
+
+                const nascimento =
+                    new Date(
+                        birthdate +
+                        "T12:00:00"
+                    );
+
+
+                if (
+                    nascimento >
+                    hoje
+                ) {
+
+                    mensagem.textContent =
+                        "A data de nascimento não pode estar no futuro.";
+
+                    return;
+                }
+
+
+                criarContaButton
+                    .classList
+                    .add(
+                        "loading"
+                    );
+
+
+                criarContaButton.disabled =
+                    true;
+
+
+                try {
+
+                    const resultado =
+                        await createUserWithEmailAndPassword(
+                            auth,
+                            email,
+                            senha
+                        );
+
+
+                    /*
+                     * Salva nome e sobrenome
+                     * no perfil básico do Firebase.
+                     */
+
+                    await updateProfile(
+                        resultado.user,
+                        {
+                            displayName:
+                                nome +
+                                " " +
+                                sobrenome
+                        }
+                    );
+
+
+                    /*
+                     * Envia e-mail de confirmação.
+                     */
+
+                    await sendEmailVerification(
+                        resultado.user
+                    );
+
+
+                    /*
+                     * Guarda temporariamente os
+                     * dados que usaremos na próxima etapa.
+                     *
+                     * A data de nascimento ainda NÃO
+                     * está sendo salva no Firebase Auth.
+                     * Depois podemos colocar no Firestore.
+                     */
+
+                    localStorage.setItem(
+                        "onlinside_birthdate",
+                        birthdate
+                    );
+
+
+                    localStorage.setItem(
+                        "onlinside_nome",
+                        nome
+                    );
+
+
+                    /*
+                     * Vai para a página
+                     * de confirmação.
+                     */
+
+                    window.location.href =
+                        "./confirmar-email.html";
+
+
+                } catch (erro) {
+
+                    console.error(
+                        erro
+                    );
+
+
+                    criarContaButton
+                        .classList
+                        .remove(
+                            "loading"
+                        );
+
+
+                    criarContaButton.disabled =
+                        false;
+
+
+                    if (
+                        erro.code ===
+                        "auth/email-already-in-use"
+                    ) {
+
+                        mensagem.textContent =
+                            "Este e-mail já está cadastrado.";
+
+
+                    } else if (
+                        erro.code ===
+                        "auth/invalid-email"
+                    ) {
+
+                        mensagem.textContent =
+                            "Digite um e-mail válido.";
+
+
+                    } else if (
+                        erro.code ===
+                        "auth/weak-password"
+                    ) {
+
+                        mensagem.textContent =
+                            "Escolha uma senha mais forte.";
+
+
+                    } else {
+
+                        mensagem.textContent =
+                            "Não foi possível criar sua conta.";
+                    }
 
                 }
 
             }
-
-        });
+        );
 
     </script>
 
 </body>
+
 </html>
