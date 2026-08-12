@@ -451,40 +451,38 @@
 
 
         .spinner {
+    position: absolute;
 
-            position:
-                absolute;
+    width: 19px;
+    height: 19px;
 
-            width:
-                19px;
+    border: 2px solid rgba(255,255,255,0.35);
+    border-top-color: #ffffff;
 
-            height:
-                19px;
+    border-radius: 50%;
 
-            border:
-                2px solid
-                rgba(255,255,255,.35);
+    opacity: 0;
+    visibility: hidden;
 
-            border-top-color:
-                #ffffff;
+    animation: none;
+}
 
-            border-radius:
-                50%;
+.button.loading .spinner {
+    opacity: 1;
+    visibility: visible;
 
-            opacity:
-                0;
+    animation: spin 0.75s linear infinite;
+}
 
-            animation:
-                spinnerAppear
-                0.2s
-                forwards,
+.button.loading .button-text {
+    opacity: 0;
+}
 
-                spin
-                0.75s
-                linear
-                infinite;
-        }
-
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
         .button.loading
         .spinner {
