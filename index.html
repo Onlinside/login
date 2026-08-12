@@ -13,6 +13,10 @@
 
     <style>
 
+        /* =========================================
+           CONFIGURAÇÕES GERAIS
+        ========================================= */
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -49,6 +53,11 @@
                 cubic-bezier(.22, 1, .36, 1)
                 forwards;
         }
+
+
+        /* =========================================
+           ANIMAÇÕES GERAIS
+        ========================================= */
 
         @keyframes pageEnter {
             to {
@@ -92,20 +101,21 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            CONTAINER
-        ============================== */
+        ========================================= */
 
         .container {
             width: 100%;
             max-width: 420px;
+
             text-align: center;
         }
 
 
-        /* ==============================
-           MARCA
-        ============================== */
+        /* =========================================
+           CONTA ONLINSIDE
+        ========================================= */
 
         .brand {
             margin-bottom: 14px;
@@ -136,9 +146,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            DESCRIÇÃO
-        ============================== */
+        ========================================= */
 
         .description {
             max-width: 330px;
@@ -162,14 +172,15 @@
         }
 
 
-        /* ==============================
-           CARROSSEL DE PRODUTOS
-        ============================== */
+        /* =========================================
+           CARROSSEL DOS PRODUTOS
+        ========================================= */
 
         .products-carousel {
             position: relative;
 
             width: 100%;
+
             overflow: hidden;
 
             margin: 0 auto 27px;
@@ -190,8 +201,8 @@
                 linear-gradient(
                     to right,
                     transparent 0%,
-                    #000 10%,
-                    #000 90%,
+                    #000 8%,
+                    #000 92%,
                     transparent 100%
                 );
 
@@ -199,8 +210,8 @@
                 linear-gradient(
                     to right,
                     transparent 0%,
-                    #000 10%,
-                    #000 90%,
+                    #000 8%,
+                    #000 92%,
                     transparent 100%
                 );
         }
@@ -210,12 +221,12 @@
             display: flex;
             align-items: center;
 
-            gap: 8px;
+            gap: 20px;
 
             width: max-content;
 
             animation:
-                carouselMove
+                productsScroll
                 18s
                 linear
                 infinite;
@@ -224,79 +235,83 @@
         }
 
 
+        /* Pausa ao passar o mouse */
+
         .products-carousel:hover .products-track {
             animation-play-state: paused;
         }
 
 
-        /* ==============================
-           MINIATURAS
-        ============================== */
+        /* =========================================
+           SOMENTE AS LOGOS
+        ========================================= */
 
-        /* ==============================
-   LOGOS DOS PRODUTOS
-============================== */
+        .product-logo {
+            width: 64px;
+            height: 64px;
 
-.product-logo {
-    width: 58px;
-    height: 58px;
+            flex: 0 0 64px;
 
-    flex: 0 0 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            background: transparent;
 
-    background: transparent;
-    border: none;
-    box-shadow: none;
+            border: none;
+            box-shadow: none;
 
-    transition: transform 0.25s ease;
-}
-
-.product-logo img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    background: transparent;
-}
-
-.product-logo:hover {
-    transform: scale(1.10);
-}
-
-        .product-logo:hover {
-            transform:
-                translateY(-4px)
-                scale(1.07);
-
-            box-shadow:
-                0 8px 20px
-                rgba(0, 0, 0, 0.13);
+            transition:
+                transform 0.25s ease,
+                opacity 0.25s ease;
         }
 
 
-        @keyframes carouselMove {
+        .product-logo img {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            background: transparent;
+
+            border: none;
+        }
+
+
+        .product-logo:hover {
+            transform: scale(1.12);
+        }
+
+
+        /* =========================================
+           MOVIMENTO DO CARROSSEL
+        ========================================= */
+
+        @keyframes productsScroll {
 
             from {
                 transform: translateX(0);
             }
 
             to {
+                /*
+                 * Temos duas sequências idênticas.
+                 * Ao chegar à metade, começa novamente.
+                 */
+
                 transform:
-                    translateX(calc(-50% - 4px));
+                    translateX(calc(-50% - 10px));
             }
 
         }
 
 
-        /* ==============================
+        /* =========================================
            FORMULÁRIO
-        ============================== */
+        ========================================= */
 
         .form {
             width: 100%;
@@ -312,6 +327,10 @@
                 forwards;
         }
 
+
+        /* =========================================
+           CAMPO DE E-MAIL
+        ========================================= */
 
         .input {
             display: block;
@@ -338,11 +357,9 @@
                 transform 0.2s ease;
         }
 
-
         .input:hover {
             border-color: #bdbdbd;
         }
-
 
         .input:focus {
             border-color: #ff8200;
@@ -355,9 +372,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            BOTÕES
-        ============================== */
+        ========================================= */
 
         .button {
             position: relative;
@@ -384,16 +401,13 @@
                 opacity 0.18s ease;
         }
 
-
         .button:hover {
             transform: translateY(-1px);
         }
 
-
         .button:active {
             transform: scale(0.98);
         }
-
 
         .button:disabled {
             cursor: default;
@@ -401,7 +415,9 @@
         }
 
 
-        /* CONTINUAR */
+        /* =========================================
+           CONTINUAR
+        ========================================= */
 
         .continue-button {
             margin-top: 12px;
@@ -410,15 +426,14 @@
             color: #ffffff;
         }
 
-
         .continue-button:hover {
             background: #ff9a30;
         }
 
 
-        /* ==============================
-           SPINNER
-        ============================== */
+        /* =========================================
+           SPINNER DO BOTÃO
+        ========================================= */
 
         .spinner {
             position: absolute;
@@ -428,7 +443,7 @@
 
             border:
                 2px solid
-                rgba(255,255,255,0.35);
+                rgba(255, 255, 255, 0.35);
 
             border-top-color: #ffffff;
 
@@ -436,6 +451,12 @@
 
             opacity: 0;
             visibility: hidden;
+
+            /*
+             * IMPORTANTE:
+             * não gira enquanto o botão
+             * não tiver a classe loading.
+             */
 
             animation: none;
         }
@@ -458,9 +479,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            MENSAGEM
-        ============================== */
+        ========================================= */
 
         .message {
             min-height: 20px;
@@ -473,18 +494,18 @@
 
             opacity: 0;
 
-            transition: opacity 0.2s ease;
+            transition:
+                opacity 0.2s ease;
         }
-
 
         .message.show {
             opacity: 1;
         }
 
 
-        /* ==============================
+        /* =========================================
            DIVISOR
-        ============================== */
+        ========================================= */
 
         .divider {
             display: flex;
@@ -522,9 +543,9 @@
         }
 
 
-        /* ==============================
-           REDES SOCIAIS
-        ============================== */
+        /* =========================================
+           LOGIN SOCIAL
+        ========================================= */
 
         .social-buttons {
             display: flex;
@@ -551,6 +572,8 @@
         }
 
 
+        /* GOOGLE */
+
         #googleLogin {
             background: #ffffff;
 
@@ -559,11 +582,12 @@
             border: 1px solid #dadce0;
         }
 
-
         #googleLogin:hover {
             background: #f8f9fa;
         }
 
+
+        /* FACEBOOK */
 
         #facebookLogin {
             background: #1877f2;
@@ -571,18 +595,18 @@
             color: #ffffff;
         }
 
-
         #facebookLogin:hover {
             background: #166fe5;
         }
 
+
+        /* APPLE */
 
         #appleLogin {
             background: #000000;
 
             color: #ffffff;
         }
-
 
         #appleLogin:hover {
             background: #1c1c1c;
@@ -597,26 +621,27 @@
             justify-content: center;
 
             font-size: 18px;
-
             line-height: 1;
         }
 
 
         #googleLogin .social-icon {
             color: #4285f4;
+
             font-weight: 700;
         }
 
 
         #facebookLogin .social-icon {
             color: #ffffff;
+
             font-weight: 700;
         }
 
 
-        /* ==============================
+        /* =========================================
            CRIAR CONTA
-        ============================== */
+        ========================================= */
 
         .create-account {
             display: inline-block;
@@ -642,13 +667,14 @@
 
         .create-account:hover {
             color: #ff8200;
+
             text-decoration: underline;
         }
 
 
-        /* ==============================
+        /* =========================================
            RODAPÉ
-        ============================== */
+        ========================================= */
 
         .footer {
             display: flex;
@@ -673,19 +699,21 @@
 
         .footer a {
             color: #777777;
+
             text-decoration: none;
         }
 
 
         .footer a:hover {
             color: #111111;
+
             text-decoration: underline;
         }
 
 
-        /* ==============================
-           LOADER INICIAL
-        ============================== */
+        /* =========================================
+           LOADING DA PÁGINA
+        ========================================= */
 
         .page-loader {
             position: fixed;
@@ -715,6 +743,7 @@
             height: 26px;
 
             border: 3px solid #eeeeee;
+
             border-top-color: #ff8200;
 
             border-radius: 50%;
@@ -737,9 +766,9 @@
         }
 
 
-        /* ==============================
+        /* =========================================
            MOBILE
-        ============================== */
+        ========================================= */
 
         @media (max-width: 480px) {
 
@@ -753,24 +782,19 @@
 
             .description {
                 max-width: 300px;
+
                 font-size: 14px;
             }
 
             .product-logo {
-                width: 48px;
-                height: 48px;
+                width: 56px;
+                height: 56px;
 
-                flex-basis: 48px;
-
-                border-radius: 12px;
-            }
-
-            .product-logo img {
-                border-radius: 11px;
+                flex-basis: 56px;
             }
 
             .products-track {
-                gap: 7px;
+                gap: 16px;
 
                 animation-duration: 16s;
             }
@@ -786,20 +810,20 @@
         }
 
 
+        /* =========================================
+           ACESSIBILIDADE
+        ========================================= */
+
         @media (prefers-reduced-motion: reduce) {
 
             *,
             *::before,
             *::after {
+                animation-duration: 0.01ms !important;
 
-                animation-duration:
-                    0.01ms !important;
+                animation-iteration-count: 1 !important;
 
-                animation-iteration-count:
-                    1 !important;
-
-                transition-duration:
-                    0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
 
         }
@@ -812,7 +836,9 @@
 <body>
 
 
-    <!-- LOADING -->
+    <!-- =========================================
+         LOADING INICIAL
+    ========================================= -->
 
     <div class="page-loader">
         <div class="loader-spinner"></div>
@@ -822,7 +848,9 @@
     <main class="container">
 
 
-        <!-- CONTA ONLINSIDE -->
+        <!-- =========================================
+             CONTA ONLINSIDE
+        ========================================= -->
 
         <h1 class="brand">
 
@@ -837,16 +865,18 @@
         </h1>
 
 
-        <!-- DESCRIÇÃO -->
+        <!-- =========================================
+             DESCRIÇÃO
+        ========================================= -->
 
         <p class="description">
             Apenas uma única conta para todos os produtos Onlinside.
         </p>
 
 
-        <!-- ==================================
-             CARROSSEL DOS PRODUTOS
-        ================================== -->
+        <!-- =========================================
+             CARROSSEL DAS LOGOS
+        ========================================= -->
 
         <div
             class="products-carousel"
@@ -856,138 +886,177 @@
             <div class="products-track">
 
 
-                <!-- PRIMEIRA SEQUÊNCIA -->
+                <!-- =================================
+                     PRIMEIRO GRUPO
+                ================================= -->
 
 
                 <!-- ONE -->
 
                 <div class="product-logo">
+
                     <img
                         src="./img/one.png"
                         alt="One"
                     >
+
                 </div>
 
 
                 <!-- ON360 -->
 
                 <div class="product-logo">
+
                     <img
                         src="./img/on360.png"
                         alt="On360"
                     >
+
                 </div>
 
 
                 <!-- ONCAMARIM -->
 
                 <div class="product-logo">
+
                     <img
                         src="./img/oncamarim.png"
                         alt="OnCamarim"
                     >
+
                 </div>
 
 
                 <!-- ON -->
 
                 <div class="product-logo">
+
                     <img
                         src="./img/on.png"
                         alt="On"
                     >
+
                 </div>
 
 
                 <!-- MAISON -->
 
                 <div class="product-logo">
+
                     <img
                         src="./img/maison.png"
                         alt="Maison"
                     >
+
                 </div>
 
 
                 <!-- JORNAL O PAIZ -->
 
                 <div class="product-logo">
+
                     <img
                         src="./img/opaiz.png"
                         alt="Jornal O Paiz"
                     >
+
                 </div>
 
 
 
-                <!-- ==================================
-                     REPETIÇÃO PARA LOOP
-                ================================== -->
+                <!-- =================================
+                     SEGUNDO GRUPO
+                     CÓPIA PARA LOOP CONTÍNUO
+                ================================= -->
 
+
+                <!-- ONE -->
 
                 <div
                     class="product-logo"
                     aria-hidden="true"
                 >
+
                     <img
                         src="./img/one.png"
                         alt=""
                     >
+
                 </div>
 
+
+                <!-- ON360 -->
 
                 <div
                     class="product-logo"
                     aria-hidden="true"
                 >
+
                     <img
                         src="./img/on360.png"
                         alt=""
                     >
+
                 </div>
 
+
+                <!-- ONCAMARIM -->
 
                 <div
                     class="product-logo"
                     aria-hidden="true"
                 >
+
                     <img
                         src="./img/oncamarim.png"
                         alt=""
                     >
+
                 </div>
 
+
+                <!-- ON -->
 
                 <div
                     class="product-logo"
                     aria-hidden="true"
                 >
+
                     <img
                         src="./img/on.png"
                         alt=""
                     >
+
                 </div>
 
+
+                <!-- MAISON -->
 
                 <div
                     class="product-logo"
                     aria-hidden="true"
                 >
+
                     <img
                         src="./img/maison.png"
                         alt=""
                     >
+
                 </div>
 
+
+                <!-- JORNAL O PAIZ -->
 
                 <div
                     class="product-logo"
                     aria-hidden="true"
                 >
+
                     <img
                         src="./img/opaiz.png"
                         alt=""
                     >
+
                 </div>
 
 
@@ -996,9 +1065,9 @@
         </div>
 
 
-        <!-- ==================================
+        <!-- =========================================
              LOGIN POR E-MAIL
-        ================================== -->
+        ========================================= -->
 
         <form
             id="loginForm"
@@ -1035,25 +1104,35 @@
         </form>
 
 
+        <!-- MENSAGEM -->
+
         <p
             id="mensagem"
             class="message"
         ></p>
 
 
-        <!-- DIVISOR -->
+        <!-- =========================================
+             DIVISOR
+        ========================================= -->
 
         <div class="divider">
-            <span>ou</span>
+
+            <span>
+                ou
+            </span>
+
         </div>
 
 
-        <!-- ==================================
+        <!-- =========================================
              LOGIN SOCIAL
-        ================================== -->
+        ========================================= -->
 
         <div class="social-buttons">
 
+
+            <!-- GOOGLE -->
 
             <button
                 type="button"
@@ -1070,6 +1149,8 @@
             </button>
 
 
+            <!-- FACEBOOK -->
+
             <button
                 type="button"
                 class="button social-button"
@@ -1084,6 +1165,8 @@
 
             </button>
 
+
+            <!-- APPLE -->
 
             <button
                 type="button"
@@ -1103,17 +1186,23 @@
         </div>
 
 
-        <!-- CRIAR CONTA -->
+        <!-- =========================================
+             CRIAR CONTA
+        ========================================= -->
 
         <a
             href="./cadastro.html"
             class="create-account"
         >
+
             Criar uma conta Onlinside
+
         </a>
 
 
-        <!-- RODAPÉ -->
+        <!-- =========================================
+             RODAPÉ
+        ========================================= -->
 
         <footer class="footer">
 
@@ -1131,24 +1220,39 @@
     </main>
 
 
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
     <script>
 
         const loginForm =
-            document.getElementById("loginForm");
+            document.getElementById(
+                "loginForm"
+            );
+
 
         const emailInput =
-            document.getElementById("email");
+            document.getElementById(
+                "email"
+            );
+
 
         const mensagem =
-            document.getElementById("mensagem");
+            document.getElementById(
+                "mensagem"
+            );
+
 
         const continueButton =
-            document.getElementById("continueButton");
+            document.getElementById(
+                "continueButton"
+            );
 
 
-        /* ==============================
+        /* =========================================
            LOGIN POR E-MAIL
-        ============================== */
+        ========================================= */
 
         loginForm.addEventListener(
             "submit",
@@ -1156,8 +1260,11 @@
 
                 event.preventDefault();
 
+
                 const email =
-                    emailInput.value.trim();
+                    emailInput
+                        .value
+                        .trim();
 
 
                 mensagem.textContent = "";
@@ -1166,6 +1273,10 @@
                     "show"
                 );
 
+
+                /* =================================
+                   VERIFICA O E-MAIL
+                ================================= */
 
                 if (!email) {
 
@@ -1182,27 +1293,31 @@
                 }
 
 
+                /* Evita clique duplicado */
+
                 if (continueButton.disabled) {
                     return;
                 }
 
 
-                /*
-                 * O spinner só começa
-                 * depois do clique.
-                 */
+                /* =================================
+                   LOADING DO BOTÃO
+                ================================= */
 
-                continueButton.classList.add(
-                    "loading"
-                );
+                continueButton
+                    .classList
+                    .add(
+                        "loading"
+                    );
 
-                continueButton.disabled = true;
+
+                continueButton.disabled =
+                    true;
 
 
-                /*
-                 * Guarda o e-mail para
-                 * a página senha.html.
-                 */
+                /* =================================
+                   SALVA O E-MAIL
+                ================================= */
 
                 localStorage.setItem(
                     "onlinside_email",
@@ -1210,12 +1325,19 @@
                 );
 
 
+                /* =================================
+                   ABRE A PÁGINA DE SENHA
+                ================================= */
+
                 setTimeout(
                     function() {
 
-                        document.body.classList.add(
-                            "page-exit"
-                        );
+                        document
+                            .body
+                            .classList
+                            .add(
+                                "page-exit"
+                            );
 
 
                         setTimeout(
@@ -1236,54 +1358,61 @@
         );
 
 
-        /* ==============================
-           CORRIGE BOTÃO AO VOLTAR
-        ============================== */
+        /* =========================================
+           CORRIGE O BOTÃO AO VOLTAR
+        ========================================= */
 
         window.addEventListener(
             "pageshow",
             function() {
 
-                continueButton.classList.remove(
-                    "loading"
-                );
+                continueButton
+                    .classList
+                    .remove(
+                        "loading"
+                    );
 
-                continueButton.disabled = false;
 
-                document.body.classList.remove(
-                    "page-exit"
-                );
+                continueButton.disabled =
+                    false;
+
+
+                document
+                    .body
+                    .classList
+                    .remove(
+                        "page-exit"
+                    );
 
             }
         );
 
 
-        /* ==============================
-           DIAGNÓSTICO DAS LOGOS
-
-           Se alguma imagem estiver com
-           caminho errado, aparecerá no
-           console do navegador.
-        ============================== */
+        /* =========================================
+           VERIFICA SE AS LOGOS CARREGARAM
+        ========================================= */
 
         document
-            .querySelectorAll(".product-logo img")
-            .forEach(function(img) {
+            .querySelectorAll(
+                ".product-logo img"
+            )
+            .forEach(
+                function(img) {
 
-                img.addEventListener(
-                    "error",
-                    function() {
+                    img.addEventListener(
+                        "error",
+                        function() {
 
-                        console.error(
-                            "Logo não encontrada:",
-                            img.getAttribute("src")
-                        );
+                            console.error(
+                                "Não foi possível carregar:",
+                                img.src
+                            );
 
-                    }
-                );
+                        }
+                    );
 
-            });
-
+                }
+            );
 
     </script>
 
