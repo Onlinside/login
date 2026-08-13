@@ -1310,27 +1310,83 @@
 
                 try {
 
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password.value
-                    );
+                   const resultado =
+    await signInWithEmailAndPassword(
+        auth,
+        email,
+        password.value
+    );
 
 
-                    document.body.classList.add(
-                        "page-exit"
-                    );
+const usuario =
+    resultado.user;
 
 
-                    setTimeout(
-                        function () {
+/*
+ * Se o e-mail ainda não foi confirmado,
+ * envia para a página de confirmação.
+ */
 
-                            window.location.href =
-                                "minha-conta.html";
+if (!usuario.emailVerified) {
 
-                        },
-                        280
-                    );
+    document.body.classList.add(
+        "page-exit"
+    );
+
+    setTimeout(
+        function () {
+
+            window.location.href =
+                "confirmar-email.html";
+
+        },
+        280
+    );
+
+    return;
+}
+
+
+/*
+ * E-mail confirmado.
+ *
+ * Verifica se o usuário veio de
+ * algum produto Onlinside.
+ */
+
+const returnUrl =
+    sessionStorage.getItem(
+        "onlinside_return_url"
+    );
+
+
+document.body.classList.add(
+    "page-exit"
+);
+
+
+setTimeout(
+    function () {
+
+        if (returnUrl) {
+
+            sessionStorage.removeItem(
+                "onlinside_return_url"
+            );
+
+            window.location.href =
+                returnUrl;
+
+        } else {
+
+            window.location.href =
+                "minha-conta.html";
+
+        }
+
+    },
+    280
+);                    );
 
 
                 } catch (error) {
