@@ -3,11 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Confirmar e-mail — Conta Onlinside</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -45,6 +50,11 @@
                 forwards;
         }
 
+
+        /* ==============================
+           ANIMAÇÕES
+        ============================== */
+
         @keyframes pageEnter {
             to {
                 opacity: 1;
@@ -65,6 +75,40 @@
             }
         }
 
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.65;
+                transform: scale(0.96);
+            }
+        }
+
+        @keyframes successPop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        /* ==============================
+           CONTAINER
+        ============================== */
+
         .container {
             width: 100%;
             max-width: 420px;
@@ -72,8 +116,13 @@
             text-align: center;
         }
 
+
+        /* ==============================
+           MARCA
+        ============================== */
+
         .brand {
-            margin-bottom: 14px;
+            margin-bottom: 18px;
 
             font-size: 36px;
             line-height: 1.1;
@@ -99,11 +148,16 @@
             font-weight: 800;
         }
 
-        .icon {
-            width: 76px;
-            height: 76px;
 
-            margin: 0 auto 22px;
+        /* ==============================
+           ÍCONE
+        ============================== */
+
+        .icon {
+            width: 78px;
+            height: 78px;
+
+            margin: 0 auto 20px;
 
             display: flex;
             justify-content: center;
@@ -112,13 +166,12 @@
             border-radius: 50%;
 
             background: #fff2e4;
-
             color: #ff8200;
 
             font-size: 34px;
 
             opacity: 0;
-            transform: scale(0.9);
+            transform: translateY(8px);
 
             animation:
                 elementEnter
@@ -127,11 +180,17 @@
                 forwards;
         }
 
+
+        /* ==============================
+           TÍTULO
+        ============================== */
+
         .title {
             margin-bottom: 10px;
 
             font-size: 27px;
             line-height: 1.2;
+            letter-spacing: -0.4px;
 
             opacity: 0;
             transform: translateY(8px);
@@ -143,13 +202,14 @@
                 forwards;
         }
 
+
         .description {
             color: #666666;
 
             font-size: 14px;
             line-height: 1.55;
 
-            margin-bottom: 12px;
+            margin-bottom: 18px;
 
             opacity: 0;
             transform: translateY(8px);
@@ -161,12 +221,17 @@
                 forwards;
         }
 
+
+        /* ==============================
+           E-MAIL
+        ============================== */
+
         .email-box {
             width: 100%;
 
-            margin: 18px 0 24px;
-
             padding: 14px 16px;
+
+            margin-bottom: 20px;
 
             border: 1px solid #eeeeee;
             border-radius: 12px;
@@ -176,7 +241,7 @@
             color: #333333;
 
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 650;
 
             overflow-wrap: anywhere;
 
@@ -190,9 +255,114 @@
                 forwards;
         }
 
-        .button {
-            position: relative;
 
+        /* ==============================
+           STATUS
+        ============================== */
+
+        .status-box {
+            width: 100%;
+
+            padding: 17px 18px;
+
+            margin-bottom: 18px;
+
+            border-radius: 14px;
+
+            background: #fff7ef;
+
+            color: #7b4c1c;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            font-size: 13px;
+            font-weight: 650;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.26s
+                forwards;
+        }
+
+
+        .status-spinner {
+            width: 17px;
+            height: 17px;
+
+            flex-shrink: 0;
+
+            border:
+                2px solid
+                rgba(255, 130, 0, 0.20);
+
+            border-top-color: #ff8200;
+
+            border-radius: 50%;
+
+            animation:
+                spin
+                0.8s
+                linear
+                infinite;
+        }
+
+
+        .status-box.success {
+            background: #eefaf1;
+            color: #18753a;
+        }
+
+
+        .status-box.success
+        .status-spinner {
+            display: none;
+        }
+
+
+        .success-icon {
+            display: none;
+
+            width: 24px;
+            height: 24px;
+
+            border-radius: 50%;
+
+            background: #22a447;
+            color: #ffffff;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+
+        .status-box.success
+        .success-icon {
+            display: flex;
+
+            animation:
+                successPop
+                0.45s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+
+        /* ==============================
+           BOTÕES
+        ============================== */
+
+        .button {
             width: 100%;
             height: 52px;
 
@@ -218,28 +388,36 @@
                 opacity 0.2s ease;
         }
 
+
         .button:hover {
             background: #ff9a30;
             transform: translateY(-1px);
         }
 
+
         .button:disabled {
+            opacity: 0.65;
             cursor: default;
-            opacity: 0.7;
+            transform: none;
         }
 
-        .secondary-button {
-            margin-top: 11px;
 
+        .secondary-button {
             background: #ffffff;
             color: #111111;
 
             border: 1px solid #dedede;
         }
 
+
         .secondary-button:hover {
             background: #f8f8f8;
         }
+
+
+        /* ==============================
+           TROCAR E-MAIL
+        ============================== */
 
         .link-button {
             margin-top: 18px;
@@ -256,68 +434,79 @@
             cursor: pointer;
         }
 
+
         .link-button:hover {
             text-decoration: underline;
         }
 
-        .message {
-            min-height: 20px;
 
-            margin-top: 14px;
-
-            color: #d00000;
-
-            font-size: 13px;
-        }
-
-        .message.success {
-            color: #16823b;
-        }
-
-        .spinner {
-            position: absolute;
-
-            width: 19px;
-            height: 19px;
-
-            border:
-                2px solid
-                rgba(255,255,255,.35);
-
-            border-top-color: #ffffff;
-
-            border-radius: 50%;
-
-            opacity: 0;
-            visibility: hidden;
-
-            animation: none;
-        }
-
-        .button.loading .spinner {
-            opacity: 1;
-            visibility: visible;
-
-            animation:
-                spin
-                0.75s
-                linear
-                infinite;
-        }
-
-        .button.loading .button-text {
-            opacity: 0;
-        }
+        /* ==============================
+           CONTADOR
+        ============================== */
 
         .countdown {
-            margin-top: 10px;
+            min-height: 18px;
+
+            margin-top: 9px;
 
             color: #888888;
 
             font-size: 12px;
         }
 
+
+        /* ==============================
+           MENSAGEM
+        ============================== */
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 12px;
+
+            color: #d00000;
+
+            font-size: 13px;
+        }
+
+
+        .message.success {
+            color: #16823b;
+        }
+
+
+        /* ==============================
+           REDIRECIONAMENTO
+        ============================== */
+
+        .redirect-message {
+            display: none;
+
+            margin-top: 12px;
+
+            color: #666666;
+
+            font-size: 12px;
+
+            animation:
+                pulse
+                1.4s
+                ease-in-out
+                infinite;
+        }
+
+
+        .redirect-message.show {
+            display: block;
+        }
+
+
+        /* ==============================
+           CELULAR
+        ============================== */
+
         @media (max-width: 480px) {
+
             body {
                 padding: 20px 18px;
             }
@@ -329,30 +518,65 @@
             .title {
                 font-size: 24px;
             }
+
+            .icon {
+                width: 70px;
+                height: 70px;
+
+                font-size: 30px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
     <main class="container">
 
+
+        <!-- MARCA -->
+
         <h1 class="brand">
-            <span class="brand-conta">Conta</span>
-            <span class="brand-onlinside">Onlinside</span>
+
+            <span class="brand-conta">
+                Conta
+            </span>
+
+            <span class="brand-onlinside">
+                Onlinside
+            </span>
+
         </h1>
+
+
+        <!-- ÍCONE -->
 
         <div class="icon">
             ✉
         </div>
 
+
+        <!-- TÍTULO -->
+
         <h2 class="title">
             Confirme seu e-mail
         </h2>
 
+
         <p class="description">
+
             Enviamos um link de confirmação para o endereço abaixo.
+            Abra o e-mail e confirme sua Conta Onlinside.
+
         </p>
+
+
+        <!-- E-MAIL -->
 
         <div
             id="emailDisplay"
@@ -361,30 +585,53 @@
             Carregando...
         </div>
 
-        <button
-            type="button"
-            id="checkButton"
-            class="button"
+
+        <!-- STATUS AUTOMÁTICO -->
+
+        <div
+            id="statusBox"
+            class="status-box"
         >
-            <span class="button-text">
-                Já confirmei meu e-mail
+
+            <span
+                class="status-spinner"
+                aria-hidden="true"
+            ></span>
+
+            <span
+                class="success-icon"
+                aria-hidden="true"
+            >
+                ✓
             </span>
 
-            <span class="spinner"></span>
-        </button>
+            <span id="statusText">
+                Aguardando confirmação do e-mail...
+            </span>
+
+        </div>
+
+
+        <!-- REENVIAR -->
 
         <button
             type="button"
             id="resendButton"
             class="button secondary-button"
         >
-            Reenviar e-mail
+            Reenviar e-mail de confirmação
         </button>
+
+
+        <!-- CONTADOR -->
 
         <p
             id="countdown"
             class="countdown"
         ></p>
+
+
+        <!-- TROCAR E-MAIL -->
 
         <button
             type="button"
@@ -394,10 +641,22 @@
             Trocar endereço de e-mail
         </button>
 
+
+        <!-- MENSAGEM -->
+
         <p
             id="mensagem"
             class="message"
         ></p>
+
+
+        <p
+            id="redirectMessage"
+            class="redirect-message"
+        >
+            Redirecionando...
+        </p>
+
 
     </main>
 
@@ -417,15 +676,13 @@
         from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
+        /* ========================================
+           ELEMENTOS
+        ======================================== */
+
         const emailDisplay =
             document.getElementById(
                 "emailDisplay"
-            );
-
-
-        const checkButton =
-            document.getElementById(
-                "checkButton"
             );
 
 
@@ -453,12 +710,78 @@
             );
 
 
+        const statusBox =
+            document.getElementById(
+                "statusBox"
+            );
+
+
+        const statusText =
+            document.getElementById(
+                "statusText"
+            );
+
+
+        const redirectMessage =
+            document.getElementById(
+                "redirectMessage"
+            );
+
+
         let currentUser = null;
+
+        let verificationTimer = null;
+
         let resendTimer = null;
+
+        let verificationFinished = false;
 
 
         /* ========================================
-           VERIFICA USUÁRIO
+           DESTINO APÓS CONFIRMAÇÃO
+        ======================================== */
+
+        function getDestination() {
+
+            /*
+             * Se futuramente o login vier
+             * de um produto Onlinside,
+             * salve a página aqui:
+             *
+             * sessionStorage.setItem(
+             *   "onlinside_return_url",
+             *   "ENDEREÇO"
+             * );
+             */
+
+            const returnUrl =
+                sessionStorage.getItem(
+                    "onlinside_return_url"
+                );
+
+
+            if (returnUrl) {
+
+                sessionStorage.removeItem(
+                    "onlinside_return_url"
+                );
+
+                return returnUrl;
+            }
+
+
+            /*
+             * Sem destino salvo:
+             * vai para Minha Conta.
+             */
+
+            return "./minha-conta.html";
+
+        }
+
+
+        /* ========================================
+           USUÁRIO FIREBASE
         ======================================== */
 
         onAuthStateChanged(
@@ -474,7 +797,8 @@
                 }
 
 
-                currentUser = usuario;
+                currentUser =
+                    usuario;
 
 
                 emailDisplay.textContent =
@@ -483,144 +807,195 @@
 
 
                 /*
-                 * Se ele já chegar nesta página
-                 * com e-mail confirmado, vai direto
-                 * para Minha Conta.
+                 * Pode acontecer de a página
+                 * abrir quando o usuário já
+                 * confirmou o e-mail.
                  */
 
                 if (
                     usuario.emailVerified
                 ) {
 
-                    window.location.href =
-                        "./minha-conta.html";
+                    finishVerification();
 
-                }
-
-            }
-        );
-
-
-        /* ========================================
-           JÁ CONFIRMEI
-        ======================================== */
-
-        checkButton.addEventListener(
-            "click",
-            async function() {
-
-                if (!currentUser) {
                     return;
                 }
 
 
-                mensagem.textContent =
-                    "";
-
-                mensagem.className =
-                    "message";
-
-
-                checkButton
-                    .classList
-                    .add(
-                        "loading"
-                    );
-
-
-                checkButton.disabled =
-                    true;
-
-
-                try {
-
-                    /*
-                     * Atualiza os dados do Firebase
-                     * para pegar o novo status do e-mail.
-                     */
-
-                    await reload(
-                        currentUser
-                    );
-
-
-                    if (
-                        currentUser.emailVerified
-                    ) {
-
-                        mensagem.textContent =
-                            "E-mail confirmado com sucesso.";
-
-                        mensagem.classList.add(
-                            "success"
-                        );
-
-
-                        setTimeout(
-                            function() {
-
-                                window.location.href =
-                                    "./minha-conta.html";
-
-                            },
-                            700
-                        );
-
-
-                    } else {
-
-                        mensagem.textContent =
-                            "Seu e-mail ainda não foi confirmado.";
-
-                        checkButton
-                            .classList
-                            .remove(
-                                "loading"
-                            );
-
-
-                        checkButton.disabled =
-                            false;
-
-                    }
-
-
-                } catch (erro) {
-
-                    console.error(
-                        erro
-                    );
-
-
-                    mensagem.textContent =
-                        "Não foi possível verificar o e-mail agora.";
-
-
-                    checkButton
-                        .classList
-                        .remove(
-                            "loading"
-                        );
-
-
-                    checkButton.disabled =
-                        false;
-
-                }
+                startVerificationWatcher();
 
             }
         );
 
 
         /* ========================================
-           REENVIAR E-MAIL
+           MONITORAMENTO AUTOMÁTICO
+        ======================================== */
+
+        function startVerificationWatcher() {
+
+            clearInterval(
+                verificationTimer
+            );
+
+
+            /*
+             * Faz uma verificação imediatamente,
+             * sem esperar os primeiros 3 segundos.
+             */
+
+            checkVerification();
+
+
+            /*
+             * Depois verifica novamente
+             * a cada 3 segundos.
+             */
+
+            verificationTimer =
+                setInterval(
+                    checkVerification,
+                    3000
+                );
+
+        }
+
+
+        async function checkVerification() {
+
+            if (
+                !currentUser ||
+                verificationFinished
+            ) {
+
+                return;
+            }
+
+
+            try {
+
+                /*
+                 * Busca novamente os dados
+                 * do usuário no Firebase.
+                 */
+
+                await reload(
+                    currentUser
+                );
+
+
+                if (
+                    currentUser.emailVerified
+                ) {
+
+                    finishVerification();
+
+                }
+
+            } catch (erro) {
+
+                /*
+                 * Não precisamos interromper
+                 * a tela por um erro temporário.
+                 * O próximo ciclo tenta novamente.
+                 */
+
+                console.error(
+                    "Erro ao consultar confirmação:",
+                    erro
+                );
+
+            }
+
+        }
+
+
+        /* ========================================
+           CONFIRMAÇÃO DETECTADA
+        ======================================== */
+
+        function finishVerification() {
+
+            if (verificationFinished) {
+                return;
+            }
+
+
+            verificationFinished =
+                true;
+
+
+            clearInterval(
+                verificationTimer
+            );
+
+
+            clearInterval(
+                resendTimer
+            );
+
+
+            statusBox.classList.add(
+                "success"
+            );
+
+
+            statusText.textContent =
+                "E-mail confirmado com sucesso!";
+
+
+            mensagem.textContent =
+                "";
+
+
+            countdown.textContent =
+                "";
+
+
+            resendButton.disabled =
+                true;
+
+
+            changeEmailButton.disabled =
+                true;
+
+
+            redirectMessage.classList.add(
+                "show"
+            );
+
+
+            /*
+             * Dá tempo para a pessoa
+             * perceber a confirmação.
+             */
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        getDestination();
+
+                },
+                1300
+            );
+
+        }
+
+
+        /* ========================================
+           REENVIAR VERIFICAÇÃO
         ======================================== */
 
         resendButton.addEventListener(
             "click",
             async function() {
 
-                if (!currentUser) {
+                if (
+                    !currentUser ||
+                    verificationFinished
+                ) {
+
                     return;
                 }
 
@@ -675,7 +1050,7 @@
 
 
         /* ========================================
-           CONTADOR DE 60 SEGUNDOS
+           CONTADOR DO REENVIO
         ======================================== */
 
         function startCountdown() {
@@ -715,8 +1090,13 @@
                                 "";
 
 
-                            resendButton.disabled =
-                                false;
+                            if (
+                                !verificationFinished
+                            ) {
+
+                                resendButton.disabled =
+                                    false;
+                            }
 
 
                             return;
@@ -744,6 +1124,16 @@
             "click",
             async function() {
 
+                clearInterval(
+                    verificationTimer
+                );
+
+
+                clearInterval(
+                    resendTimer
+                );
+
+
                 try {
 
                     await signOut(
@@ -761,12 +1151,38 @@
                         erro
                     );
 
+
+                    mensagem.textContent =
+                        "Não foi possível voltar para o cadastro.";
+
                 }
 
             }
         );
 
+
+        /* ========================================
+           PARA OS TIMERS AO SAIR
+        ======================================== */
+
+        window.addEventListener(
+            "beforeunload",
+            function() {
+
+                clearInterval(
+                    verificationTimer
+                );
+
+
+                clearInterval(
+                    resendTimer
+                );
+
+            }
+        );
+
     </script>
+
 
 </body>
 
