@@ -72,7 +72,6 @@
 
         .brand {
             text-align: center;
-
             margin-bottom: 12px;
 
             font-size: 36px;
@@ -218,6 +217,10 @@
             font-size: 12px;
 
             cursor: pointer;
+        }
+
+        .show-password:hover {
+            color: #ff8200;
         }
 
         .terms {
@@ -366,7 +369,9 @@
             }
         }
     </style>
+
 </head>
+
 
 <body>
 
@@ -385,6 +390,7 @@
             Uma única conta para acessar todos os produtos Onlinside.
         </p>
 
+
         <form
             id="cadastroForm"
             class="form"
@@ -393,6 +399,7 @@
             <div class="row">
 
                 <div class="field">
+
                     <label
                         for="nome"
                         class="label"
@@ -407,9 +414,12 @@
                         autocomplete="given-name"
                         required
                     >
+
                 </div>
 
+
                 <div class="field">
+
                     <label
                         for="sobrenome"
                         class="label"
@@ -424,9 +434,11 @@
                         autocomplete="family-name"
                         required
                     >
+
                 </div>
 
             </div>
+
 
             <div class="field">
 
@@ -447,6 +459,7 @@
 
             </div>
 
+
             <div class="field">
 
                 <label
@@ -465,6 +478,7 @@
                 >
 
             </div>
+
 
             <div class="field">
 
@@ -498,6 +512,7 @@
 
             </div>
 
+
             <div class="field">
 
                 <label
@@ -530,6 +545,7 @@
 
             </div>
 
+
             <label class="terms">
 
                 <input
@@ -547,6 +563,7 @@
 
             </label>
 
+
             <button
                 type="submit"
                 id="criarConta"
@@ -563,22 +580,31 @@
 
         </form>
 
+
         <p
             id="mensagem"
             class="message"
         ></p>
 
+
         <p class="login-link">
+
             Já possui uma conta?
+
             <a href="./index.html">
                 Entrar
             </a>
+
         </p>
 
     </main>
 
 
     <script type="module">
+
+        /* ========================================
+           FIREBASE AUTH
+        ======================================== */
 
         import { auth }
         from "./firebase.js";
@@ -587,21 +613,65 @@
         import {
             createUserWithEmailAndPassword,
             sendEmailVerification,
-            updateProfile
+            updateProfile,
+            deleteUser
         }
-        from
-        "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+
+        /* ========================================
+           FIREBASE APP
+        ======================================== */
+
+        import {
+            getApp
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+        /* ========================================
+           FIRESTORE
+        ======================================== */
+
+        import {
+            getFirestore,
+            doc,
+            runTransaction,
+            serverTimestamp
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+        /*
+         * firebase.js já inicializou
+         * o aplicativo Firebase.
+         */
+
+        const app =
+            getApp();
+
+
+        const db =
+            getFirestore(
+                app
+            );
+
+
+        /* ========================================
+           ELEMENTOS
+        ======================================== */
 
         const formulario =
             document.getElementById(
                 "cadastroForm"
             );
 
+
         const mensagem =
             document.getElementById(
                 "mensagem"
             );
+
 
         const criarContaButton =
             document.getElementById(
@@ -629,6 +699,7 @@
                                     button.dataset.target
                                 );
 
+
                             if (
                                 target.type ===
                                 "password"
@@ -636,6 +707,7 @@
 
                                 target.type =
                                     "text";
+
 
                                 button.textContent =
                                     "Ocultar";
@@ -645,8 +717,10 @@
                                 target.type =
                                     "password";
 
+
                                 button.textContent =
                                     "Mostrar";
+
                             }
 
                         }
@@ -654,6 +728,218 @@
 
                 }
             );
+
+
+        /* ========================================
+           GERA ID PÚBLICO DE 4 DÍGITOS
+        ======================================== */
+
+        function gerarPublicId() {
+
+            /*
+             * Usa o gerador criptográfico
+             * disponível no navegador.
+             */
+
+            const valores =
+                new Uint32Array(1);
+
+
+            crypto.getRandomValues(
+                valores
+            );
+
+
+            /*
+             * Resultado:
+             *
+             * 7    → "0007"
+             * 82   → "0082"
+             * 827  → "0827"
+             * 4827 → "4827"
+             */
+
+            return String(
+                valores[0] % 10000
+            ).padStart(
+                4,
+                "0"
+            );
+
+        }
+
+
+        /* ========================================
+           RESERVA UM ID SEM REPETIÇÃO
+        ======================================== */
+
+        async function criarPerfilComPublicId(
+            usuario,
+            dados
+        ) {
+
+            /*
+             * Tenta números diferentes
+             * se ocorrer uma colisão.
+             */
+
+            const MAX_TENTATIVAS =
+                50;
+
+
+            for (
+                let tentativa = 0;
+                tentativa < MAX_TENTATIVAS;
+                tentativa++
+            ) {
+
+                const publicId =
+                    gerarPublicId();
+
+
+                try {
+
+                    await runTransaction(
+                        db,
+                        async function(transaction) {
+
+                            /* =============================
+                               DOCUMENTO DA RESERVA
+                            ============================= */
+
+                            const publicIdRef =
+                                doc(
+                                    db,
+                                    "publicIds",
+                                    publicId
+                                );
+
+
+                            const publicIdSnapshot =
+                                await transaction.get(
+                                    publicIdRef
+                                );
+
+
+                            /*
+                             * Se já estiver ocupado,
+                             * tenta outro número.
+                             */
+
+                            if (
+                                publicIdSnapshot.exists()
+                            ) {
+
+                                throw new Error(
+                                    "PUBLIC_ID_OCUPADO"
+                                );
+
+                            }
+
+
+                            /* =============================
+                               PERFIL DO USUÁRIO
+                            ============================= */
+
+                            const userRef =
+                                doc(
+                                    db,
+                                    "users",
+                                    usuario.uid
+                                );
+
+
+                            /*
+                             * Reserva o número.
+                             */
+
+                            transaction.set(
+                                publicIdRef,
+                                {
+                                    uid:
+                                        usuario.uid
+                                }
+                            );
+
+
+                            /*
+                             * Cria o perfil.
+                             */
+
+                            transaction.set(
+                                userRef,
+                                {
+                                    nome:
+                                        dados.nome,
+
+                                    sobrenome:
+                                        dados.sobrenome,
+
+                                    nomeCompleto:
+                                        dados.nome +
+                                        " " +
+                                        dados.sobrenome,
+
+                                    email:
+                                        usuario.email,
+
+                                    dataNascimento:
+                                        dados.birthdate,
+
+                                    publicId:
+                                        publicId,
+
+                                    criadoEm:
+                                        serverTimestamp()
+                                }
+                            );
+
+                        }
+                    );
+
+
+                    /*
+                     * Se chegou aqui,
+                     * o ID foi reservado.
+                     */
+
+                    return publicId;
+
+
+                } catch (erro) {
+
+                    if (
+                        erro.message ===
+                        "PUBLIC_ID_OCUPADO"
+                    ) {
+
+                        /*
+                         * Colisão normal.
+                         * Tenta novamente.
+                         */
+
+                        continue;
+
+                    }
+
+
+                    /*
+                     * Qualquer outro erro
+                     * precisa interromper.
+                     */
+
+                    throw erro;
+
+                }
+
+            }
+
+
+            throw new Error(
+                "PUBLIC_ID_INDISPONIVEL"
+            );
+
+        }
 
 
         /* ========================================
@@ -670,6 +956,10 @@
                 mensagem.textContent =
                     "";
 
+
+                /* =================================
+                   DADOS
+                ================================= */
 
                 const nome =
                     document
@@ -712,6 +1002,10 @@
                         .value;
 
 
+                /* =================================
+                   SENHAS
+                ================================= */
+
                 if (
                     senha !==
                     confirmarSenha
@@ -720,21 +1014,30 @@
                     mensagem.textContent =
                         "As senhas não coincidem.";
 
+
                     return;
+
                 }
 
+
+                /* =================================
+                   NASCIMENTO
+                ================================= */
 
                 if (!birthdate) {
 
                     mensagem.textContent =
                         "Informe sua data de nascimento.";
 
+
                     return;
+
                 }
 
 
                 const hoje =
                     new Date();
+
 
                 const nascimento =
                     new Date(
@@ -751,9 +1054,15 @@
                     mensagem.textContent =
                         "A data de nascimento não pode estar no futuro.";
 
+
                     return;
+
                 }
 
+
+                /* =================================
+                   LOADING
+                ================================= */
 
                 criarContaButton
                     .classList
@@ -766,9 +1075,16 @@
                     true;
 
 
+                let resultado = null;
+
+
                 try {
 
-                    const resultado =
+                    /* =================================
+                       1. CRIA CONTA FIREBASE
+                    ================================= */
+
+                    resultado =
                         await createUserWithEmailAndPassword(
                             auth,
                             email,
@@ -776,13 +1092,79 @@
                         );
 
 
-                    /*
-                     * Salva nome e sobrenome
-                     * no perfil básico do Firebase.
-                     */
+                    const usuario =
+                        resultado.user;
+
+
+                    /* =================================
+                       2. RESERVA O ID ONLINSIDE
+                    ================================= */
+
+                    let publicId;
+
+
+                    try {
+
+                        publicId =
+                            await criarPerfilComPublicId(
+                                usuario,
+                                {
+                                    nome:
+                                        nome,
+
+                                    sobrenome:
+                                        sobrenome,
+
+                                    birthdate:
+                                        birthdate
+                                }
+                            );
+
+
+                    } catch (erroFirestore) {
+
+                        console.error(
+                            "Erro ao criar perfil:",
+                            erroFirestore
+                        );
+
+
+                        /*
+                         * Se não conseguimos criar
+                         * o perfil/ID, removemos a
+                         * conta recém-criada para
+                         * não deixar cadastro incompleto.
+                         */
+
+                        try {
+
+                            await deleteUser(
+                                usuario
+                            );
+
+                        } catch (erroDelete) {
+
+                            console.error(
+                                "Não foi possível desfazer a conta:",
+                                erroDelete
+                            );
+
+                        }
+
+
+                        throw new Error(
+                            "ERRO_AO_CRIAR_ID"
+                        );
+
+                    }
+
+
+                    /* =================================
+                       3. NOME NO FIREBASE AUTH
+                    ================================= */
 
                     await updateProfile(
-                        resultado.user,
+                        usuario,
                         {
                             displayName:
                                 nome +
@@ -792,23 +1174,9 @@
                     );
 
 
-                    /*
-                     * Envia e-mail de confirmação.
-                     */
-
-                    await sendEmailVerification(
-                        resultado.user
-                    );
-
-
-                    /*
-                     * Guarda temporariamente os
-                     * dados que usaremos na próxima etapa.
-                     *
-                     * A data de nascimento ainda NÃO
-                     * está sendo salva no Firebase Auth.
-                     * Depois podemos colocar no Firestore.
-                     */
+                    /* =================================
+                       4. GUARDA DADOS LOCAIS
+                    ================================= */
 
                     localStorage.setItem(
                         "onlinside_birthdate",
@@ -822,10 +1190,24 @@
                     );
 
 
-                    /*
-                     * Vai para a página
-                     * de confirmação.
-                     */
+                    localStorage.setItem(
+                        "onlinside_public_id",
+                        publicId
+                    );
+
+
+                    /* =================================
+                       5. ENVIA CONFIRMAÇÃO
+                    ================================= */
+
+                    await sendEmailVerification(
+                        usuario
+                    );
+
+
+                    /* =================================
+                       6. VAI PARA CONFIRMAÇÃO
+                    ================================= */
 
                     window.location.href =
                         "./confirmar-email.html";
@@ -834,6 +1216,7 @@
                 } catch (erro) {
 
                     console.error(
+                        "Erro no cadastro:",
                         erro
                     );
 
@@ -848,6 +1231,10 @@
                     criarContaButton.disabled =
                         false;
 
+
+                    /* =================================
+                       MENSAGENS
+                    ================================= */
 
                     if (
                         erro.code ===
@@ -876,10 +1263,20 @@
                             "Escolha uma senha mais forte.";
 
 
+                    } else if (
+                        erro.message ===
+                        "ERRO_AO_CRIAR_ID"
+                    ) {
+
+                        mensagem.textContent =
+                            "Não foi possível gerar seu ID Onlinside. Tente novamente.";
+
+
                     } else {
 
                         mensagem.textContent =
                             "Não foi possível criar sua conta.";
+
                     }
 
                 }
