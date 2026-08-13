@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sair — Conta Onlinside</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+
+            background: #ffffff;
+            color: #111111;
+
+            font-family: "Garet", Arial, sans-serif;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                pageEnter
+                .55s
+                cubic-bezier(.22,1,.36,1)
+                forwards;
+        }
+
+        @keyframes pageEnter {
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================================
+           CONTEÚDO
+        ========================================= */
+
+        .container {
+            width: 100%;
+            max-width: 460px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+           CONTA ONLINSIDE
+        ========================================= */
+
+        .brand {
+            margin-bottom: 16px;
+
+            font-size: 36px;
+
+            line-height: 1;
+
+            letter-spacing: -1px;
+        }
+
+        .brand-conta {
+            color: #ff9a30;
+            font-weight: 400;
+        }
+
+        .brand-onlinside {
+            color: #ff8200;
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           CARROSSEL
+        ========================================= */
+
+        .products-carousel {
+            position: relative;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            margin-bottom: 30px;
+
+            padding: 14px 0;
+        }
+
+
+        /* Sombras laterais */
+
+        .products-carousel::before,
+        .products-carousel::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            width: 65px;
+            height: 100%;
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        .products-carousel::before {
+            left: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #ffffff,
+                    rgba(255,255,255,0)
+                );
+        }
+
+
+        .products-carousel::after {
+            right: 0;
+
+            background:
+                linear-gradient(
+                    to left,
+                    #ffffff,
+                    rgba(255,255,255,0)
+                );
+        }
+
+
+        .carousel-track {
+            display: flex;
+
+            align-items: center;
+
+            gap: 34px;
+
+            width: max-content;
+
+            animation:
+                moverProdutos
+                18s
+                linear
+                infinite;
+        }
+
+
+        @keyframes moverProdutos {
+
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+
+        }
+
+
+        .produto {
+            min-width: 90px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .produto-on360 {
+            color: #ff5501;
+        }
+
+
+        .produto-oncamarim {
+            color: #ff8200;
+        }
+
+
+        .produto-maison {
+            color: #111111;
+        }
+
+
+        .produto-opaiz {
+            color: #222222;
+        }
+
+
+        /* =========================================
+           PERGUNTA
+        ========================================= */
+
+        .title {
+            max-width: 400px;
+
+            margin:
+                0 auto 28px;
+
+            font-size: 27px;
+
+            line-height: 1.25;
+
+            letter-spacing: -.6px;
+        }
+
+
+        /* =========================================
+           BOTÕES
+        ========================================= */
+
+        .actions {
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .button {
+            width: 100%;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background .2s ease,
+                border-color .2s ease,
+                transform .2s ease;
+        }
+
+
+        .button:hover {
+            transform: translateY(-1px);
+        }
+
+
+        /* SAIR */
+
+        .logout-button {
+            border: none;
+
+            background: #ff8200;
+            color: #ffffff;
+        }
+
+
+        .logout-button:hover {
+            background: #ff9a30;
+        }
+
+
+        /* CANCELAR */
+
+        .cancel-button {
+            border: 1px solid #e3e3e3;
+
+            background: #ffffff;
+            color: #111111;
+        }
+
+
+        .cancel-button:hover {
+            background: #f7f7f7;
+
+            border-color: #d8d8d8;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 20px 18px;
+            }
+
+
+            .brand {
+                font-size: 31px;
+            }
+
+
+            .title {
+                font-size: 24px;
+            }
+
+
+            .produto {
+                min-width: 80px;
+
+                font-size: 16px;
+            }
+
+        }
+
+
+        /* Acessibilidade */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .carousel-track {
+                animation: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="container">
+
+
+        <!-- =========================================
+             CONTA ONLINSIDE
+        ========================================== -->
+
+        <div class="brand">
+
+            <span class="brand-conta">
+                Conta
+            </span>
+
+            <span class="brand-onlinside">
+                Onlinside
+            </span>
+
+        </div>
+
+
+
+        <!-- =========================================
+             CARROSSEL DE PRODUTOS
+        ========================================== -->
+
+        <div
+            class="products-carousel"
+            aria-label="Produtos Onlinside"
+        >
+
+            <div class="carousel-track">
+
+
+                <!-- PRIMEIRA SEQUÊNCIA -->
+
+                <div class="produto produto-on360">
+                    ON360
+                </div>
+
+                <div class="produto produto-oncamarim">
+                    OnCamarim
+                </div>
+
+                <div class="produto produto-maison">
+                    Maison
+                </div>
+
+                <div class="produto produto-opaiz">
+                    O Paiz
+                </div>
+
+
+                <!-- REPETIÇÃO PARA O LOOP -->
+
+                <div
+                    class="produto produto-on360"
+                    aria-hidden="true"
+                >
+                    ON360
+                </div>
+
+                <div
+                    class="produto produto-oncamarim"
+                    aria-hidden="true"
+                >
+                    OnCamarim
+                </div>
+
+                <div
+                    class="produto produto-maison"
+                    aria-hidden="true"
+                >
+                    Maison
+                </div>
+
+                <div
+                    class="produto produto-opaiz"
+                    aria-hidden="true"
+                >
+                    O Paiz
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             CONFIRMAÇÃO
+        ========================================== -->
+
+        <h1 class="title">
+            Você realmente quer sair da sua Conta Onlinside?
+        </h1>
+
+
+
+        <!-- =========================================
+             AÇÕES
+        ========================================== -->
+
+        <div class="actions">
+
+            <button
+                type="button"
+                id="confirmarSair"
+                class="button logout-button"
+            >
+                Sair
+            </button>
+
+
+            <button
+                type="button"
+                id="cancelar"
+                class="button cancel-button"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================================
+           DESCOBRE DE ONDE O USUÁRIO VEIO
+        ========================================= */
+
+        const parametros =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const returnUrl =
+            parametros.get(
+                "return_url"
+            );
+
+
+
+        /* =========================================
+           CANCELAR
+        ========================================= */
+
+        document
+            .getElementById(
+                "cancelar"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    /*
+                     * Se o site enviou return_url,
+                     * volta exatamente para ele.
+                     */
+
+                    if (returnUrl) {
+
+                        window.location.href =
+                            returnUrl;
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Se a pessoa chegou aqui
+                     * através de outra página,
+                     * volta no histórico.
+                     */
+
+                    if (
+                        document.referrer
+                    ) {
+
+                        window.history.back();
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Último recurso:
+                     * Minha Conta.
+                     */
+
+                    window.location.href =
+                        "./minha-conta.html";
+
+                }
+            );
+
+
+
+        /* =========================================
+           SAIR
+        ========================================= */
+
+        document
+            .getElementById(
+                "confirmarSair"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    /*
+                     * Ainda NÃO encerraremos
+                     * a sessão aqui.
+                     *
+                     * No próximo passo vamos ligar
+                     * este botão ao logout central:
+                     *
+                     * Firebase
+                     * +
+                     * WordPress
+                     */
+
+                    console.log(
+                        "Usuário confirmou a saída."
+                    );
+
+                }
+            );
+
+    </script>
+
+</body>
+
+</html>
