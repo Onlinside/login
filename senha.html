@@ -1308,205 +1308,232 @@
                     true;
 
 
-                try {
+         try {
 
-                   const resultado =
-    await signInWithEmailAndPassword(
-        auth,
-        email,
-        password.value
+    const resultado =
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password.value
+        );
+
+
+    const usuario =
+        resultado.user;
+
+
+    /*
+     * E-MAIL AINDA NÃO CONFIRMADO
+     */
+
+    if (!usuario.emailVerified) {
+
+        document.body.classList.add(
+            "page-exit"
+        );
+
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "confirmar-email.html";
+
+            },
+            280
+        );
+
+
+        return;
+    }
+
+
+    /*
+     * ========================================
+     * PEGA O ID TOKEN REAL DO FIREBASE
+     * ========================================
+     */
+
+    const idToken =
+        await usuario.getIdToken(
+            true
+        );
+
+
+    /*
+     * ========================================
+     * DESCOBRE PARA ONDE O USUÁRIO
+     * DEVE VOLTAR
+     * ========================================
+     */
+
+    let returnUrl =
+        sessionStorage.getItem(
+            "onlinside_return_url"
+        );
+
+
+    /*
+     * Neste primeiro teste vamos usar
+     * o próprio onlinside.com.
+     */
+
+    if (!returnUrl) {
+
+        returnUrl =
+            "https://onlinside.com/";
+    }
+
+
+    /*
+     * ========================================
+     * ENVIA O TOKEN POR POST PARA O WORDPRESS
+     *
+     * Não colocamos o token na URL.
+     * ========================================
+     */
+
+    const form =
+        document.createElement(
+            "form"
+        );
+
+
+    form.method =
+        "POST";
+
+
+    form.action =
+        "https://onlinside.com/wp-admin/admin-post.php";
+
+
+    /*
+     * ACTION DO WORDPRESS
+     */
+
+    const actionInput =
+        document.createElement(
+            "input"
+        );
+
+
+    actionInput.type =
+        "hidden";
+
+
+    actionInput.name =
+        "action";
+
+
+    actionInput.value =
+        "onlinside_sso_login";
+
+
+    form.appendChild(
+        actionInput
     );
 
 
-const usuario =
-    resultado.user;
+    /*
+     * FIREBASE TOKEN
+     */
+
+    const tokenInput =
+        document.createElement(
+            "input"
+        );
 
 
-/*
- * Se o e-mail ainda não foi confirmado,
- * envia para a página de confirmação.
- */
+    tokenInput.type =
+        "hidden";
 
-if (!usuario.emailVerified) {
 
-    document.body.classList.add(
-        "page-exit"
+    tokenInput.name =
+        "token";
+
+
+    tokenInput.value =
+        idToken;
+
+
+    form.appendChild(
+        tokenInput
     );
 
-    setTimeout(
-        function () {
 
-            window.location.href =
-                "confirmar-email.html";
+    /*
+     * URL DE RETORNO
+     */
 
-        },
-        280
+    const returnInput =
+        document.createElement(
+            "input"
+        );
+
+
+    returnInput.type =
+        "hidden";
+
+
+    returnInput.name =
+        "return_url";
+
+
+    returnInput.value =
+        returnUrl;
+
+
+    form.appendChild(
+        returnInput
     );
 
-    return;
-}
 
+    /*
+     * REMOVE O RETORNO TEMPORÁRIO
+     */
 
-/*
- * E-mail confirmado.
- *
- * Verifica se o usuário veio de
- * algum produto Onlinside.
- */
-
-const returnUrl =
-    sessionStorage.getItem(
+    sessionStorage.removeItem(
         "onlinside_return_url"
     );
 
 
-document.body.classList.add(
-    "page-exit"
-);
+    /*
+     * ENVIA
+     */
+
+    document.body.appendChild(
+        form
+    );
 
 
-setTimeout(
-    function () {
-
-        if (returnUrl) {
-
-            sessionStorage.removeItem(
-                "onlinside_return_url"
-            );
-
-            window.location.href =
-                returnUrl;
-
-        } else {
-
-            window.location.href =
-                "minha-conta.html";
-
-        }
-
-    },
-    280
-);                    );
+    form.submit();
 
 
-                } catch (error) {
+} catch (error) {
 
-                    console.error(error);
-
-
-                    loginButton.classList.remove(
-                        "loading"
-                    );
+    console.error(
+        error
+    );
 
 
-                    loginButton.disabled =
-                        false;
+    loginButton.classList.remove(
+        "loading"
+    );
 
 
-                    mensagem.textContent =
-                        "E-mail ou senha incorretos.";
+    loginButton.disabled =
+        false;
 
 
-                    mensagem.classList.add(
-                        "show"
-                    );
-
-                }
-
-            }
-        );
+    mensagem.textContent =
+        "E-mail ou senha incorretos.";
 
 
-        /* =========================
-           MOSTRAR CÓDIGO
-        ========================= */
+    mensagem.classList.add(
+        "show"
+    );
 
-        codeButton.addEventListener(
-            "click",
-            function () {
-
-                codeSection.classList.add(
-                    "active"
-                );
-
-
-                codeButton.style.display =
-                    "none";
-
-
-                setTimeout(
-                    function () {
-
-                        accessCode.focus();
-
-                    },
-                    350
-                );
-
-            }
-        );
-
-
-        /* =========================
-           SOMENTE NÚMEROS
-        ========================= */
-
-        accessCode.addEventListener(
-            "input",
-            function () {
-
-                this.value =
-                    this.value
-                    .replace(/\D/g, "")
-                    .slice(0, 6);
-
-            }
-        );
-
-
-        /* =========================
-           VERIFICAR CÓDIGO
-        ========================= */
-
-        verifyCodeButton.addEventListener(
-            "click",
-            function () {
-
-                const code =
-                    accessCode.value.trim();
-
-
-                if (code.length !== 6) {
-
-                    mensagem.textContent =
-                        "Digite o código de 6 dígitos.";
-
-                    mensagem.classList.add(
-                        "show"
-                    );
-
-                    return;
-
-                }
-
-
-                /*
-                 * Aqui entraremos com a
-                 * verificação real do código.
-                 *
-                 * Não coloque um código fixo
-                 * aqui, pois isso não seria seguro.
-                 */
-
-                mensagem.textContent =
-                    "A verificação do código será configurada na próxima etapa.";
-
-                mensagem.classList.add(
-                    "show"
-                );
-
-            }
-        );
+}
 
 
         /* =========================
