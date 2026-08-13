@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Confirmar e-mail — Conta Onlinside</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 24px;
+
+            background: #ffffff;
+            color: #111111;
+
+            font-family: "Garet", Arial, sans-serif;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                pageEnter
+                0.55s
+                cubic-bezier(.22, 1, .36, 1)
+                forwards;
+        }
+
+        @keyframes pageEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes elementEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+
+            text-align: center;
+        }
+
+        .brand {
+            margin-bottom: 14px;
+
+            font-size: 36px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+
+            opacity: 0;
+            transform: translateY(10px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.05s
+                forwards;
+        }
+
+        .brand-conta {
+            color: #ff9a30;
+            font-weight: 400;
+        }
+
+        .brand-onlinside {
+            color: #ff8200;
+            font-weight: 800;
+        }
+
+        .icon {
+            width: 76px;
+            height: 76px;
+
+            margin: 0 auto 22px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 50%;
+
+            background: #fff2e4;
+
+            color: #ff8200;
+
+            font-size: 34px;
+
+            opacity: 0;
+            transform: scale(0.9);
+
+            animation:
+                elementEnter
+                0.55s
+                0.10s
+                forwards;
+        }
+
+        .title {
+            margin-bottom: 10px;
+
+            font-size: 27px;
+            line-height: 1.2;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.14s
+                forwards;
+        }
+
+        .description {
+            color: #666666;
+
+            font-size: 14px;
+            line-height: 1.55;
+
+            margin-bottom: 12px;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.18s
+                forwards;
+        }
+
+        .email-box {
+            width: 100%;
+
+            margin: 18px 0 24px;
+
+            padding: 14px 16px;
+
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+
+            background: #fafafa;
+
+            color: #333333;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            overflow-wrap: anywhere;
+
+            opacity: 0;
+            transform: translateY(8px);
+
+            animation:
+                elementEnter
+                0.55s
+                0.22s
+                forwards;
+        }
+
+        .button {
+            position: relative;
+
+            width: 100%;
+            height: 52px;
+
+            border: 0;
+            border-radius: 10px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #ff8200;
+            color: #ffffff;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .button:hover {
+            background: #ff9a30;
+            transform: translateY(-1px);
+        }
+
+        .button:disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .secondary-button {
+            margin-top: 11px;
+
+            background: #ffffff;
+            color: #111111;
+
+            border: 1px solid #dedede;
+        }
+
+        .secondary-button:hover {
+            background: #f8f8f8;
+        }
+
+        .link-button {
+            margin-top: 18px;
+
+            border: 0;
+            background: transparent;
+
+            color: #ff8200;
+
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .link-button:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 14px;
+
+            color: #d00000;
+
+            font-size: 13px;
+        }
+
+        .message.success {
+            color: #16823b;
+        }
+
+        .spinner {
+            position: absolute;
+
+            width: 19px;
+            height: 19px;
+
+            border:
+                2px solid
+                rgba(255,255,255,.35);
+
+            border-top-color: #ffffff;
+
+            border-radius: 50%;
+
+            opacity: 0;
+            visibility: hidden;
+
+            animation: none;
+        }
+
+        .button.loading .spinner {
+            opacity: 1;
+            visibility: visible;
+
+            animation:
+                spin
+                0.75s
+                linear
+                infinite;
+        }
+
+        .button.loading .button-text {
+            opacity: 0;
+        }
+
+        .countdown {
+            margin-top: 10px;
+
+            color: #888888;
+
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 18px;
+            }
+
+            .brand {
+                font-size: 31px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <h1 class="brand">
+            <span class="brand-conta">Conta</span>
+            <span class="brand-onlinside">Onlinside</span>
+        </h1>
+
+        <div class="icon">
+            ✉
+        </div>
+
+        <h2 class="title">
+            Confirme seu e-mail
+        </h2>
+
+        <p class="description">
+            Enviamos um link de confirmação para o endereço abaixo.
+        </p>
+
+        <div
+            id="emailDisplay"
+            class="email-box"
+        >
+            Carregando...
+        </div>
+
+        <button
+            type="button"
+            id="checkButton"
+            class="button"
+        >
+            <span class="button-text">
+                Já confirmei meu e-mail
+            </span>
+
+            <span class="spinner"></span>
+        </button>
+
+        <button
+            type="button"
+            id="resendButton"
+            class="button secondary-button"
+        >
+            Reenviar e-mail
+        </button>
+
+        <p
+            id="countdown"
+            class="countdown"
+        ></p>
+
+        <button
+            type="button"
+            id="changeEmailButton"
+            class="link-button"
+        >
+            Trocar endereço de e-mail
+        </button>
+
+        <p
+            id="mensagem"
+            class="message"
+        ></p>
+
+    </main>
+
+
+    <script type="module">
+
+        import { auth }
+        from "./firebase.js";
+
+
+        import {
+            onAuthStateChanged,
+            reload,
+            sendEmailVerification,
+            signOut
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+        const emailDisplay =
+            document.getElementById(
+                "emailDisplay"
+            );
+
+
+        const checkButton =
+            document.getElementById(
+                "checkButton"
+            );
+
+
+        const resendButton =
+            document.getElementById(
+                "resendButton"
+            );
+
+
+        const changeEmailButton =
+            document.getElementById(
+                "changeEmailButton"
+            );
+
+
+        const mensagem =
+            document.getElementById(
+                "mensagem"
+            );
+
+
+        const countdown =
+            document.getElementById(
+                "countdown"
+            );
+
+
+        let currentUser = null;
+        let resendTimer = null;
+
+
+        /* ========================================
+           VERIFICA USUÁRIO
+        ======================================== */
+
+        onAuthStateChanged(
+            auth,
+            function(usuario) {
+
+                if (!usuario) {
+
+                    window.location.href =
+                        "./index.html";
+
+                    return;
+                }
+
+
+                currentUser = usuario;
+
+
+                emailDisplay.textContent =
+                    usuario.email ||
+                    "E-mail não disponível";
+
+
+                /*
+                 * Se ele já chegar nesta página
+                 * com e-mail confirmado, vai direto
+                 * para Minha Conta.
+                 */
+
+                if (
+                    usuario.emailVerified
+                ) {
+
+                    window.location.href =
+                        "./minha-conta.html";
+
+                }
+
+            }
+        );
+
+
+        /* ========================================
+           JÁ CONFIRMEI
+        ======================================== */
+
+        checkButton.addEventListener(
+            "click",
+            async function() {
+
+                if (!currentUser) {
+                    return;
+                }
+
+
+                mensagem.textContent =
+                    "";
+
+                mensagem.className =
+                    "message";
+
+
+                checkButton
+                    .classList
+                    .add(
+                        "loading"
+                    );
+
+
+                checkButton.disabled =
+                    true;
+
+
+                try {
+
+                    /*
+                     * Atualiza os dados do Firebase
+                     * para pegar o novo status do e-mail.
+                     */
+
+                    await reload(
+                        currentUser
+                    );
+
+
+                    if (
+                        currentUser.emailVerified
+                    ) {
+
+                        mensagem.textContent =
+                            "E-mail confirmado com sucesso.";
+
+                        mensagem.classList.add(
+                            "success"
+                        );
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "./minha-conta.html";
+
+                            },
+                            700
+                        );
+
+
+                    } else {
+
+                        mensagem.textContent =
+                            "Seu e-mail ainda não foi confirmado.";
+
+                        checkButton
+                            .classList
+                            .remove(
+                                "loading"
+                            );
+
+
+                        checkButton.disabled =
+                            false;
+
+                    }
+
+
+                } catch (erro) {
+
+                    console.error(
+                        erro
+                    );
+
+
+                    mensagem.textContent =
+                        "Não foi possível verificar o e-mail agora.";
+
+
+                    checkButton
+                        .classList
+                        .remove(
+                            "loading"
+                        );
+
+
+                    checkButton.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+
+        /* ========================================
+           REENVIAR E-MAIL
+        ======================================== */
+
+        resendButton.addEventListener(
+            "click",
+            async function() {
+
+                if (!currentUser) {
+                    return;
+                }
+
+
+                mensagem.textContent =
+                    "";
+
+                mensagem.className =
+                    "message";
+
+
+                resendButton.disabled =
+                    true;
+
+
+                try {
+
+                    await sendEmailVerification(
+                        currentUser
+                    );
+
+
+                    mensagem.textContent =
+                        "Novo e-mail de confirmação enviado.";
+
+                    mensagem.classList.add(
+                        "success"
+                    );
+
+
+                    startCountdown();
+
+
+                } catch (erro) {
+
+                    console.error(
+                        erro
+                    );
+
+
+                    mensagem.textContent =
+                        "Não foi possível reenviar o e-mail agora.";
+
+
+                    resendButton.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+
+        /* ========================================
+           CONTADOR DE 60 SEGUNDOS
+        ======================================== */
+
+        function startCountdown() {
+
+            let seconds =
+                60;
+
+
+            clearInterval(
+                resendTimer
+            );
+
+
+            countdown.textContent =
+                "Você poderá reenviar em " +
+                seconds +
+                "s";
+
+
+            resendTimer =
+                setInterval(
+                    function() {
+
+                        seconds--;
+
+
+                        if (
+                            seconds <= 0
+                        ) {
+
+                            clearInterval(
+                                resendTimer
+                            );
+
+
+                            countdown.textContent =
+                                "";
+
+
+                            resendButton.disabled =
+                                false;
+
+
+                            return;
+                        }
+
+
+                        countdown.textContent =
+                            "Você poderá reenviar em " +
+                            seconds +
+                            "s";
+
+
+                    },
+                    1000
+                );
+
+        }
+
+
+        /* ========================================
+           TROCAR E-MAIL
+        ======================================== */
+
+        changeEmailButton.addEventListener(
+            "click",
+            async function() {
+
+                try {
+
+                    await signOut(
+                        auth
+                    );
+
+
+                    window.location.href =
+                        "./cadastro.html";
+
+
+                } catch (erro) {
+
+                    console.error(
+                        erro
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
