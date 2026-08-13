@@ -20,29 +20,39 @@
             padding: 0;
         }
 
+
         html,
         body {
             width: 100%;
             min-height: 100%;
         }
 
+
         body {
+
             min-height: 100vh;
             min-height: 100svh;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             padding: 24px;
 
             background: #ffffff;
+
             color: #111111;
 
-            font-family: "Garet", Arial, sans-serif;
+            font-family:
+                "Garet",
+                Arial,
+                sans-serif;
 
             opacity: 0;
-            transform: translateY(8px);
+
+            transform:
+                translateY(8px);
 
             animation:
                 pageEnter
@@ -51,23 +61,28 @@
                 forwards;
         }
 
+
         @keyframes pageEnter {
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
 
         }
 
 
         /* =========================================
-           CONTEÚDO
+           CONTAINER
         ========================================= */
 
         .container {
+
             width: 100%;
-            max-width: 460px;
+
+            max-width: 470px;
 
             text-align: center;
         }
@@ -78,22 +93,29 @@
         ========================================= */
 
         .brand {
-            margin-bottom: 16px;
 
-            font-size: 36px;
+            margin-bottom: 14px;
+
+            font-size: 37px;
 
             line-height: 1;
 
             letter-spacing: -1px;
         }
 
+
         .brand-conta {
+
             color: #ff9a30;
+
             font-weight: 400;
         }
 
+
         .brand-onlinside {
+
             color: #ff8200;
+
             font-weight: 800;
         }
 
@@ -103,22 +125,26 @@
         ========================================= */
 
         .products-carousel {
+
             position: relative;
 
             width: 100%;
 
             overflow: hidden;
 
-            margin-bottom: 30px;
+            margin-bottom: 28px;
 
             padding: 14px 0;
         }
 
 
-        /* Sombras laterais */
+        /*
+         * Degradê nas laterais.
+         */
 
         .products-carousel::before,
         .products-carousel::after {
+
             content: "";
 
             position: absolute;
@@ -126,50 +152,54 @@
             top: 0;
 
             width: 65px;
+
             height: 100%;
 
-            z-index: 2;
+            z-index: 3;
 
             pointer-events: none;
         }
 
 
         .products-carousel::before {
+
             left: 0;
 
             background:
                 linear-gradient(
                     to right,
-                    #ffffff,
+                    #ffffff 10%,
                     rgba(255,255,255,0)
                 );
         }
 
 
         .products-carousel::after {
+
             right: 0;
 
             background:
                 linear-gradient(
                     to left,
-                    #ffffff,
+                    #ffffff 10%,
                     rgba(255,255,255,0)
                 );
         }
 
 
         .carousel-track {
+
             display: flex;
 
             align-items: center;
 
-            gap: 34px;
+            gap: 22px;
 
             width: max-content;
 
             animation:
                 moverProdutos
-                18s
+                20s
                 linear
                 infinite;
         }
@@ -178,47 +208,59 @@
         @keyframes moverProdutos {
 
             from {
-                transform: translateX(0);
+
+                transform:
+                    translateX(0);
+
             }
 
             to {
-                transform: translateX(-50%);
+
+                transform:
+                    translateX(-50%);
+
             }
 
         }
 
 
-        .produto {
-            min-width: 90px;
+        .produto-logo {
+
+            width: 68px;
+            height: 68px;
+
+            flex-shrink: 0;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
-
-            font-size: 18px;
-            font-weight: 800;
-
-            white-space: nowrap;
         }
 
 
-        .produto-on360 {
-            color: #ff5501;
+        .produto-logo img {
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
         }
 
 
-        .produto-oncamarim {
-            color: #ff8200;
-        }
+        /*
+         * Nome alternativo caso alguma
+         * imagem não carregue.
+         */
 
+        .produto-fallback {
 
-        .produto-maison {
-            color: #111111;
-        }
+            display: none;
 
+            font-size: 12px;
 
-        .produto-opaiz {
-            color: #222222;
+            font-weight: 700;
         }
 
 
@@ -227,7 +269,8 @@
         ========================================= */
 
         .title {
-            max-width: 400px;
+
+            max-width: 410px;
 
             margin:
                 0 auto 28px;
@@ -245,6 +288,7 @@
         ========================================= */
 
         .actions {
+
             width: 100%;
 
             display: flex;
@@ -256,10 +300,15 @@
 
 
         .button {
+
+            position: relative;
+
             width: 100%;
+
             height: 52px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
@@ -268,6 +317,7 @@
             font-family: inherit;
 
             font-size: 14px;
+
             font-weight: 700;
 
             cursor: pointer;
@@ -275,26 +325,42 @@
             transition:
                 background .2s ease,
                 border-color .2s ease,
-                transform .2s ease;
+                transform .2s ease,
+                opacity .2s ease;
         }
 
 
         .button:hover {
-            transform: translateY(-1px);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .button:disabled {
+
+            cursor: default;
+
+            opacity: .65;
+
+            transform: none;
         }
 
 
         /* SAIR */
 
         .logout-button {
+
             border: none;
 
             background: #ff8200;
+
             color: #ffffff;
         }
 
 
         .logout-button:hover {
+
             background: #ff9a30;
         }
 
@@ -302,17 +368,66 @@
         /* CANCELAR */
 
         .cancel-button {
-            border: 1px solid #e3e3e3;
+
+            border:
+                1px solid #e3e3e3;
 
             background: #ffffff;
+
             color: #111111;
         }
 
 
         .cancel-button:hover {
+
             background: #f7f7f7;
 
             border-color: #d8d8d8;
+        }
+
+
+        /* =========================================
+           FINALIZANDO SAÍDA
+        ========================================= */
+
+        .logout-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #ffffff;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .3s ease,
+                visibility .3s ease;
+        }
+
+
+        .logout-overlay.active {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        .logout-overlay-brand {
+
+            font-size: 37px;
+
+            letter-spacing: -1px;
         }
 
 
@@ -323,34 +438,41 @@
         @media (max-width: 480px) {
 
             body {
-                padding: 20px 18px;
+
+                padding:
+                    20px 18px;
             }
 
 
-            .brand {
+            .brand,
+            .logout-overlay-brand {
+
                 font-size: 31px;
             }
 
 
             .title {
+
                 font-size: 24px;
             }
 
 
-            .produto {
-                min-width: 80px;
+            .produto-logo {
 
-                font-size: 16px;
+                width: 60px;
+                height: 60px;
             }
 
         }
 
 
-        /* Acessibilidade */
-
-        @media (prefers-reduced-motion: reduce) {
+        @media (
+            prefers-reduced-motion:
+            reduce
+        ) {
 
             .carousel-track {
+
                 animation: none;
             }
 
@@ -363,12 +485,15 @@
 
 <body>
 
+
+    <!-- =========================================
+         TELA PRINCIPAL
+    ========================================== -->
+
     <main class="container">
 
 
-        <!-- =========================================
-             CONTA ONLINSIDE
-        ========================================== -->
+        <!-- CONTA ONLINSIDE -->
 
         <div class="brand">
 
@@ -385,7 +510,7 @@
 
 
         <!-- =========================================
-             CARROSSEL DE PRODUTOS
+             CARROSSEL
         ========================================== -->
 
         <div
@@ -398,51 +523,213 @@
 
                 <!-- PRIMEIRA SEQUÊNCIA -->
 
-                <div class="produto produto-on360">
-                    ON360
+
+                <!-- ONE -->
+
+                <div class="produto-logo">
+
+                    <img
+                        src="./imagem/one.png"
+                        alt="One"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span class="produto-fallback">
+                        One
+                    </span>
+
                 </div>
 
-                <div class="produto produto-oncamarim">
-                    OnCamarim
+
+
+                <!-- ON360 -->
+
+                <div class="produto-logo">
+
+                    <img
+                        src="./imagem/on360.png"
+                        alt="On360"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span class="produto-fallback">
+                        On360
+                    </span>
+
                 </div>
 
-                <div class="produto produto-maison">
-                    Maison
+
+
+                <!-- ONCAMARIM -->
+
+                <div class="produto-logo">
+
+                    <img
+                        src="./imagem/oncamarim.png"
+                        alt="OnCamarim"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span class="produto-fallback">
+                        OnCamarim
+                    </span>
+
                 </div>
 
-                <div class="produto produto-opaiz">
-                    O Paiz
+
+
+                <!-- ON -->
+
+                <div class="produto-logo">
+
+                    <img
+                        src="./imagem/on.png"
+                        alt="On"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span class="produto-fallback">
+                        On
+                    </span>
+
                 </div>
 
 
-                <!-- REPETIÇÃO PARA O LOOP -->
+
+                <!-- MAISON -->
+
+                <div class="produto-logo">
+
+                    <img
+                        src="./imagem/maison.png"
+                        alt="Maison"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span class="produto-fallback">
+                        Maison
+                    </span>
+
+                </div>
+
+
+
+                <!-- O PAIZ -->
+
+                <div class="produto-logo">
+
+                    <img
+                        src="./imagem/opaiz.png"
+                        alt="O Paiz"
+                        onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='block';
+                        "
+                    >
+
+                    <span class="produto-fallback">
+                        O Paiz
+                    </span>
+
+                </div>
+
+
+
+                <!-- =================================
+                     REPETIÇÃO PARA LOOP CONTÍNUO
+                ================================== -->
+
 
                 <div
-                    class="produto produto-on360"
+                    class="produto-logo"
                     aria-hidden="true"
                 >
-                    ON360
+
+                    <img
+                        src="./imagem/one.png"
+                        alt=""
+                    >
+
                 </div>
 
-                <div
-                    class="produto produto-oncamarim"
-                    aria-hidden="true"
-                >
-                    OnCamarim
-                </div>
 
                 <div
-                    class="produto produto-maison"
+                    class="produto-logo"
                     aria-hidden="true"
                 >
-                    Maison
+
+                    <img
+                        src="./imagem/on360.png"
+                        alt=""
+                    >
+
                 </div>
 
+
                 <div
-                    class="produto produto-opaiz"
+                    class="produto-logo"
                     aria-hidden="true"
                 >
-                    O Paiz
+
+                    <img
+                        src="./imagem/oncamarim.png"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div
+                    class="produto-logo"
+                    aria-hidden="true"
+                >
+
+                    <img
+                        src="./imagem/on.png"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div
+                    class="produto-logo"
+                    aria-hidden="true"
+                >
+
+                    <img
+                        src="./imagem/maison.png"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div
+                    class="produto-logo"
+                    aria-hidden="true"
+                >
+
+                    <img
+                        src="./imagem/opaiz.png"
+                        alt=""
+                    >
+
                 </div>
 
 
@@ -453,11 +740,13 @@
 
 
         <!-- =========================================
-             CONFIRMAÇÃO
+             PERGUNTA
         ========================================== -->
 
         <h1 class="title">
+
             Você realmente quer sair da sua Conta Onlinside?
+
         </h1>
 
 
@@ -467,6 +756,7 @@
         ========================================== -->
 
         <div class="actions">
+
 
             <button
                 type="button"
@@ -485,6 +775,7 @@
                 Cancelar
             </button>
 
+
         </div>
 
 
@@ -492,10 +783,95 @@
 
 
 
-    <script>
+    <!-- =========================================
+         TELA ENQUANTO ENCERRA AS SESSÕES
+    ========================================== -->
+
+    <div
+        class="logout-overlay"
+        id="logoutOverlay"
+    >
+
+        <div class="logout-overlay-brand">
+
+            <span class="brand-conta">
+                Conta
+            </span>
+
+            <span class="brand-onlinside">
+                Onlinside
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         FIREBASE + LOGOUT
+    ========================================== -->
+
+    <script type="module">
+
 
         /* =========================================
-           DESCOBRE DE ONDE O USUÁRIO VEIO
+           FIREBASE
+        ========================================= */
+
+        import { auth }
+        from "./firebase.js";
+
+
+        import {
+            signOut
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+
+        /* =========================================
+           CONFIGURAÇÕES
+        ========================================= */
+
+        const WORDPRESS_URL =
+            "https://samueldesousasantos1785619701880.1161322.meusitehostgator.com.br";
+
+
+        const SAIR_URL =
+            "https://onlinside.github.io/login/sair.html";
+
+
+        const SITE_PADRAO =
+            WORDPRESS_URL + "/";
+
+
+
+        /* =========================================
+           ELEMENTOS
+        ========================================= */
+
+        const confirmarSair =
+            document.getElementById(
+                "confirmarSair"
+            );
+
+
+        const cancelar =
+            document.getElementById(
+                "cancelar"
+            );
+
+
+        const logoutOverlay =
+            document.getElementById(
+                "logoutOverlay"
+            );
+
+
+
+        /* =========================================
+           PARÂMETROS DA URL
         ========================================= */
 
         const parametros =
@@ -504,7 +880,13 @@
             );
 
 
-        const returnUrl =
+        const logoutWordPress =
+            parametros.get(
+                "logout"
+            );
+
+
+        const retornoRecebido =
             parametros.get(
                 "return_url"
             );
@@ -512,94 +894,310 @@
 
 
         /* =========================================
-           CANCELAR
+           VALIDA URL DE RETORNO
         ========================================= */
 
-        document
-            .getElementById(
-                "cancelar"
-            )
-            .addEventListener(
-                "click",
-                function () {
-
-                    /*
-                     * Se o site enviou return_url,
-                     * volta exatamente para ele.
-                     */
-
-                    if (returnUrl) {
-
-                        window.location.href =
-                            returnUrl;
-
-                        return;
-
-                    }
+        function obterUrlRetorno() {
 
 
-                    /*
-                     * Se a pessoa chegou aqui
-                     * através de outra página,
-                     * volta no histórico.
-                     */
+            if (!retornoRecebido) {
 
-                    if (
-                        document.referrer
-                    ) {
+                return SITE_PADRAO;
 
-                        window.history.back();
-
-                        return;
-
-                    }
+            }
 
 
-                    /*
-                     * Último recurso:
-                     * Minha Conta.
-                     */
+            try {
 
-                    window.location.href =
-                        "./minha-conta.html";
+                const url =
+                    new URL(
+                        retornoRecebido
+                    );
+
+
+                /*
+                 * Endereços permitidos.
+                 *
+                 * O domínio principal já fica
+                 * preparado para quando sair do teste.
+                 */
+
+                const hostsPermitidos = [
+
+                    "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br",
+
+                    "onlinside.com",
+
+                    "www.onlinside.com"
+
+                ];
+
+
+                if (
+                    url.protocol !==
+                    "https:"
+                ) {
+
+                    return SITE_PADRAO;
 
                 }
-            );
+
+
+                if (
+                    !hostsPermitidos.includes(
+                        url.hostname
+                    )
+                ) {
+
+                    return SITE_PADRAO;
+
+                }
+
+
+                return url.href;
+
+
+            } catch (erro) {
+
+                return SITE_PADRAO;
+
+            }
+
+        }
+
+
+        const returnUrl =
+            obterUrlRetorno();
 
 
 
         /* =========================================
-           SAIR
+           CANCELAR
         ========================================= */
 
-        document
-            .getElementById(
-                "confirmarSair"
-            )
-            .addEventListener(
-                "click",
-                function () {
+        cancelar.addEventListener(
+            "click",
+            function () {
 
-                    /*
-                     * Ainda NÃO encerraremos
-                     * a sessão aqui.
-                     *
-                     * No próximo passo vamos ligar
-                     * este botão ao logout central:
-                     *
-                     * Firebase
-                     * +
-                     * WordPress
-                     */
 
-                    console.log(
-                        "Usuário confirmou a saída."
+                /*
+                 * Volta para a página exata
+                 * onde a pessoa estava.
+                 */
+
+                window.location.href =
+                    returnUrl;
+
+            }
+        );
+
+
+
+        /* =========================================
+           USUÁRIO CONFIRMOU SAÍDA
+        ========================================= */
+
+        confirmarSair.addEventListener(
+            "click",
+            function () {
+
+
+                confirmarSair.disabled =
+                    true;
+
+
+                cancelar.disabled =
+                    true;
+
+
+                confirmarSair.textContent =
+                    "Saindo...";
+
+
+                logoutOverlay.classList.add(
+                    "active"
+                );
+
+
+                /*
+                 * =================================
+                 * URL PARA VOLTAR AO GITHUB
+                 * DEPOIS DO WORDPRESS APAGAR
+                 * O COOKIE.
+                 * =================================
+                 */
+
+                const callback =
+                    new URL(
+                        SAIR_URL
                     );
 
-                }
+
+                callback.searchParams.set(
+                    "logout",
+                    "wordpress"
+                );
+
+
+                callback.searchParams.set(
+                    "return_url",
+                    returnUrl
+                );
+
+
+
+                /*
+                 * =================================
+                 * CHAMA O ENDPOINT QUE ACABAMOS
+                 * DE CRIAR NO PLUGIN WORDPRESS.
+                 * =================================
+                 */
+
+                const wordpressLogout =
+                    new URL(
+                        WORDPRESS_URL +
+                        "/wp-admin/admin-post.php"
+                    );
+
+
+                wordpressLogout.searchParams.set(
+                    "action",
+                    "onlinside_sso_logout"
+                );
+
+
+                wordpressLogout.searchParams.set(
+                    "return_url",
+                    callback.toString()
+                );
+
+
+                /*
+                 * Navegação principal.
+                 *
+                 * Isso permite ao WordPress
+                 * receber e apagar o próprio cookie.
+                 */
+
+                window.location.href =
+                    wordpressLogout.toString();
+
+            }
+        );
+
+
+
+        /* =========================================
+           VOLTOU DO WORDPRESS
+        ========================================= */
+
+        async function finalizarLogout() {
+
+
+            if (
+                logoutWordPress !==
+                "wordpress"
+            ) {
+
+                return;
+
+            }
+
+
+            /*
+             * Esconde a tela de confirmação.
+             */
+
+            logoutOverlay.classList.add(
+                "active"
             );
 
+
+            confirmarSair.disabled =
+                true;
+
+
+            cancelar.disabled =
+                true;
+
+
+            try {
+
+
+                /*
+                 * =================================
+                 * ENCERRA FIREBASE
+                 * =================================
+                 */
+
+                await signOut(
+                    auth
+                );
+
+
+            } catch (erro) {
+
+
+                console.error(
+                    "Erro ao encerrar Firebase:",
+                    erro
+                );
+
+
+            } finally {
+
+
+                /*
+                 * =================================
+                 * LIMPA DADOS LOCAIS
+                 * =================================
+                 */
+
+                localStorage.removeItem(
+                    "onlinside_email"
+                );
+
+
+                localStorage.removeItem(
+                    "onlinside_nome"
+                );
+
+
+                localStorage.removeItem(
+                    "onlinside_birthdate"
+                );
+
+
+                localStorage.removeItem(
+                    "onlinside_public_id"
+                );
+
+
+                /*
+                 * =================================
+                 * VOLTA PARA O SITE
+                 * =================================
+                 */
+
+                window.location.replace(
+                    returnUrl
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           INICIAR
+        ========================================= */
+
+        finalizarLogout();
+
+
     </script>
+
 
 </body>
 
