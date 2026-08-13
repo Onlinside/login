@@ -12,7 +12,6 @@
 
     <title>Entrar — Conta Onlinside</title>
 
-
     <style>
 
         * {
@@ -90,6 +89,7 @@
 
             to {
                 opacity: 0;
+
                 transform:
                     translateY(-8px);
             }
@@ -101,6 +101,7 @@
 
             to {
                 opacity: 1;
+
                 transform:
                     translateY(0);
             }
@@ -112,6 +113,16 @@
 
             to {
                 opacity: 1;
+            }
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
             }
 
         }
@@ -290,8 +301,7 @@
         }
 
 
-        .password-wrapper
-        .input {
+        .password-wrapper .input {
 
             padding-right:
                 75px;
@@ -442,73 +452,63 @@
         }
 
 
-        .button.loading
-        .button-text {
+        .button.loading .button-text {
 
             opacity:
                 0;
         }
 
 
+        /*
+         * Spinner completamente parado
+         * enquanto não houver .loading
+         */
+
         .spinner {
-    position: absolute;
 
-    width: 19px;
-    height: 19px;
+            position:
+                absolute;
 
-    border: 2px solid rgba(255,255,255,0.35);
-    border-top-color: #ffffff;
+            width:
+                19px;
 
-    border-radius: 50%;
+            height:
+                19px;
 
-    opacity: 0;
-    visibility: hidden;
+            border:
+                2px solid
+                rgba(255,255,255,0.35);
 
-    animation: none;
-}
+            border-top-color:
+                #ffffff;
 
-.button.loading .spinner {
-    opacity: 1;
-    visibility: visible;
+            border-radius:
+                50%;
 
-    animation: spin 0.75s linear infinite;
-}
+            opacity:
+                0;
 
-.button.loading .button-text {
-    opacity: 0;
-}
+            visibility:
+                hidden;
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+            animation:
+                none;
+        }
 
-        .button.loading
-        .spinner {
+
+        .button.loading .spinner {
 
             opacity:
                 1;
-        }
 
+            visibility:
+                visible;
 
-        @keyframes spinnerAppear {
-
-            to {
-                opacity:
-                    1;
-            }
-
-        }
-
-
-        @keyframes spin {
-
-            to {
-                transform:
-                    rotate(360deg);
-            }
-
+            animation:
+                spin
+                0.75s
+                linear
+                infinite;
         }
 
 
@@ -1142,10 +1142,13 @@
 
         </a>
 
+
     </main>
 
 
-    <!-- FIREBASE -->
+    <!-- =========================================
+         FIREBASE + SSO WORDPRESS
+    ========================================= -->
 
     <script type="module">
 
@@ -1156,13 +1159,20 @@
         import {
             signInWithEmailAndPassword
         }
-        from
-        "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-        /* =========================
+        /* =========================================
+           WORDPRESS DE TESTE
+        ========================================= */
+
+        const WORDPRESS_URL =
+            "https://samueldesousasantos1785619701880.1161322.meusitehostgator.com.br";
+
+
+        /* =========================================
            ELEMENTOS
-        ========================= */
+        ========================================= */
 
         const email =
             localStorage.getItem(
@@ -1230,9 +1240,15 @@
             );
 
 
-        /* =========================
-           VERIFICA E-MAIL
-        ========================= */
+        const passkeyButton =
+            document.getElementById(
+                "passkeyButton"
+            );
+
+
+        /* =========================================
+           VERIFICA E-MAIL SALVO
+        ========================================= */
 
         if (!email) {
 
@@ -1247,9 +1263,9 @@
         }
 
 
-        /* =========================
+        /* =========================================
            MOSTRAR SENHA
-        ========================= */
+        ========================================= */
 
         showPassword.addEventListener(
             "click",
@@ -1263,6 +1279,7 @@
                     password.type =
                         "text";
 
+
                     showPassword.textContent =
                         "Ocultar";
 
@@ -1270,6 +1287,7 @@
 
                     password.type =
                         "password";
+
 
                     showPassword.textContent =
                         "Mostrar";
@@ -1280,9 +1298,9 @@
         );
 
 
-        /* =========================
+        /* =========================================
            LOGIN NORMAL
-        ========================= */
+        ========================================= */
 
         passwordForm.addEventListener(
             "submit",
@@ -1294,9 +1312,21 @@
                 mensagem.textContent =
                     "";
 
+
                 mensagem.classList.remove(
                     "show"
                 );
+
+
+                /*
+                 * Evita clique duplicado.
+                 */
+
+                if (
+                    loginButton.disabled
+                ) {
+                    return;
+                }
 
 
                 loginButton.classList.add(
@@ -1308,250 +1338,374 @@
                     true;
 
 
-         try {
+                try {
 
-    const resultado =
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password.value
+                    /* =================================
+                       LOGIN FIREBASE
+                    ================================= */
+
+                    const resultado =
+                        await signInWithEmailAndPassword(
+                            auth,
+                            email,
+                            password.value
+                        );
+
+
+                    const usuario =
+                        resultado.user;
+
+
+                    /* =================================
+                       CONFIRMAÇÃO DO E-MAIL
+                    ================================= */
+
+                    if (
+                        !usuario.emailVerified
+                    ) {
+
+                        loginButton.classList.remove(
+                            "loading"
+                        );
+
+
+                        loginButton.disabled =
+                            false;
+
+
+                        document.body.classList.add(
+                            "page-exit"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "confirmar-email.html";
+
+                            },
+                            280
+                        );
+
+
+                        return;
+                    }
+
+
+                    /* =================================
+                       ID TOKEN REAL DO FIREBASE
+                    ================================= */
+
+                    const idToken =
+                        await usuario.getIdToken(
+                            true
+                        );
+
+
+                    /* =================================
+                       DESTINO ORIGINAL
+                    ================================= */
+
+                    let returnUrl =
+                        sessionStorage.getItem(
+                            "onlinside_return_url"
+                        );
+
+
+                    /*
+                     * Durante os testes,
+                     * se não houver origem,
+                     * vai para o WordPress da HostGator.
+                     */
+
+                    if (
+                        !returnUrl
+                    ) {
+
+                        returnUrl =
+                            WORDPRESS_URL + "/";
+
+                    }
+
+
+                    /* =================================
+                       FORMULÁRIO POST INVISÍVEL
+                    ================================= */
+
+                    const form =
+                        document.createElement(
+                            "form"
+                        );
+
+
+                    form.method =
+                        "POST";
+
+
+                    /*
+                     * IMPORTANTE:
+                     *
+                     * O WordPress recebe através
+                     * do admin-post.php.
+                     */
+
+                    form.action =
+                        WORDPRESS_URL +
+                        "/wp-admin/admin-post.php";
+
+
+                    form.style.display =
+                        "none";
+
+
+                    /* =================================
+                       ACTION WORDPRESS
+                    ================================= */
+
+                    const actionInput =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    actionInput.type =
+                        "hidden";
+
+
+                    actionInput.name =
+                        "action";
+
+
+                    actionInput.value =
+                        "onlinside_sso_login";
+
+
+                    form.appendChild(
+                        actionInput
+                    );
+
+
+                    /* =================================
+                       FIREBASE TOKEN
+                    ================================= */
+
+                    const tokenInput =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    tokenInput.type =
+                        "hidden";
+
+
+                    tokenInput.name =
+                        "token";
+
+
+                    tokenInput.value =
+                        idToken;
+
+
+                    form.appendChild(
+                        tokenInput
+                    );
+
+
+                    /* =================================
+                       ENDEREÇO DE RETORNO
+                    ================================= */
+
+                    const returnInput =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    returnInput.type =
+                        "hidden";
+
+
+                    returnInput.name =
+                        "return_url";
+
+
+                    returnInput.value =
+                        returnUrl;
+
+
+                    form.appendChild(
+                        returnInput
+                    );
+
+
+                    /* =================================
+                       LIMPA DESTINO TEMPORÁRIO
+                    ================================= */
+
+                    sessionStorage.removeItem(
+                        "onlinside_return_url"
+                    );
+
+
+                    /* =================================
+                       ENVIA PARA WORDPRESS
+                    ================================= */
+
+                    document.body.appendChild(
+                        form
+                    );
+
+
+                    form.submit();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Erro no login:",
+                        error
+                    );
+
+
+                    loginButton.classList.remove(
+                        "loading"
+                    );
+
+
+                    loginButton.disabled =
+                        false;
+
+
+                    mensagem.textContent =
+                        "E-mail ou senha incorretos.";
+
+
+                    mensagem.classList.add(
+                        "show"
+                    );
+
+                }
+
+            }
         );
 
 
-    const usuario =
-        resultado.user;
+        /* =========================================
+           CORRIGE BOTÃO AO VOLTAR
+        ========================================= */
 
-
-    /*
-     * E-MAIL AINDA NÃO CONFIRMADO
-     */
-
-    if (!usuario.emailVerified) {
-
-        document.body.classList.add(
-            "page-exit"
-        );
-
-
-        setTimeout(
+        window.addEventListener(
+            "pageshow",
             function () {
 
-                window.location.href =
-                    "confirmar-email.html";
+                loginButton.classList.remove(
+                    "loading"
+                );
 
-            },
-            280
+
+                loginButton.disabled =
+                    false;
+
+
+                document.body.classList.remove(
+                    "page-exit"
+                );
+
+            }
         );
 
 
-        return;
-    }
-
-
-    /*
-     * ========================================
-     * PEGA O ID TOKEN REAL DO FIREBASE
-     * ========================================
-     */
-
-    const idToken =
-        await usuario.getIdToken(
-            true
-        );
-
-
-    /*
-     * ========================================
-     * DESCOBRE PARA ONDE O USUÁRIO
-     * DEVE VOLTAR
-     * ========================================
-     */
-
-    let returnUrl =
-        sessionStorage.getItem(
-            "https://samueldesousasantos1785619701880.1161322.meusitehostgator.com.br/"
-        );
-
-
-    /*
-     * Neste primeiro teste vamos usar
-     * o próprio onlinside.com.
-     */
-
-    if (!returnUrl) {
-
-        returnUrl =
-            "https://samueldesousasantos1785619701880.1161322.meusitehostgator.com.br/";
-    }
-
-
-    /*
-     * ========================================
-     * ENVIA O TOKEN POR POST PARA O WORDPRESS
-     *
-     * Não colocamos o token na URL.
-     * ========================================
-     */
-
-    const form =
-        document.createElement(
-            "form"
-        );
-
-
-    form.method =
-        "POST";
-
-
-    form.action =
-        "https://samueldesousasantos1785619701880.1161322.meusitehostgator.com.br/wp-admin/index.php";
-
-
-    /*
-     * ACTION DO WORDPRESS
-     */
-
-    const actionInput =
-        document.createElement(
-            "input"
-        );
-
-
-    actionInput.type =
-        "hidden";
-
-
-    actionInput.name =
-        "action";
-
-
-    actionInput.value =
-        "onlinside_sso_login";
-
-
-    form.appendChild(
-        actionInput
-    );
-
-
-    /*
-     * FIREBASE TOKEN
-     */
-
-    const tokenInput =
-        document.createElement(
-            "input"
-        );
-
-
-    tokenInput.type =
-        "hidden";
-
-
-    tokenInput.name =
-        "token";
-
-
-    tokenInput.value =
-        idToken;
-
-
-    form.appendChild(
-        tokenInput
-    );
-
-
-    /*
-     * URL DE RETORNO
-     */
-
-    const returnInput =
-        document.createElement(
-            "input"
-        );
-
-
-    returnInput.type =
-        "hidden";
-
-
-    returnInput.name =
-        "return_url";
-
-
-    returnInput.value =
-        returnUrl;
-
-
-    form.appendChild(
-        returnInput
-    );
-
-
-    /*
-     * REMOVE O RETORNO TEMPORÁRIO
-     */
-
-    sessionStorage.removeItem(
-        "onlinside_return_url"
-    );
-
-
-    /*
-     * ENVIA
-     */
-
-    document.body.appendChild(
-        form
-    );
-
-
-    form.submit();
-
-
-} catch (error) {
-
-    console.error(
-        error
-    );
-
-
-    loginButton.classList.remove(
-        "loading"
-    );
-
-
-    loginButton.disabled =
-        false;
-
-
-    mensagem.textContent =
-        "E-mail ou senha incorretos.";
-
-
-    mensagem.classList.add(
-        "show"
-    );
-
-}
-
-
-        /* =========================
-           CHAVE DE ACESSO
-        ========================= */
-
-        const passkeyButton =
-            document.getElementById(
-                "passkeyButton"
-            );
-
-
-        passkeyButton.addEventListener(
+        /* =========================================
+           MOSTRAR ÁREA DO CÓDIGO
+        ========================================= */
+
+        codeButton.addEventListener(
             "click",
             function () {
 
+                codeSection.classList.add(
+                    "active"
+                );
+
+
+                codeButton.style.display =
+                    "none";
+
+
+                setTimeout(
+                    function () {
+
+                        accessCode.focus();
+
+                    },
+                    350
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           CÓDIGO SOMENTE NÚMEROS
+        ========================================= */
+
+        accessCode.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .slice(0, 6);
+
+            }
+        );
+
+
+        /* =========================================
+           CÓDIGO DE ACESSO
+           AINDA NÃO CONFIGURADO
+        ========================================= */
+
+        verifyCodeButton.addEventListener(
+            "click",
+            function () {
+
+                const code =
+                    accessCode.value.trim();
+
+
                 mensagem.textContent =
-                    "A chave de acesso será configurada na próxima etapa.";
+                    "";
+
+
+                mensagem.classList.remove(
+                    "show"
+                );
+
+
+                if (
+                    code.length !== 6
+                ) {
+
+                    mensagem.textContent =
+                        "Digite o código de 6 dígitos.";
+
+
+                    mensagem.classList.add(
+                        "show"
+                    );
+
+
+                    return;
+                }
+
+
+                mensagem.textContent =
+                    "A verificação por código ainda será configurada.";
+
 
                 mensagem.classList.add(
                     "show"
@@ -1560,7 +1714,30 @@
             }
         );
 
+
+        /* =========================================
+           CHAVE DE ACESSO
+           AINDA NÃO CONFIGURADA
+        ========================================= */
+
+        passkeyButton.addEventListener(
+            "click",
+            function () {
+
+                mensagem.textContent =
+                    "A chave de acesso ainda será configurada.";
+
+
+                mensagem.classList.add(
+                    "show"
+                );
+
+            }
+        );
+
+
     </script>
+
 
 </body>
 
