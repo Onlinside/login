@@ -1413,7 +1413,55 @@
 
                 }
             );
+/* ========================================
+   SALVA O SITE DE ORIGEM
+======================================== */
 
+const parametros =
+    new URLSearchParams(window.location.search);
+
+const returnUrl =
+    parametros.get("return_url");
+
+
+function returnUrlPermitida(url) {
+
+    try {
+
+        const destino =
+            new URL(url);
+
+        const dominiosPermitidos = [
+            "onlinside.com",
+            "www.onlinside.com",
+
+            // Vamos adicionar aqui
+            // os outros domínios da Onlinside.
+        ];
+
+        return dominiosPermitidos.includes(
+            destino.hostname
+        );
+
+    } catch {
+
+        return false;
+
+    }
+}
+
+
+if (
+    returnUrl &&
+    returnUrlPermitida(returnUrl)
+) {
+
+    sessionStorage.setItem(
+        "onlinside_return_url",
+        returnUrl
+    );
+
+}
     </script>
 
 
