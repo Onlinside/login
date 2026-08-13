@@ -8,6 +8,7 @@
     <title>Minha conta — Conta Onlinside</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -26,47 +27,71 @@
 
         body {
             min-height: 100vh;
+
             background: var(--background);
             color: var(--text);
+
             font-family: "Garet", Arial, sans-serif;
         }
 
-        /* TOPO */
+
+        /* =========================================
+           TOPO
+        ========================================= */
 
         .topbar {
             height: 76px;
+
             display: flex;
             align-items: center;
+
             background: rgba(255,255,255,.88);
-            border-bottom: 1px solid var(--border);
+
+            border-bottom:
+                1px solid var(--border);
+
             position: sticky;
             top: 0;
+
             z-index: 50;
-            backdrop-filter: blur(14px);
+
+            backdrop-filter:
+                blur(14px);
         }
 
         .topbar-inner {
             width: 100%;
             max-width: 1080px;
+
             margin: 0 auto;
+
             padding: 0 24px;
 
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
+
+            grid-template-columns:
+                1fr auto 1fr;
+
             align-items: center;
         }
 
+
         .menu-button {
             justify-self: start;
+
             border: 0;
             background: transparent;
+
             font: inherit;
+
             font-size: 14px;
             font-weight: 600;
+
             cursor: pointer;
 
             display: flex;
             align-items: center;
+
             gap: 8px;
         }
 
@@ -75,103 +100,162 @@
             color: var(--orange);
         }
 
+
+        /* =========================================
+           MARCA
+        ========================================= */
+
         .brand {
             justify-self: center;
+
             font-size: 25px;
+
             letter-spacing: -0.7px;
         }
 
         .brand-conta {
             color: var(--orange-light);
+
             font-weight: 400;
         }
 
         .brand-onlinside {
             color: var(--orange);
+
             font-weight: 800;
         }
+
+
+        /* =========================================
+           PERFIL DO TOPO
+        ========================================= */
 
         .profile-button {
             justify-self: end;
 
             display: flex;
+
             align-items: center;
+
             gap: 9px;
 
             border: 0;
+
             border-radius: 999px;
-            padding: 7px 14px 7px 7px;
+
+            padding:
+                7px 14px
+                7px 7px;
 
             background: #fff0df;
+
             color: #222;
 
             font: inherit;
+
             font-size: 13px;
+
             font-weight: 600;
+
             cursor: pointer;
         }
+
 
         .mini-avatar {
             width: 34px;
             height: 34px;
+
             border-radius: 50%;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            background: var(--orange);
+            background:
+                var(--orange);
+
             color: white;
+
             font-weight: 700;
         }
 
-        /* CONTEÚDO */
+
+        /* =========================================
+           CONTEÚDO
+        ========================================= */
 
         .page {
             max-width: 1080px;
+
             margin: 0 auto;
-            padding: 34px 24px 60px;
+
+            padding:
+                34px 24px 60px;
         }
 
-        /* CARD PRINCIPAL */
+
+        /* =========================================
+           CARD PRINCIPAL
+        ========================================= */
 
         .hero-card {
-            background: var(--card);
-            border: 1px solid var(--border);
+            background:
+                var(--card);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 22px;
+
             padding: 30px;
 
             display: flex;
+
             align-items: center;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             gap: 30px;
 
-            box-shadow: 0 12px 35px rgba(72, 42, 13, 0.05);
+            box-shadow:
+                0 12px 35px
+                rgba(72,42,13,.05);
         }
+
 
         .profile-info {
             display: flex;
+
             align-items: center;
+
             gap: 20px;
         }
+
 
         .avatar {
             width: 82px;
             height: 82px;
+
             border-radius: 50%;
 
             display: flex;
+
             justify-content: center;
             align-items: center;
 
-            background: linear-gradient(
-                135deg,
-                var(--orange),
-                var(--orange-light)
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--orange),
+                    var(--orange-light)
+                );
 
             color: white;
+
             font-size: 31px;
+
             font-weight: 700;
 
             box-shadow:
@@ -179,114 +263,176 @@
                 0 0 0 8px #ffe0bf;
         }
 
+
         .greeting {
             font-size: 26px;
+
             letter-spacing: -0.6px;
+
             margin-bottom: 5px;
         }
 
+
         .user-email {
-            color: var(--muted);
+            color:
+                var(--muted);
+
             font-size: 14px;
+
             margin-bottom: 10px;
         }
 
+
         .edit-link {
-            color: var(--orange);
+            color:
+                var(--orange);
+
             font-size: 14px;
+
             font-weight: 600;
+
             text-decoration: none;
         }
 
         .edit-link:hover {
-            text-decoration: underline;
+            text-decoration:
+                underline;
         }
+
+
+        /* =========================================
+           CONTA CONECTADA
+        ========================================= */
 
         .account-badge {
             padding: 14px 18px;
+
             border-radius: 14px;
 
             background: #fff4e8;
 
             display: flex;
+
             align-items: center;
+
             gap: 10px;
 
             font-size: 13px;
+
             font-weight: 600;
         }
+
 
         .account-badge-icon {
             width: 32px;
             height: 32px;
+
             border-radius: 10px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            background: var(--orange);
+            background:
+                var(--orange);
+
             color: white;
         }
 
-        /* GRID */
+
+        /* =========================================
+           GRID
+        ========================================= */
 
         .grid {
             display: grid;
-            grid-template-columns: 1.4fr 1fr;
+
+            grid-template-columns:
+                1.4fr 1fr;
+
             gap: 24px;
+
             margin-top: 24px;
         }
 
+
         .card {
-            background: var(--card);
-            border: 1px solid var(--border);
+            background:
+                var(--card);
+
+            border:
+                1px solid var(--border);
+
             border-radius: 20px;
+
             padding: 28px;
 
             box-shadow:
-                0 10px 30px rgba(72, 42, 13, 0.035);
+                0 10px 30px
+                rgba(72,42,13,.035);
         }
+
 
         .card-title {
             font-size: 22px;
+
             letter-spacing: -0.4px;
+
             margin-bottom: 5px;
         }
 
+
         .card-subtitle {
-            color: var(--muted);
+            color:
+                var(--muted);
+
             font-size: 14px;
+
             line-height: 1.5;
+
             margin-bottom: 24px;
         }
 
-        /* ITENS */
+
+        /* =========================================
+           CONFIGURAÇÕES
+        ========================================= */
 
         .settings-list {
             display: flex;
+
             flex-direction: column;
         }
 
+
         .settings-item {
             display: flex;
+
             align-items: center;
+
             gap: 14px;
 
             padding: 17px 0;
-            border-top: 1px solid #f0ece8;
+
+            border-top:
+                1px solid #f0ece8;
         }
+
 
         .settings-item:first-child {
             border-top: 0;
+
             padding-top: 0;
         }
+
 
         .item-icon {
             width: 42px;
             height: 42px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
@@ -295,258 +441,520 @@
             border-radius: 12px;
 
             background: #fff1e2;
-            color: var(--orange);
+
+            color:
+                var(--orange);
 
             font-size: 19px;
         }
+
 
         .item-content {
             flex: 1;
         }
 
+
         .item-title {
             font-size: 14px;
+
             font-weight: 650;
+
             margin-bottom: 3px;
         }
 
+
         .item-description {
-            color: var(--muted);
+            color:
+                var(--muted);
+
             font-size: 12px;
         }
 
+
         .item-arrow {
             color: #aaa;
+
             font-size: 18px;
         }
 
-        /* PRODUTOS */
+
+        /* =========================================
+           PRODUTOS
+        ========================================= */
 
         .product {
             padding: 17px;
-            border: 1px solid #eee7e0;
+
+            border:
+                1px solid #eee7e0;
+
             border-radius: 14px;
 
             display: flex;
+
             align-items: center;
+
             gap: 14px;
         }
+
 
         .product + .product {
             margin-top: 11px;
         }
+
 
         .product-logo {
             width: 44px;
             height: 44px;
 
             border-radius: 12px;
-            background: var(--orange);
+
+            background:
+                var(--orange);
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             color: white;
+
             font-size: 14px;
+
             font-weight: 800;
         }
 
+
         .product-name {
             font-size: 14px;
+
             font-weight: 700;
+
             margin-bottom: 2px;
         }
 
+
         .product-status {
-            color: var(--muted);
+            color:
+                var(--muted);
+
             font-size: 12px;
         }
 
-        /* DADOS */
+
+        /* =========================================
+           DADOS
+        ========================================= */
 
         .data-card {
             margin-top: 24px;
         }
 
+
         .data-row {
             display: grid;
-            grid-template-columns: 170px 1fr auto;
+
+            grid-template-columns:
+                170px 1fr auto;
+
             gap: 20px;
 
             align-items: center;
 
             padding: 18px 0;
-            border-top: 1px solid #f0ece8;
+
+            border-top:
+                1px solid #f0ece8;
         }
+
 
         .data-row:first-of-type {
             border-top: 0;
         }
 
+
         .data-label {
-            color: var(--muted);
+            color:
+                var(--muted);
+
             font-size: 13px;
         }
 
+
         .data-value {
             font-size: 14px;
+
             font-weight: 600;
+
             overflow-wrap: anywhere;
         }
 
+
         .status {
             display: inline-flex;
+
             align-items: center;
+
             gap: 7px;
 
             color: #17813b;
+
             font-size: 12px;
+
             font-weight: 600;
         }
+
 
         .status-dot {
             width: 8px;
             height: 8px;
+
             border-radius: 50%;
+
             background: #22a447;
         }
 
-        /* SAIR */
+
+        /* =========================================
+           SAIR
+        ========================================= */
 
         .logout-area {
             margin-top: 24px;
+
             display: flex;
+
             justify-content: flex-end;
         }
 
+
         .logout {
-            border: 1px solid #eadfd5;
+            border:
+                1px solid #eadfd5;
+
             border-radius: 10px;
 
             background: white;
+
             color: #bf2b2b;
 
             padding: 12px 18px;
 
             font: inherit;
+
             font-size: 13px;
+
             font-weight: 650;
 
             cursor: pointer;
+
             transition: .2s ease;
         }
+
 
         .logout:hover {
             background: #fff4f4;
         }
 
-        /* FOOTER */
+
+        /* =========================================
+           FOOTER
+        ========================================= */
 
         .footer {
             max-width: 1080px;
+
             margin: 0 auto;
-            padding: 28px 24px 40px;
+
+            padding:
+                28px 24px 40px;
 
             color: #969696;
+
             font-size: 12px;
         }
 
-        /* MOBILE */
+
+        /* =========================================
+           CARREGAMENTO
+        ========================================= */
+
+        .account-loading {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #ffffff;
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transition:
+                opacity .45s ease,
+                visibility .45s ease;
+        }
+
+
+        .account-loading.hidden {
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+        }
+
+
+        .loading-brand {
+            font-size: 38px;
+
+            line-height: 1;
+
+            letter-spacing: -1px;
+
+            animation:
+                loadingBrandEnter
+                .65s
+                cubic-bezier(.22,1,.36,1)
+                forwards;
+        }
+
+
+        .loading-brand-conta {
+            color: #ff9a30;
+
+            font-weight: 400;
+        }
+
+
+        .loading-brand-onlinside {
+            color: #ff8200;
+
+            font-weight: 800;
+        }
+
+
+        @keyframes loadingBrandEnter {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(7px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media (max-width: 760px) {
 
             .topbar-inner {
-                grid-template-columns: auto 1fr auto;
+                grid-template-columns:
+                    auto 1fr auto;
+
                 padding: 0 16px;
             }
+
 
             .menu-button span:last-child,
             .profile-button .profile-text {
                 display: none;
             }
 
+
             .brand {
                 font-size: 21px;
             }
 
+
             .page {
-                padding: 22px 16px 40px;
+                padding:
+                    22px 16px 40px;
             }
 
+
             .hero-card {
-                align-items: flex-start;
-                flex-direction: column;
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
                 padding: 24px;
             }
 
+
             .profile-info {
-                align-items: flex-start;
+                align-items:
+                    flex-start;
             }
+
 
             .avatar {
                 width: 64px;
                 height: 64px;
+
                 font-size: 25px;
             }
+
 
             .greeting {
                 font-size: 22px;
             }
 
+
             .account-badge {
                 width: 100%;
             }
 
+
             .grid {
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
             }
+
 
             .card {
                 padding: 22px;
             }
 
+
             .data-row {
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
+
                 gap: 6px;
             }
 
+
             .logout-area {
-                justify-content: stretch;
+                justify-content:
+                    stretch;
             }
+
 
             .logout {
                 width: 100%;
             }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .loading-brand {
+                font-size: 32px;
+            }
+
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- TOPO -->
+
+    <!-- =========================================
+         CARREGAMENTO INICIAL
+    ========================================== -->
+
+    <div
+        id="accountLoading"
+        class="account-loading"
+        aria-live="polite"
+        aria-label="Carregando Conta Onlinside"
+    >
+
+        <div class="loading-brand">
+
+            <span class="loading-brand-conta">
+                Conta
+            </span>
+
+            <span class="loading-brand-onlinside">
+                Onlinside
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         TOPO
+    ========================================== -->
+
     <header class="topbar">
 
         <div class="topbar-inner">
 
-            <button class="menu-button" type="button">
-                <span class="menu-icon">☰</span>
-                <span>Menu</span>
+            <button
+                class="menu-button"
+                type="button"
+            >
+
+                <span class="menu-icon">
+                    ☰
+                </span>
+
+                <span>
+                    Menu
+                </span>
+
             </button>
 
+
             <div class="brand">
-                <span class="brand-conta">Conta</span>
-                <span class="brand-onlinside">Onlinside</span>
+
+                <span class="brand-conta">
+                    Conta
+                </span>
+
+                <span class="brand-onlinside">
+                    Onlinside
+                </span>
+
             </div>
 
-            <button class="profile-button" type="button">
 
-                <span class="mini-avatar" id="miniAvatar">
+            <button
+                class="profile-button"
+                type="button"
+            >
+
+                <span
+                    class="mini-avatar"
+                    id="miniAvatar"
+                >
                     O
                 </span>
 
-                <span class="profile-text" id="profileText">
+
+                <span
+                    class="profile-text"
+                    id="profileText"
+                >
                     Minha conta
                 </span>
 
@@ -557,7 +965,13 @@
     </header>
 
 
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
     <main class="page">
+
 
         <!-- PERFIL PRINCIPAL -->
 
@@ -565,12 +979,14 @@
 
             <div class="profile-info">
 
+
                 <div
                     class="avatar"
                     id="avatar"
                 >
                     O
                 </div>
+
 
                 <div>
 
@@ -581,12 +997,14 @@
                         Olá!
                     </h1>
 
+
                     <p
                         class="user-email"
                         id="usuario"
                     >
                         Verificando login...
                     </p>
+
 
                     <a
                         class="edit-link"
@@ -615,9 +1033,13 @@
         </section>
 
 
-        <!-- GRID PRINCIPAL -->
+
+        <!-- =========================================
+             GRID PRINCIPAL
+        ========================================== -->
 
         <div class="grid">
+
 
             <!-- SEGURANÇA -->
 
@@ -627,6 +1049,7 @@
                     Segurança
                 </h2>
 
+
                 <p class="card-subtitle">
                     Proteja sua conta e escolha como deseja entrar.
                 </p>
@@ -634,13 +1057,16 @@
 
                 <div class="settings-list">
 
+
                     <div class="settings-item">
 
                         <div class="item-icon">
                             🔑
                         </div>
 
+
                         <div class="item-content">
+
                             <div class="item-title">
                                 Chave de acesso
                             </div>
@@ -648,13 +1074,16 @@
                             <div class="item-description">
                                 Entre usando biometria, PIN ou dispositivo.
                             </div>
+
                         </div>
+
 
                         <div class="item-arrow">
                             ›
                         </div>
 
                     </div>
+
 
 
                     <div class="settings-item">
@@ -663,7 +1092,9 @@
                             🔐
                         </div>
 
+
                         <div class="item-content">
+
                             <div class="item-title">
                                 Alterar senha
                             </div>
@@ -671,7 +1102,9 @@
                             <div class="item-description">
                                 Atualize a senha da sua Conta Onlinside.
                             </div>
+
                         </div>
+
 
                         <div class="item-arrow">
                             ›
@@ -680,13 +1113,16 @@
                     </div>
 
 
+
                     <div class="settings-item">
 
                         <div class="item-icon">
                             💻
                         </div>
 
+
                         <div class="item-content">
+
                             <div class="item-title">
                                 Dispositivos conectados
                             </div>
@@ -694,7 +1130,9 @@
                             <div class="item-description">
                                 Veja onde sua conta está sendo utilizada.
                             </div>
+
                         </div>
+
 
                         <div class="item-arrow">
                             ›
@@ -707,6 +1145,7 @@
             </section>
 
 
+
             <!-- PRODUTOS -->
 
             <section class="card">
@@ -714,6 +1153,7 @@
                 <h2 class="card-title">
                     Produtos Onlinside
                 </h2>
+
 
                 <p class="card-subtitle">
                     Acesse os serviços conectados à sua conta.
@@ -725,6 +1165,7 @@
                     <div class="product-logo">
                         360
                     </div>
+
 
                     <div>
 
@@ -741,11 +1182,13 @@
                 </div>
 
 
+
                 <div class="product">
 
                     <div class="product-logo">
                         T
                     </div>
+
 
                     <div>
 
@@ -766,7 +1209,10 @@
         </div>
 
 
-        <!-- DADOS -->
+
+        <!-- =========================================
+             DADOS
+        ========================================== -->
 
         <section
             class="card data-card"
@@ -776,6 +1222,7 @@
             <h2 class="card-title">
                 Dados da conta
             </h2>
+
 
             <p class="card-subtitle">
                 Informações utilizadas na sua Conta Onlinside.
@@ -788,12 +1235,14 @@
                     E-mail
                 </div>
 
+
                 <div
                     class="data-value"
                     id="emailData"
                 >
                     Verificando...
                 </div>
+
 
                 <div class="status">
 
@@ -806,15 +1255,18 @@
             </div>
 
 
+
             <div class="data-row">
 
                 <div class="data-label">
                     Status
                 </div>
 
+
                 <div class="data-value">
                     Conta ativa
                 </div>
+
 
                 <div class="status">
 
@@ -829,7 +1281,10 @@
         </section>
 
 
-        <!-- SAIR -->
+
+        <!-- =========================================
+             SAIR
+        ========================================== -->
 
         <div class="logout-area">
 
@@ -846,12 +1301,27 @@
     </main>
 
 
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
     <footer class="footer">
         Conta Onlinside
     </footer>
 
 
+
+    <!-- =========================================
+         FIREBASE
+    ========================================== -->
+
     <script type="module">
+
+
+        /* =========================================
+           FIREBASE AUTH
+        ========================================= */
 
         import { auth }
         from "./firebase.js";
@@ -864,31 +1334,130 @@
         from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
+        /* =========================================
+           FIREBASE APP
+        ========================================= */
+
+        import {
+            getApp
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+        /* =========================================
+           FIRESTORE
+        ========================================= */
+
+        import {
+            getFirestore,
+            doc,
+            getDoc
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+        const app =
+            getApp();
+
+
+        const db =
+            getFirestore(
+                app
+            );
+
+
+        /* =========================================
+           ELEMENTOS
+        ========================================= */
+
+        const accountLoading =
+            document.getElementById(
+                "accountLoading"
+            );
+
+
         const usuarioElement =
-            document.getElementById("usuario");
+            document.getElementById(
+                "usuario"
+            );
+
 
         const emailData =
-            document.getElementById("emailData");
+            document.getElementById(
+                "emailData"
+            );
+
 
         const avatar =
-            document.getElementById("avatar");
+            document.getElementById(
+                "avatar"
+            );
+
 
         const miniAvatar =
-            document.getElementById("miniAvatar");
+            document.getElementById(
+                "miniAvatar"
+            );
+
 
         const greeting =
-            document.getElementById("greeting");
+            document.getElementById(
+                "greeting"
+            );
+
 
         const profileText =
-            document.getElementById("profileText");
+            document.getElementById(
+                "profileText"
+            );
+
 
         const logoutButton =
-            document.getElementById("logout");
+            document.getElementById(
+                "logout"
+            );
 
+
+        /* =========================================
+           FINALIZA CARREGAMENTO
+        ========================================= */
+
+        function finalizarCarregamento() {
+
+            setTimeout(
+
+                function() {
+
+                    accountLoading
+                        .classList
+                        .add(
+                            "hidden"
+                        );
+
+                },
+
+                300
+
+            );
+
+        }
+
+
+        /* =========================================
+           VERIFICA LOGIN
+        ========================================= */
 
         onAuthStateChanged(
+
             auth,
-            (usuario) => {
+
+            async function(usuario) {
+
+
+                /*
+                 * Se não houver usuário conectado,
+                 * volta para a página de login.
+                 */
 
                 if (!usuario) {
 
@@ -896,12 +1465,90 @@
                         "index.html";
 
                     return;
+
                 }
 
 
                 const email =
                     usuario.email || "";
 
+
+                let perfil =
+                    null;
+
+
+                let publicId =
+                    "";
+
+
+                /* =================================
+                   BUSCA PERFIL NO FIRESTORE
+                ================================= */
+
+                try {
+
+                    const userRef =
+                        doc(
+                            db,
+                            "users",
+                            usuario.uid
+                        );
+
+
+                    const userSnapshot =
+                        await getDoc(
+                            userRef
+                        );
+
+
+                    if (
+                        userSnapshot.exists()
+                    ) {
+
+                        perfil =
+                            userSnapshot.data();
+
+
+                        publicId =
+                            perfil.publicId || "";
+
+                    }
+
+
+                } catch (erro) {
+
+                    console.error(
+                        "Não foi possível carregar o perfil:",
+                        erro
+                    );
+
+                }
+
+
+                /* =================================
+                   ID ONLINSIDE
+                =================================
+                   
+                   O ID de 4 números é carregado
+                   internamente.
+
+                   Ele NÃO aparece visualmente.
+                ================================= */
+
+                if (publicId) {
+
+                    document
+                        .documentElement
+                        .dataset
+                        .onlinsidePublicId =
+                        publicId;
+
+                }
+
+
+                /* =================================
+                   E-MAIL
+                ================================= */
 
                 usuarioElement.textContent =
                     email;
@@ -911,34 +1558,81 @@
                     email;
 
 
+                /* =================================
+                   NOME
+                ================================= */
+
+                let nomeCompleto =
+                    "";
+
+
                 /*
-                 * Firebase pode ter displayName
-                 * quando a conta vem de Google,
-                 * Facebook, Apple etc.
+                 * Primeiro tenta usar o nome
+                 * salvo no Firestore.
                  */
 
-                const nome =
-                    usuario.displayName ||
-                    email.split("@")[0] ||
-                    "Usuário";
+                if (
+                    perfil &&
+                    perfil.nomeCompleto
+                ) {
+
+                    nomeCompleto =
+                        perfil.nomeCompleto;
+
+
+                } else if (
+                    perfil &&
+                    perfil.nome
+                ) {
+
+                    nomeCompleto =
+                        perfil.nome;
+
+
+                } else {
+
+                    /*
+                     * Se não encontrar no Firestore,
+                     * usa o Firebase Auth.
+                     */
+
+                    nomeCompleto =
+                        usuario.displayName ||
+                        email.split("@")[0] ||
+                        "Usuário";
+
+                }
 
 
                 const primeiroNome =
-                    nome.split(" ")[0];
+                    nomeCompleto
+                        .trim()
+                        .split(" ")[0] ||
+                    "Usuário";
 
+
+                /* =================================
+                   SAUDAÇÃO
+                ================================= */
 
                 greeting.textContent =
-                    "Olá, " + primeiroNome;
+                    "Olá, " +
+                    primeiroNome;
 
 
                 profileText.textContent =
-                    "Olá, " + primeiroNome;
+                    "Olá, " +
+                    primeiroNome;
 
+
+                /* =================================
+                   AVATAR
+                ================================= */
 
                 const inicial =
                     primeiroNome
-                    .charAt(0)
-                    .toUpperCase();
+                        .charAt(0)
+                        .toUpperCase();
 
 
                 avatar.textContent =
@@ -946,4 +1640,82 @@
 
 
                 miniAvatar.textContent =
-                    inicial
+                    inicial;
+
+
+                /* =================================
+                   PÁGINA PRONTA
+                ================================= */
+
+                finalizarCarregamento();
+
+            }
+
+        );
+
+
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        logoutButton.addEventListener(
+
+            "click",
+
+            async function() {
+
+
+                /*
+                 * Mostra novamente
+                 * Conta Onlinside
+                 * enquanto encerra a sessão.
+                 */
+
+                accountLoading
+                    .classList
+                    .remove(
+                        "hidden"
+                    );
+
+
+                try {
+
+                    await signOut(
+                        auth
+                    );
+
+
+                    localStorage.removeItem(
+                        "onlinside_email"
+                    );
+
+
+                    window.location.href =
+                        "index.html";
+
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro ao sair:",
+                        erro
+                    );
+
+
+                    accountLoading
+                        .classList
+                        .add(
+                            "hidden"
+                        );
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
