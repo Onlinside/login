@@ -1163,19 +1163,32 @@
 
 
         /* =========================================
-           SSO WORDPRESS — DESTINO DINÂMICO
+           WORDPRESS DE TESTE
         ========================================= */
 
+        const HOST_TESTE =
+            "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br";
+
+
         const URL_PADRAO =
-            "https://onlinside.com/";
+            "https://" +
+            HOST_TESTE +
+            "/";
 
 
         /*
-         * Valida novamente o endereço salvo.
-         * Isso evita que alguém altere manualmente
-         * o sessionStorage e envie o token para
-         * um site de terceiros.
+         * WORDPRESS DISPONÍVEIS NO AMBIENTE DE TESTE
+         *
+         * site principal -> /
+         * on360          -> /on360/
+         * one            -> /one/
          */
+        const DIRETORIOS_WORDPRESS = [
+            "on360",
+            "one"
+        ];
+
+
         function returnUrlPermitida(url) {
 
             try {
@@ -1183,37 +1196,11 @@
                 const destino =
                     new URL(url);
 
-                const hostname =
-                    destino.hostname
-                        .toLowerCase();
-
-                const protocoloSeguro =
-                    destino.protocol ===
-                    "https:";
-
-                const dominioOnlinside =
-                    hostname ===
-                        "onlinside.com" ||
-                    hostname.endsWith(
-                        ".onlinside.com"
-                    );
-
-                /*
-                 * Ambiente de teste já utilizado.
-                 * Pode ser removido quando os sites
-                 * estiverem definitivamente nos
-                 * domínios Onlinside.
-                 */
-                const ambienteTeste =
-                    hostname ===
-                    "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br";
-
                 return (
-                    protocoloSeguro &&
-                    (
-                        dominioOnlinside ||
-                        ambienteTeste
-                    )
+                    destino.protocol ===
+                        "https:" &&
+                    destino.hostname ===
+                        HOST_TESTE
                 );
 
             } catch {
@@ -1224,6 +1211,48 @@
         }
 
 
+        function descobrirBaseWordPress(returnUrl) {
+
+            const destino =
+                new URL(returnUrl);
+
+            const partes =
+                destino.pathname
+                    .split("/")
+                    .filter(Boolean);
+
+            const primeiroDiretorio =
+                partes.length
+                    ? partes[0].toLowerCase()
+                    : "";
+
+            /*
+             * Se a origem estiver dentro de /on360/
+             * ou /one/, o token será enviado para
+             * o admin-post.php daquele WordPress.
+             */
+            if (
+                DIRETORIOS_WORDPRESS
+                    .includes(
+                        primeiroDiretorio
+                    )
+            ) {
+
+                return (
+                    destino.origin +
+                    "/" +
+                    primeiroDiretorio
+                );
+            }
+
+            /*
+             * Caso contrário, usa o WordPress
+             * principal na raiz.
+             */
+            return destino.origin;
+        }
+
+
         function obterDestinoSSO() {
 
             let returnUrl =
@@ -1231,11 +1260,6 @@
                     "onlinside_return_url"
                 );
 
-
-            /*
-             * Se não existir uma origem válida,
-             * volta para o site principal.
-             */
             if (
                 !returnUrl ||
                 !returnUrlPermitida(
@@ -1247,19 +1271,14 @@
                     URL_PADRAO;
             }
 
-
-            const destino =
-                new URL(
-                    returnUrl
-                );
-
-
             return {
                 returnUrl:
                     returnUrl,
 
                 wordpressUrl:
-                    destino.origin
+                    descobrirBaseWordPress(
+                        returnUrl
+                    )
             };
         }
 
