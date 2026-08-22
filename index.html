@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -9,13 +10,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Conta Onlinside</title>
+    <title>Entrar — Conta Onlinside</title>
 
     <style>
-
-        /* =========================================
-           CONFIGURAÇÕES GERAIS
-        ========================================= */
 
         * {
             box-sizing: border-box;
@@ -23,13 +20,16 @@
             padding: 0;
         }
 
+
         html,
         body {
             width: 100%;
             min-height: 100%;
         }
 
+
         body {
+
             min-height: 100vh;
             min-height: 100svh;
 
@@ -40,12 +40,18 @@
             padding: 24px;
 
             background: #ffffff;
+
             color: #111111;
 
-            font-family: "Garet", Arial, sans-serif;
+            font-family:
+                "Garet",
+                Arial,
+                sans-serif;
 
             opacity: 0;
-            transform: translateY(8px);
+
+            transform:
+                translateY(8px);
 
             animation:
                 pageEnter
@@ -55,18 +61,22 @@
         }
 
 
-        /* =========================================
-           ANIMAÇÕES GERAIS
-        ========================================= */
+        /* =========================
+           ANIMAÇÕES
+        ========================= */
 
         @keyframes pageEnter {
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
+
         }
 
+
         body.page-exit {
+
             animation:
                 pageExit
                 0.35s
@@ -74,58 +84,89 @@
                 forwards;
         }
 
+
         @keyframes pageExit {
+
             to {
                 opacity: 0;
-                transform: translateY(-8px);
+
+                transform:
+                    translateY(-8px);
             }
+
         }
+
 
         @keyframes elementEnter {
+
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
+
         }
+
 
         @keyframes fadeIn {
+
             to {
                 opacity: 1;
             }
+
         }
+
 
         @keyframes spin {
+
             to {
-                transform: rotate(360deg);
+                transform:
+                    rotate(360deg);
             }
+
         }
 
 
-        /* =========================================
+        /* =========================
            CONTAINER
-        ========================================= */
+        ========================= */
 
         .container {
-            width: 100%;
-            max-width: 420px;
 
-            text-align: center;
+            width: 100%;
+
+            max-width:
+                420px;
+
+            text-align:
+                center;
         }
 
 
-        /* =========================================
-           CONTA ONLINSIDE
-        ========================================= */
+        /* =========================
+           LOGO
+        ========================= */
 
         .brand {
-            margin-bottom: 14px;
 
-            font-size: 38px;
-            line-height: 1.1;
-            letter-spacing: -1px;
+            margin-bottom:
+                14px;
 
-            opacity: 0;
-            transform: translateY(12px);
+            font-size:
+                38px;
+
+            line-height:
+                1.1;
+
+            letter-spacing:
+                -1px;
+
+            opacity:
+                0;
+
+            transform:
+                translateY(12px);
 
             animation:
                 elementEnter
@@ -135,33 +176,47 @@
                 forwards;
         }
 
+
         .brand-conta {
-            color: #ff9a30;
-            font-weight: 400;
+
+            color:
+                #ff9a30;
+
+            font-weight:
+                400;
         }
+
 
         .brand-onlinside {
-            color: #ff8200;
-            font-weight: 800;
+
+            color:
+                #ff8200;
+
+            font-weight:
+                800;
         }
 
 
-        /* =========================================
-           DESCRIÇÃO
-        ========================================= */
+        /* =========================
+           E-MAIL
+        ========================= */
 
-        .description {
-            max-width: 330px;
+        .email {
 
-            margin: 0 auto 17px;
+            margin-bottom:
+                28px;
 
-            color: #555555;
+            color:
+                #666666;
 
-            font-size: 15px;
-            line-height: 1.5;
+            font-size:
+                14px;
 
-            opacity: 0;
-            transform: translateY(10px);
+            opacity:
+                0;
+
+            transform:
+                translateY(8px);
 
             animation:
                 elementEnter
@@ -172,184 +227,51 @@
         }
 
 
-        /* =========================================
-           CARROSSEL DOS PRODUTOS
-        ========================================= */
+        /* =========================
+           ÁREA DA SENHA
+        ========================= */
 
-        .products-carousel {
-            position: relative;
+        .password-wrapper {
 
-            width: 100%;
-
-            overflow: hidden;
-
-            margin: 0 auto 27px;
-
-            padding: 8px 0;
-
-            opacity: 0;
-            transform: translateY(8px);
-
-            animation:
-                elementEnter
-                0.6s
-                0.18s
-                cubic-bezier(.22, 1, .36, 1)
-                forwards;
-
-            -webkit-mask-image:
-                linear-gradient(
-                    to right,
-                    transparent 0%,
-                    #000 8%,
-                    #000 92%,
-                    transparent 100%
-                );
-
-            mask-image:
-                linear-gradient(
-                    to right,
-                    transparent 0%,
-                    #000 8%,
-                    #000 92%,
-                    transparent 100%
-                );
+            position:
+                relative;
         }
 
-
-        .products-track {
-            display: flex;
-            align-items: center;
-
-            gap: 20px;
-
-            width: max-content;
-
-            animation:
-                productsScroll
-                18s
-                linear
-                infinite;
-
-            will-change: transform;
-        }
-
-
-        /* Pausa ao passar o mouse */
-
-        .products-carousel:hover .products-track {
-            animation-play-state: paused;
-        }
-
-
-        /* =========================================
-           SOMENTE AS LOGOS
-        ========================================= */
-
-        .product-logo {
-            width: 60px;
-            height: 60px;
-
-            flex: 0 0 60px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background: transparent;
-
-            border: none;
-            box-shadow: none;
-
-            transition:
-                transform 0.25s ease,
-                opacity 0.25s ease;
-        }
-
-
-        .product-logo img {
-            display: block;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: contain;
-
-            background: transparent;
-
-            border: none;
-        }
-
-
-        .product-logo:hover {
-            transform: scale(1.12);
-        }
-
-
-        /* =========================================
-           MOVIMENTO DO CARROSSEL
-        ========================================= */
-
-        @keyframes productsScroll {
-
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                /*
-                 * Temos duas sequências idênticas.
-                 * Ao chegar à metade, começa novamente.
-                 */
-
-                transform:
-                    translateX(calc(-50% - 10px));
-            }
-
-        }
-
-
-        /* =========================================
-           FORMULÁRIO
-        ========================================= */
-
-        .form {
-            width: 100%;
-
-            opacity: 0;
-            transform: translateY(10px);
-
-            animation:
-                elementEnter
-                0.6s
-                0.24s
-                cubic-bezier(.22, 1, .36, 1)
-                forwards;
-        }
-
-
-        /* =========================================
-           CAMPO DE E-MAIL
-        ========================================= */
 
         .input {
-            display: block;
 
-            width: 100%;
-            height: 52px;
+            display:
+                block;
 
-            padding: 0 16px;
+            width:
+                100%;
 
-            border: 1px solid #d8d8d8;
-            border-radius: 10px;
+            height:
+                52px;
 
-            background: #ffffff;
-            color: #111111;
+            padding:
+                0 16px;
 
-            font-family: inherit;
-            font-size: 15px;
+            border:
+                1px solid #d8d8d8;
 
-            outline: none;
+            border-radius:
+                10px;
+
+            background:
+                #ffffff;
+
+            color:
+                #111111;
+
+            font-family:
+                inherit;
+
+            font-size:
+                15px;
+
+            outline:
+                none;
 
             transition:
                 border-color 0.2s ease,
@@ -357,43 +279,133 @@
                 transform 0.2s ease;
         }
 
+
         .input:hover {
-            border-color: #bdbdbd;
+
+            border-color:
+                #bdbdbd;
         }
 
+
         .input:focus {
-            border-color: #ff8200;
+
+            border-color:
+                #ff8200;
 
             box-shadow:
                 0 0 0 3px
                 rgba(255, 130, 0, 0.12);
 
-            transform: translateY(-1px);
+            transform:
+                translateY(-1px);
         }
 
 
-        /* =========================================
-           BOTÕES
-        ========================================= */
+        .password-wrapper .input {
+
+            padding-right:
+                75px;
+        }
+
+
+        /* =========================
+           MOSTRAR SENHA
+        ========================= */
+
+        .show-password {
+
+            position:
+                absolute;
+
+            top:
+                50%;
+
+            right:
+                15px;
+
+            transform:
+                translateY(-50%);
+
+            border:
+                none;
+
+            background:
+                transparent;
+
+            color:
+                #777777;
+
+            font-family:
+                inherit;
+
+            font-size:
+                13px;
+
+            cursor:
+                pointer;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .show-password:hover {
+
+            color:
+                #ff8200;
+        }
+
+
+        /* =========================
+           BOTÃO PRINCIPAL
+        ========================= */
 
         .button {
-            position: relative;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display:
+                flex;
 
-            width: 100%;
-            height: 52px;
+            justify-content:
+                center;
 
-            border: 0;
-            border-radius: 10px;
+            align-items:
+                center;
 
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 600;
+            position:
+                relative;
 
-            cursor: pointer;
+            width:
+                100%;
+
+            height:
+                52px;
+
+            margin-top:
+                12px;
+
+            border:
+                none;
+
+            border-radius:
+                10px;
+
+            background:
+                #ff8200;
+
+            color:
+                #ffffff;
+
+            font-family:
+                inherit;
+
+            font-size:
+                15px;
+
+            font-weight:
+                600;
+
+            cursor:
+                pointer;
 
             transition:
                 transform 0.18s ease,
@@ -401,70 +413,96 @@
                 opacity 0.18s ease;
         }
 
+
         .button:hover {
-            transform: translateY(-1px);
+
+            background:
+                #ff9a30;
+
+            transform:
+                translateY(-1px);
         }
+
 
         .button:active {
-            transform: scale(0.98);
+
+            transform:
+                scale(0.98);
         }
+
 
         .button:disabled {
-            cursor: default;
-            opacity: 0.75;
+
+            cursor:
+                default;
+
+            opacity:
+                0.7;
         }
 
 
-        /* =========================================
-           CONTINUAR
-        ========================================= */
+        /* =========================
+           LOADING
+        ========================= */
 
-        .continue-button {
-            margin-top: 12px;
+        .button.loading {
 
-            background: #ff8200;
-            color: #ffffff;
-        }
-
-        .continue-button:hover {
-            background: #ff9a30;
+            pointer-events:
+                none;
         }
 
 
-        /* =========================================
-           SPINNER DO BOTÃO
-        ========================================= */
+        .button.loading .button-text {
+
+            opacity:
+                0;
+        }
+
+
+        /*
+         * Spinner completamente parado
+         * enquanto não houver .loading
+         */
 
         .spinner {
-            position: absolute;
 
-            width: 19px;
-            height: 19px;
+            position:
+                absolute;
+
+            width:
+                19px;
+
+            height:
+                19px;
 
             border:
                 2px solid
-                rgba(255, 255, 255, 0.35);
+                rgba(255,255,255,0.35);
 
-            border-top-color: #ffffff;
+            border-top-color:
+                #ffffff;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
 
-            opacity: 0;
-            visibility: hidden;
+            opacity:
+                0;
 
-            /*
-             * IMPORTANTE:
-             * não gira enquanto o botão
-             * não tiver a classe loading.
-             */
+            visibility:
+                hidden;
 
-            animation: none;
+            animation:
+                none;
         }
 
 
-        .continue-button.loading .spinner {
-            opacity: 1;
-            visibility: visible;
+        .button.loading .spinner {
+
+            opacity:
+                1;
+
+            visibility:
+                visible;
 
             animation:
                 spin
@@ -474,279 +512,365 @@
         }
 
 
-        .continue-button.loading .button-text {
-            opacity: 0;
-        }
-
-
-        /* =========================================
+        /* =========================
            MENSAGEM
-        ========================================= */
+        ========================= */
 
         .message {
-            min-height: 20px;
 
-            margin-top: 12px;
+            min-height:
+                20px;
 
-            color: #d00000;
+            margin-top:
+                12px;
 
-            font-size: 13px;
+            color:
+                #d00000;
 
-            opacity: 0;
+            font-size:
+                13px;
+
+            opacity:
+                0;
+
+            transform:
+                translateY(-4px);
 
             transition:
-                opacity 0.2s ease;
+                opacity 0.2s ease,
+                transform 0.2s ease;
         }
+
 
         .message.show {
-            opacity: 1;
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
         }
 
 
-        /* =========================================
-           DIVISOR
-        ========================================= */
+        /* =========================
+           OPÇÕES DE LOGIN
+        ========================= */
 
-        .divider {
-            display: flex;
-            align-items: center;
+        .login-options {
 
-            width: 100%;
+            margin-top:
+                22px;
 
-            gap: 14px;
-
-            margin: 24px 0;
-
-            color: #999999;
-
-            font-size: 13px;
-
-            opacity: 0;
+            opacity:
+                0;
 
             animation:
                 fadeIn
                 0.5s
-                0.30s
+                0.25s
                 forwards;
         }
 
 
-        .divider::before,
-        .divider::after {
-            content: "";
+        .option-button {
 
-            flex: 1;
+            display:
+                flex;
 
-            height: 1px;
+            justify-content:
+                center;
 
-            background: #e5e5e5;
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            width:
+                100%;
+
+            height:
+                46px;
+
+            margin-top:
+                10px;
+
+            border:
+                none;
+
+            background:
+                transparent;
+
+            color:
+                #111111;
+
+            font-family:
+                inherit;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            cursor:
+                pointer;
+
+            border-radius:
+                9px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
         }
 
 
-        /* =========================================
-           LOGIN SOCIAL
-        ========================================= */
+        .option-button:hover {
 
-        .social-buttons {
-            display: flex;
-            flex-direction: column;
+            background:
+                #fff3e6;
 
-            width: 100%;
+            color:
+                #ff8200;
 
-            gap: 10px;
+            transform:
+                translateY(-1px);
+        }
 
-            opacity: 0;
-            transform: translateY(8px);
+
+        .option-icon {
+
+            font-size:
+                17px;
+
+            line-height:
+                1;
+        }
+
+
+        /* =========================
+           ÁREA DO CÓDIGO
+        ========================= */
+
+        .code-section {
+
+            display:
+                none;
+
+            margin-top:
+                18px;
+
+            opacity:
+                0;
+
+            transform:
+                translateY(8px);
+        }
+
+
+        .code-section.active {
+
+            display:
+                block;
 
             animation:
                 elementEnter
-                0.6s
-                0.34s
+                0.35s
                 cubic-bezier(.22, 1, .36, 1)
                 forwards;
         }
 
 
-        .social-button {
-            gap: 10px;
+        .code-description {
+
+            margin-bottom:
+                14px;
+
+            color:
+                #666666;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.5;
         }
 
 
-        /* GOOGLE */
+        .code-input {
 
-        #googleLogin {
-            background: #ffffff;
+            width:
+                100%;
 
-            color: #202124;
+            height:
+                58px;
 
-            border: 1px solid #dadce0;
-        }
+            border:
+                1px solid #d8d8d8;
 
-        #googleLogin:hover {
-            background: #f8f9fa;
-        }
+            border-radius:
+                10px;
 
+            text-align:
+                center;
 
-        /* FACEBOOK */
+            letter-spacing:
+                8px;
 
-        #facebookLogin {
-            background: #1877f2;
+            font-size:
+                22px;
 
-            color: #ffffff;
-        }
+            font-weight:
+                600;
 
-        #facebookLogin:hover {
-            background: #166fe5;
-        }
+            outline:
+                none;
 
-
-        /* APPLE */
-
-        #appleLogin {
-            background: #000000;
-
-            color: #ffffff;
-        }
-
-        #appleLogin:hover {
-            background: #1c1c1c;
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
-        .social-icon {
-            width: 20px;
+        .code-input:focus {
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-color:
+                #ff8200;
 
-            font-size: 18px;
-            line-height: 1;
+            box-shadow:
+                0 0 0 3px
+                rgba(255,130,0,.12);
         }
 
 
-        #googleLogin .social-icon {
-            color: #4285f4;
+        /* =========================
+           ESQUECI SENHA
+        ========================= */
 
-            font-weight: 700;
+        .forgot-password {
+
+            display:
+                inline-block;
+
+            margin-top:
+                20px;
+
+            color:
+                #111111;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            text-decoration:
+                none;
+
+            transition:
+                color 0.2s ease;
         }
 
 
-        #facebookLogin .social-icon {
-            color: #ffffff;
+        .forgot-password:hover {
 
-            font-weight: 700;
+            color:
+                #ff8200;
+
+            text-decoration:
+                underline;
         }
 
 
-        /* =========================================
-           CRIAR CONTA
-        ========================================= */
+        /* =========================
+           VOLTAR
+        ========================= */
 
-        .create-account {
-            display: inline-block;
+        .back {
 
-            margin-top: 26px;
+            display:
+                block;
 
-            color: #111111;
+            margin-top:
+                28px;
 
-            font-size: 14px;
-            font-weight: 600;
+            color:
+                #777777;
 
-            text-decoration: none;
+            font-size:
+                13px;
 
-            opacity: 0;
+            text-decoration:
+                none;
 
-            animation:
-                fadeIn
-                0.5s
-                0.40s
-                forwards;
+            transition:
+                color 0.2s ease;
         }
 
 
-        .create-account:hover {
-            color: #ff8200;
+        .back:hover {
 
-            text-decoration: underline;
+            color:
+                #ff8200;
         }
 
 
-        /* =========================================
-           RODAPÉ
-        ========================================= */
-
-        .footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            gap: 18px;
-
-            margin-top: 38px;
-
-            font-size: 12px;
-
-            opacity: 0;
-
-            animation:
-                fadeIn
-                0.5s
-                0.46s
-                forwards;
-        }
-
-
-        .footer a {
-            color: #777777;
-
-            text-decoration: none;
-        }
-
-
-        .footer a:hover {
-            color: #111111;
-
-            text-decoration: underline;
-        }
-
-
-        /* =========================================
-           LOADING DA PÁGINA
-        ========================================= */
+        /* =========================
+           CARREGAMENTO DA PÁGINA
+        ========================= */
 
         .page-loader {
-            position: fixed;
 
-            inset: 0;
+            position:
+                fixed;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            inset:
+                0;
 
-            background: #ffffff;
+            display:
+                flex;
 
-            z-index: 9999;
+            justify-content:
+                center;
 
-            pointer-events: none;
+            align-items:
+                center;
+
+            background:
+                #ffffff;
+
+            z-index:
+                9999;
+
+            pointer-events:
+                none;
 
             animation:
                 loaderOut
                 0.35s
-                0.35s
+                0.45s
                 forwards;
         }
 
 
         .loader-spinner {
-            width: 26px;
-            height: 26px;
 
-            border: 3px solid #eeeeee;
+            width:
+                28px;
 
-            border-top-color: #ff8200;
+            height:
+                28px;
 
-            border-radius: 50%;
+            border:
+                3px solid
+                #eeeeee;
+
+            border-top-color:
+                #ff8200;
+
+            border-radius:
+                50%;
 
             animation:
                 spin
@@ -759,71 +883,57 @@
         @keyframes loaderOut {
 
             to {
-                opacity: 0;
-                visibility: hidden;
+
+                opacity:
+                    0;
+
+                visibility:
+                    hidden;
             }
 
         }
 
 
-        /* =========================================
-           MOBILE
-        ========================================= */
+        /* =========================
+           CELULAR
+        ========================= */
 
         @media (max-width: 480px) {
 
             body {
-                padding: 20px 18px;
+
+                padding:
+                    20px 18px;
             }
+
 
             .brand {
-                font-size: 32px;
-            }
 
-            .description {
-                max-width: 300px;
-
-                font-size: 14px;
-            }
-
-            .product-logo {
-                width: 56px;
-                height: 56px;
-
-                flex-basis: 56px;
-            }
-
-            .products-track {
-                gap: 16px;
-
-                animation-duration: 16s;
-            }
-
-            .footer {
-                gap: 14px;
-
-                margin-top: 32px;
-
-                font-size: 11px;
+                font-size:
+                    32px;
             }
 
         }
 
 
-        /* =========================================
+        /* =========================
            ACESSIBILIDADE
-        ========================================= */
+        ========================= */
 
         @media (prefers-reduced-motion: reduce) {
 
             *,
             *::before,
             *::after {
-                animation-duration: 0.01ms !important;
 
-                animation-iteration-count: 1 !important;
+                animation-duration:
+                    0.01ms !important;
 
-                transition-duration: 0.01ms !important;
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    0.01ms !important;
             }
 
         }
@@ -836,21 +946,19 @@
 <body>
 
 
-    <!-- =========================================
-         LOADING INICIAL
-    ========================================= -->
+    <!-- CARREGAMENTO -->
 
     <div class="page-loader">
+
         <div class="loader-spinner"></div>
+
     </div>
 
 
     <main class="container">
 
 
-        <!-- =========================================
-             CONTA ONLINSIDE
-        ========================================= -->
+        <!-- LOGO -->
 
         <h1 class="brand">
 
@@ -865,239 +973,53 @@
         </h1>
 
 
-        <!-- =========================================
-             DESCRIÇÃO
-        ========================================= -->
+        <!-- E-MAIL -->
 
-        <p class="description">
-            Apenas uma única conta para todos os produtos Onlinside.
-        </p>
-
-
-        <!-- =========================================
-             CARROSSEL DAS LOGOS
-        ========================================= -->
-
-        <div
-            class="products-carousel"
-            aria-label="Produtos Onlinside"
-        >
-
-            <div class="products-track">
+        <p
+            id="emailDisplay"
+            class="email"
+        ></p>
 
 
-                <!-- =================================
-                     PRIMEIRO GRUPO
-                ================================= -->
+        <!-- LOGIN POR SENHA -->
+
+        <form id="passwordForm">
 
 
-                <!-- ONE -->
+            <div class="password-wrapper">
 
-                <div class="product-logo">
-
-                    <img
-                        src="./img/one.png"
-                        alt="One"
-                    >
-
-                </div>
-
-
-                <!-- ON360 -->
-
-                <div class="product-logo">
-
-                    <img
-                        src="./img/on360.png"
-                        alt="On360"
-                    >
-
-                </div>
-
-
-                <!-- ONCAMARIM -->
-
-                <div class="product-logo">
-
-                    <img
-                        src="./img/oncamarim.png"
-                        alt="OnCamarim"
-                    >
-
-                </div>
-
-
-                <!-- ON -->
-
-                <div class="product-logo">
-
-                    <img
-                        src="./img/on.png"
-                        alt="On"
-                    >
-
-                </div>
-
-
-                <!-- MAISON -->
-
-                <div class="product-logo">
-
-                    <img
-                        src="./img/maison.png"
-                        alt="Maison"
-                    >
-
-                </div>
-
-
-                <!-- JORNAL O PAIZ -->
-
-                <div class="product-logo">
-
-                    <img
-                        src="./img/opaiz.png"
-                        alt="Jornal O Paiz"
-                    >
-
-                </div>
-
-
-
-                <!-- =================================
-                     SEGUNDO GRUPO
-                     CÓPIA PARA LOOP CONTÍNUO
-                ================================= -->
-
-
-                <!-- ONE -->
-
-                <div
-                    class="product-logo"
-                    aria-hidden="true"
+                <input
+                    type="password"
+                    id="password"
+                    class="input"
+                    placeholder="Senha"
+                    autocomplete="current-password"
+                    required
                 >
 
-                    <img
-                        src="./img/one.png"
-                        alt=""
-                    >
 
-                </div>
-
-
-                <!-- ON360 -->
-
-                <div
-                    class="product-logo"
-                    aria-hidden="true"
+                <button
+                    type="button"
+                    id="showPassword"
+                    class="show-password"
                 >
-
-                    <img
-                        src="./img/on360.png"
-                        alt=""
-                    >
-
-                </div>
-
-
-                <!-- ONCAMARIM -->
-
-                <div
-                    class="product-logo"
-                    aria-hidden="true"
-                >
-
-                    <img
-                        src="./img/oncamarim.png"
-                        alt=""
-                    >
-
-                </div>
-
-
-                <!-- ON -->
-
-                <div
-                    class="product-logo"
-                    aria-hidden="true"
-                >
-
-                    <img
-                        src="./img/on.png"
-                        alt=""
-                    >
-
-                </div>
-
-
-                <!-- MAISON -->
-
-                <div
-                    class="product-logo"
-                    aria-hidden="true"
-                >
-
-                    <img
-                        src="./img/maison.png"
-                        alt=""
-                    >
-
-                </div>
-
-
-                <!-- JORNAL O PAIZ -->
-
-                <div
-                    class="product-logo"
-                    aria-hidden="true"
-                >
-
-                    <img
-                        src="./img/opaiz.png"
-                        alt=""
-                    >
-
-                </div>
-
+                    Mostrar
+                </button>
 
             </div>
-
-        </div>
-
-
-        <!-- =========================================
-             LOGIN POR E-MAIL
-        ========================================= -->
-
-        <form
-            id="loginForm"
-            class="form"
-        >
-
-            <input
-                type="email"
-                id="email"
-                class="input"
-                placeholder="E-mail"
-                autocomplete="email"
-                required
-            >
 
 
             <button
                 type="submit"
-                class="button continue-button"
-                id="continueButton"
+                class="button"
+                id="loginButton"
             >
 
                 <span class="button-text">
-                    Continuar
+                    Entrar
                 </span>
 
-                <span
-                    class="spinner"
-                    aria-hidden="true"
-                ></span>
+                <span class="spinner"></span>
 
             </button>
 
@@ -1112,73 +1034,41 @@
         ></p>
 
 
-        <!-- =========================================
-             DIVISOR
-        ========================================= -->
+        <!-- OPÇÕES -->
 
-        <div class="divider">
-
-            <span>
-                ou
-            </span>
-
-        </div>
+        <div class="login-options">
 
 
-        <!-- =========================================
-             LOGIN SOCIAL
-        ========================================= -->
-
-        <div class="social-buttons">
-
-
-            <!-- GOOGLE -->
+            <!-- CÓDIGO -->
 
             <button
                 type="button"
-                class="button social-button"
-                id="googleLogin"
+                class="option-button"
+                id="codeButton"
             >
 
-                <span class="social-icon">
-                    G
+                <span class="option-icon">
+                    🔢
                 </span>
 
-                Continuar com Google
+                Usar código de acesso
 
             </button>
 
 
-            <!-- FACEBOOK -->
+            <!-- PASSKEY -->
 
             <button
                 type="button"
-                class="button social-button"
-                id="facebookLogin"
+                class="option-button"
+                id="passkeyButton"
             >
 
-                <span class="social-icon">
-                    f
+                <span class="option-icon">
+                    🔑
                 </span>
 
-                Continuar com Facebook
-
-            </button>
-
-
-            <!-- APPLE -->
-
-            <button
-                type="button"
-                class="button social-button"
-                id="appleLogin"
-            >
-
-                <span class="social-icon">
-                    
-                </span>
-
-                Continuar com Apple
+                Usar chave de acesso
 
             </button>
 
@@ -1186,55 +1076,240 @@
         </div>
 
 
-        <!-- =========================================
-             CRIAR CONTA
-        ========================================= -->
+        <!-- ÁREA DO CÓDIGO -->
 
-        <a
-            href="./cadastro.html"
-            class="create-account"
+        <section
+            id="codeSection"
+            class="code-section"
         >
 
-            Criar uma conta Onlinside
+            <p class="code-description">
+
+                Enviaremos um código de
+                verificação para o seu e-mail.
+
+            </p>
+
+
+            <input
+                type="text"
+                id="accessCode"
+                class="code-input"
+                inputmode="numeric"
+                maxlength="6"
+                placeholder="000000"
+                autocomplete="one-time-code"
+            >
+
+
+            <button
+                type="button"
+                id="verifyCodeButton"
+                class="button"
+            >
+
+                <span class="button-text">
+                    Verificar código
+                </span>
+
+                <span class="spinner"></span>
+
+            </button>
+
+        </section>
+
+
+        <!-- RECUPERAÇÃO -->
+
+        <a
+            href="recuperar-senha.html"
+            class="forgot-password"
+        >
+
+            Esqueci minha senha
 
         </a>
 
 
-        <!-- =========================================
-             RODAPÉ
-        ========================================= -->
+        <!-- VOLTAR -->
 
-        <footer class="footer">
+        <a
+            href="index.html"
+            class="back"
+        >
 
-            <a href="#">
-                Política de Privacidade
-            </a>
+            Voltar
 
-            <a href="#">
-                Termos de Uso
-            </a>
-
-        </footer>
+        </a>
 
 
     </main>
 
 
     <!-- =========================================
-         JAVASCRIPT
+         FIREBASE + SSO WORDPRESS
     ========================================= -->
 
-    <script>
+    <script type="module">
 
-        const loginForm =
-            document.getElementById(
-                "loginForm"
+        import { auth }
+            from "./firebase.js";
+
+
+        import {
+            signInWithEmailAndPassword
+        }
+        from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+        /* =========================================
+           WORDPRESS DE TESTE
+        ========================================= */
+
+        const HOST_TESTE =
+            "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br";
+
+
+        const URL_PADRAO =
+            "https://" +
+            HOST_TESTE +
+            "/";
+
+
+        /*
+         * WORDPRESS DISPONÍVEIS NO AMBIENTE DE TESTE
+         *
+         * site principal -> /
+         * on360          -> /on360/
+         * one            -> /one/
+         * oncamarim       -> /oncamarim/
+         */
+        const DIRETORIOS_WORDPRESS = [
+            "on360",
+            "one",
+            "oncamarim"
+        ];
+
+
+        function returnUrlPermitida(url) {
+
+            try {
+
+                const destino =
+                    new URL(url);
+
+                return (
+                    destino.protocol ===
+                        "https:" &&
+                    destino.hostname ===
+                        HOST_TESTE
+                );
+
+            } catch {
+
+                return false;
+
+            }
+        }
+
+
+        function descobrirBaseWordPress(returnUrl) {
+
+            const destino =
+                new URL(returnUrl);
+
+            const partes =
+                destino.pathname
+                    .split("/")
+                    .filter(Boolean);
+
+            const primeiroDiretorio =
+                partes.length
+                    ? partes[0].toLowerCase()
+                    : "";
+
+            /*
+             * Se a origem estiver dentro de /on360/,
+             * /one/ ou /oncamarim/, o token será enviado para
+             * o admin-post.php daquele WordPress.
+             */
+            if (
+                DIRETORIOS_WORDPRESS
+                    .includes(
+                        primeiroDiretorio
+                    )
+            ) {
+
+                return (
+                    destino.origin +
+                    "/" +
+                    primeiroDiretorio
+                );
+            }
+
+            /*
+             * Caso contrário, usa o WordPress
+             * principal na raiz.
+             */
+            return destino.origin;
+        }
+
+
+        function obterDestinoSSO() {
+
+            let returnUrl =
+                sessionStorage.getItem(
+                    "onlinside_return_url"
+                );
+
+            if (
+                !returnUrl ||
+                !returnUrlPermitida(
+                    returnUrl
+                )
+            ) {
+
+                returnUrl =
+                    URL_PADRAO;
+            }
+
+            return {
+                returnUrl:
+                    returnUrl,
+
+                wordpressUrl:
+                    descobrirBaseWordPress(
+                        returnUrl
+                    )
+            };
+        }
+
+
+        /* =========================================
+           ELEMENTOS
+        ========================================= */
+
+        const email =
+            localStorage.getItem(
+                "onlinside_email"
             );
 
 
-        const emailInput =
+        const emailDisplay =
             document.getElementById(
-                "email"
+                "emailDisplay"
+            );
+
+
+        const passwordForm =
+            document.getElementById(
+                "passwordForm"
+            );
+
+
+        const password =
+            document.getElementById(
+                "password"
             );
 
 
@@ -1244,111 +1319,432 @@
             );
 
 
-        const continueButton =
+        const showPassword =
             document.getElementById(
-                "continueButton"
+                "showPassword"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        const codeButton =
+            document.getElementById(
+                "codeButton"
+            );
+
+
+        const codeSection =
+            document.getElementById(
+                "codeSection"
+            );
+
+
+        const accessCode =
+            document.getElementById(
+                "accessCode"
+            );
+
+
+        const verifyCodeButton =
+            document.getElementById(
+                "verifyCodeButton"
+            );
+
+
+        const passkeyButton =
+            document.getElementById(
+                "passkeyButton"
             );
 
 
         /* =========================================
-           LOGIN POR E-MAIL
+           VERIFICA E-MAIL SALVO
         ========================================= */
 
-        loginForm.addEventListener(
+        if (!email) {
+
+            window.location.href =
+                "index.html";
+
+        } else {
+
+            emailDisplay.textContent =
+                email;
+
+        }
+
+
+        /* =========================================
+           MOSTRAR SENHA
+        ========================================= */
+
+        showPassword.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    password.type ===
+                    "password"
+                ) {
+
+                    password.type =
+                        "text";
+
+
+                    showPassword.textContent =
+                        "Ocultar";
+
+                } else {
+
+                    password.type =
+                        "password";
+
+
+                    showPassword.textContent =
+                        "Mostrar";
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           LOGIN NORMAL
+        ========================================= */
+
+        passwordForm.addEventListener(
             "submit",
-            function(event) {
+            async function (event) {
 
                 event.preventDefault();
 
 
-                const email =
-                    emailInput
-                        .value
-                        .trim();
+                mensagem.textContent =
+                    "";
 
-
-                mensagem.textContent = "";
 
                 mensagem.classList.remove(
                     "show"
                 );
 
 
-                /* =================================
-                   VERIFICA O E-MAIL
-                ================================= */
+                /*
+                 * Evita clique duplicado.
+                 */
 
-                if (!email) {
+                if (
+                    loginButton.disabled
+                ) {
+                    return;
+                }
+
+
+                loginButton.classList.add(
+                    "loading"
+                );
+
+
+                loginButton.disabled =
+                    true;
+
+
+                try {
+
+                    /* =================================
+                       LOGIN FIREBASE
+                    ================================= */
+
+                    const resultado =
+                        await signInWithEmailAndPassword(
+                            auth,
+                            email,
+                            password.value
+                        );
+
+
+                    const usuario =
+                        resultado.user;
+
+
+                    /* =================================
+                       CONFIRMAÇÃO DO E-MAIL
+                    ================================= */
+
+                    if (
+                        !usuario.emailVerified
+                    ) {
+
+                        loginButton.classList.remove(
+                            "loading"
+                        );
+
+
+                        loginButton.disabled =
+                            false;
+
+
+                        document.body.classList.add(
+                            "page-exit"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "confirmar-email.html";
+
+                            },
+                            280
+                        );
+
+
+                        return;
+                    }
+
+
+                    /* =================================
+                       ID TOKEN REAL DO FIREBASE
+                    ================================= */
+
+                    const idToken =
+                        await usuario.getIdToken(
+                            true
+                        );
+
+
+                    /* =================================
+                       DESTINO ORIGINAL
+                    ================================= */
+
+                    const destinoSSO =
+                        obterDestinoSSO();
+
+
+                    const returnUrl =
+                        destinoSSO
+                            .returnUrl;
+
+
+                    const wordpressUrl =
+                        destinoSSO
+                            .wordpressUrl;
+
+
+                    /* =================================
+                       FORMULÁRIO POST INVISÍVEL
+                    ================================= */
+
+                    const form =
+                        document.createElement(
+                            "form"
+                        );
+
+
+                    form.method =
+                        "POST";
+
+
+                    /*
+                     * IMPORTANTE:
+                     *
+                     * O WordPress recebe através
+                     * do admin-post.php.
+                     */
+
+                    form.action =
+                        wordpressUrl +
+                        "/wp-admin/admin-post.php";
+
+
+                    form.style.display =
+                        "none";
+
+
+                    /* =================================
+                       ACTION WORDPRESS
+                    ================================= */
+
+                    const actionInput =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    actionInput.type =
+                        "hidden";
+
+
+                    actionInput.name =
+                        "action";
+
+
+                    actionInput.value =
+                        "onlinside_sso_login";
+
+
+                    form.appendChild(
+                        actionInput
+                    );
+
+
+                    /* =================================
+                       FIREBASE TOKEN
+                    ================================= */
+
+                    const tokenInput =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    tokenInput.type =
+                        "hidden";
+
+
+                    tokenInput.name =
+                        "token";
+
+
+                    tokenInput.value =
+                        idToken;
+
+
+                    form.appendChild(
+                        tokenInput
+                    );
+
+
+                    /* =================================
+                       ENDEREÇO DE RETORNO
+                    ================================= */
+
+                    const returnInput =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    returnInput.type =
+                        "hidden";
+
+
+                    returnInput.name =
+                        "return_url";
+
+
+                    returnInput.value =
+                        returnUrl;
+
+
+                    form.appendChild(
+                        returnInput
+                    );
+
+
+                    /* =================================
+                       LIMPA DESTINO TEMPORÁRIO
+                    ================================= */
+
+                    sessionStorage.removeItem(
+                        "onlinside_return_url"
+                    );
+
+
+                    /* =================================
+                       ENVIA PARA WORDPRESS
+                    ================================= */
+
+                    document.body.appendChild(
+                        form
+                    );
+
+
+                    form.submit();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Erro no login:",
+                        error
+                    );
+
+
+                    loginButton.classList.remove(
+                        "loading"
+                    );
+
+
+                    loginButton.disabled =
+                        false;
+
 
                     mensagem.textContent =
-                        "Digite seu e-mail.";
+                        "E-mail ou senha incorretos.";
+
 
                     mensagem.classList.add(
                         "show"
                     );
 
-                    emailInput.focus();
-
-                    return;
                 }
 
-
-                /* Evita clique duplicado */
-
-                if (continueButton.disabled) {
-                    return;
-                }
+            }
+        );
 
 
-                /* =================================
-                   LOADING DO BOTÃO
-                ================================= */
+        /* =========================================
+           CORRIGE BOTÃO AO VOLTAR
+        ========================================= */
 
-                continueButton
-                    .classList
-                    .add(
-                        "loading"
-                    );
+        window.addEventListener(
+            "pageshow",
+            function () {
 
-
-                continueButton.disabled =
-                    true;
-
-
-                /* =================================
-                   SALVA O E-MAIL
-                ================================= */
-
-                localStorage.setItem(
-                    "onlinside_email",
-                    email
+                loginButton.classList.remove(
+                    "loading"
                 );
 
 
-                /* =================================
-                   ABRE A PÁGINA DE SENHA
-                ================================= */
+                loginButton.disabled =
+                    false;
+
+
+                document.body.classList.remove(
+                    "page-exit"
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           MOSTRAR ÁREA DO CÓDIGO
+        ========================================= */
+
+        codeButton.addEventListener(
+            "click",
+            function () {
+
+                codeSection.classList.add(
+                    "active"
+                );
+
+
+                codeButton.style.display =
+                    "none";
+
 
                 setTimeout(
-                    function() {
+                    function () {
 
-                        document
-                            .body
-                            .classList
-                            .add(
-                                "page-exit"
-                            );
-
-
-                        setTimeout(
-                            function() {
-
-                                window.location.href =
-                                    "./senha.html";
-
-                            },
-                            280
-                        );
+                        accessCode.focus();
 
                     },
                     350
@@ -1359,124 +1755,94 @@
 
 
         /* =========================================
-           CORRIGE O BOTÃO AO VOLTAR
+           CÓDIGO SOMENTE NÚMEROS
         ========================================= */
 
-        window.addEventListener(
-            "pageshow",
-            function() {
+        accessCode.addEventListener(
+            "input",
+            function () {
 
-                continueButton
-                    .classList
-                    .remove(
-                        "loading"
-                    );
-
-
-                continueButton.disabled =
-                    false;
-
-
-                document
-                    .body
-                    .classList
-                    .remove(
-                        "page-exit"
-                    );
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .slice(0, 6);
 
             }
         );
 
 
         /* =========================================
-           VERIFICA SE AS LOGOS CARREGARAM
+           CÓDIGO DE ACESSO
+           AINDA NÃO CONFIGURADO
         ========================================= */
 
-        document
-            .querySelectorAll(
-                ".product-logo img"
-            )
-            .forEach(
-                function(img) {
+        verifyCodeButton.addEventListener(
+            "click",
+            function () {
 
-                    img.addEventListener(
-                        "error",
-                        function() {
+                const code =
+                    accessCode.value.trim();
 
-                            console.error(
-                                "Não foi possível carregar:",
-                                img.src
-                            );
 
-                        }
+                mensagem.textContent =
+                    "";
+
+
+                mensagem.classList.remove(
+                    "show"
+                );
+
+
+                if (
+                    code.length !== 6
+                ) {
+
+                    mensagem.textContent =
+                        "Digite o código de 6 dígitos.";
+
+
+                    mensagem.classList.add(
+                        "show"
                     );
 
+
+                    return;
                 }
-            );
-/* ========================================
-   SALVA O SITE DE ORIGEM
-======================================== */
-
-const parametros =
-    new URLSearchParams(window.location.search);
-
-const returnUrl =
-    parametros.get("return_url");
 
 
-function returnUrlPermitida(url) {
+                mensagem.textContent =
+                    "A verificação por código ainda será configurada.";
 
-    try {
 
-        const destino =
-            new URL(url);
+                mensagem.classList.add(
+                    "show"
+                );
 
-        /*
-         * AMBIENTE DE TESTE
-         *
-         * Aceita somente o domínio temporário
-         * da HostGator.
-         *
-         * Isso inclui:
-         * /
-         * /on360/
-         * /one/
-         * e páginas internas desses diretórios.
-         */
-        const hostPermitido =
-            destino.hostname ===
-            "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br";
-            "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br/one/";
-             "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br/on360/";
-
-        const protocoloPermitido =
-            destino.protocol ===
-            "https:";
-
-        return (
-            hostPermitido &&
-            protocoloPermitido
+            }
         );
 
-    } catch {
 
-        return false;
+        /* =========================================
+           CHAVE DE ACESSO
+           AINDA NÃO CONFIGURADA
+        ========================================= */
 
-    }
-}
+        passkeyButton.addEventListener(
+            "click",
+            function () {
+
+                mensagem.textContent =
+                    "A chave de acesso ainda será configurada.";
 
 
-if (
-    returnUrl &&
-    returnUrlPermitida(returnUrl)
-) {
+                mensagem.classList.add(
+                    "show"
+                );
 
-    sessionStorage.setItem(
-        "onlinside_return_url",
-        returnUrl
-    );
+            }
+        );
 
-}
+
     </script>
 
 
