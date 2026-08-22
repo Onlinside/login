@@ -1182,10 +1182,12 @@
          * site principal -> /
          * on360          -> /on360/
          * one            -> /one/
+         * oncamarim       -> /oncamarim/
          */
         const DIRETORIOS_WORDPRESS = [
             "on360",
-            "one"
+            "one",
+            "oncamarim"
         ];
 
 
@@ -1227,8 +1229,8 @@
                     : "";
 
             /*
-             * Se a origem estiver dentro de /on360/
-             * ou /one/, o token será enviado para
+             * Se a origem estiver dentro de /on360/,
+             * /one/ ou /oncamarim/, o token será enviado para
              * o admin-post.php daquele WordPress.
              */
             if (
