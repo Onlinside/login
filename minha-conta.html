@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="theme-color" content="#f5f6f8">
     <title>Minha conta — Conta Onlinside</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -17,1304 +15,1504 @@
 
         :root {
             --orange: #ff8200;
-            --orange-light: #ff9a30;
-            --background: #fff7ef;
-            --card: #ffffff;
-            --text: #111111;
-            --muted: #6d6d6d;
-            --border: #ece5de;
+            --orange-2: #ff9a30;
+            --orange-soft: #fff2e4;
+            --background: #f5f6f8;
+            --surface: #ffffff;
+            --surface-2: #fafafa;
+            --text: #121212;
+            --muted: #717171;
+            --muted-2: #9b9b9b;
+            --border: #e9e9eb;
+            --success: #16803d;
+            --success-bg: #eef9f1;
+            --danger: #bd2c2c;
+            --shadow: 0 18px 50px rgba(18,18,18,.055);
+            --radius-xl: 26px;
+            --radius-lg: 20px;
+            --radius-md: 15px;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             min-height: 100vh;
-
             background: var(--background);
             color: var(--text);
-
-            font-family: "Garet", Arial, sans-serif;
+            font-family: "Garet", Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        /* =========================================
-           TOPO
-        ========================================= */
+        a {
+            color: inherit;
+        }
 
-        .topbar {
-            height: 76px;
+        /* =====================================================
+           LOADING
+        ===================================================== */
 
+        .account-loading {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
             display: flex;
             align-items: center;
+            justify-content: center;
+            background: #fff;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .45s ease, visibility .45s ease;
+        }
 
-            background: rgba(255,255,255,.88);
+        .account-loading.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-            border-bottom:
-                1px solid var(--border);
+        .loading-brand {
+            font-size: 38px;
+            line-height: 1;
+            letter-spacing: -1px;
+            animation: loadingBrandEnter .65s cubic-bezier(.22,1,.36,1) forwards;
+        }
 
+        .loading-brand-conta {
+            color: var(--orange-2);
+            font-weight: 400;
+        }
+
+        .loading-brand-onlinside {
+            color: var(--orange);
+            font-weight: 800;
+        }
+
+        @keyframes loadingBrandEnter {
+            from { opacity: 0; transform: translateY(7px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
+
+        .topbar {
             position: sticky;
             top: 0;
-
-            z-index: 50;
-
-            backdrop-filter:
-                blur(14px);
+            z-index: 80;
+            height: 74px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,.055);
+            background: rgba(255,255,255,.86);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
 
         .topbar-inner {
             width: 100%;
-            max-width: 1080px;
-
+            max-width: 1240px;
             margin: 0 auto;
-
-            padding: 0 24px;
-
+            padding: 0 28px;
             display: grid;
-
-            grid-template-columns:
-                1fr auto 1fr;
-
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
         }
-
 
         .menu-button {
             justify-self: start;
-
-            border: 0;
-            background: transparent;
-
-            font: inherit;
-
-            font-size: 14px;
-            font-weight: 600;
-
-            cursor: pointer;
-
-            display: flex;
+            min-height: 42px;
+            padding: 0 12px;
+            display: inline-flex;
             align-items: center;
+            gap: 9px;
+            border: 0;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--text);
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .18s ease;
+        }
 
-            gap: 8px;
+        .menu-button:hover {
+            background: #f2f2f3;
         }
 
         .menu-icon {
-            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            display: grid;
+            place-items: center;
             color: var(--orange);
         }
 
-
-        /* =========================================
-           MARCA
-        ========================================= */
+        .menu-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+        }
 
         .brand {
             justify-self: center;
-
-            font-size: 25px;
-
-            letter-spacing: -0.7px;
+            font-size: 24px;
+            letter-spacing: -.8px;
+            white-space: nowrap;
         }
 
         .brand-conta {
-            color: var(--orange-light);
-
+            color: var(--orange-2);
             font-weight: 400;
         }
 
         .brand-onlinside {
             color: var(--orange);
-
             font-weight: 800;
         }
 
-
-        /* =========================================
-           PERFIL DO TOPO
-        ========================================= */
-
         .profile-button {
             justify-self: end;
-
-            display: flex;
-
+            min-height: 44px;
+            padding: 5px 13px 5px 5px;
+            display: inline-flex;
             align-items: center;
-
             gap: 9px;
-
-            border: 0;
-
+            border: 1px solid #f0e6dc;
             border-radius: 999px;
-
-            padding:
-                7px 14px
-                7px 7px;
-
-            background: #fff0df;
-
+            background: #fff7ef;
             color: #222;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+        }
 
-            font: inherit;
+        .mini-avatar {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--orange-2));
+            color: #fff;
+            font-weight: 800;
+        }
 
-            font-size: 13px;
+        /* =====================================================
+           DRAWER
+        ===================================================== */
 
-            font-weight: 600;
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 89;
+            background: rgba(0,0,0,.28);
+            opacity: 0;
+            visibility: hidden;
+            transition: .22s ease;
+        }
 
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .account-drawer {
+            position: fixed;
+            z-index: 90;
+            top: 0;
+            left: 0;
+            width: min(360px, 88vw);
+            height: 100dvh;
+            padding: 22px;
+            background: #fff;
+            border-right: 1px solid var(--border);
+            box-shadow: 24px 0 70px rgba(0,0,0,.10);
+            transform: translateX(-102%);
+            transition: transform .28s cubic-bezier(.22,1,.36,1);
+            overflow-y: auto;
+        }
+
+        .account-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .drawer-brand {
+            font-size: 20px;
+            letter-spacing: -.6px;
+        }
+
+        .drawer-close {
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 12px;
+            background: #f4f4f5;
+            color: #222;
+            font-size: 21px;
             cursor: pointer;
         }
 
-
-        .mini-avatar {
-            width: 34px;
-            height: 34px;
-
-            border-radius: 50%;
-
+        .drawer-nav {
+            padding-top: 18px;
             display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            background:
-                var(--orange);
-
-            color: white;
-
-            font-weight: 700;
+            flex-direction: column;
+            gap: 5px;
         }
 
+        .drawer-nav a {
+            min-height: 48px;
+            padding: 0 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: 13px;
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 650;
+            transition: background .18s ease, color .18s ease;
+        }
 
-        /* =========================================
-           CONTEÚDO
-        ========================================= */
+        .drawer-nav a:hover {
+            background: var(--orange-soft);
+            color: #9a4b00;
+        }
+
+        .drawer-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--orange);
+            flex: 0 0 auto;
+        }
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
 
         .page {
-            max-width: 1080px;
-
+            width: 100%;
+            max-width: 1240px;
             margin: 0 auto;
-
-            padding:
-                34px 24px 60px;
+            padding: 44px 28px 70px;
         }
 
+        .page-heading {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+        }
 
-        /* =========================================
-           CARD PRINCIPAL
-        ========================================= */
+        .page-kicker {
+            margin-bottom: 8px;
+            color: var(--orange);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .page-heading h1 {
+            font-size: clamp(34px, 4vw, 56px);
+            line-height: .98;
+            letter-spacing: -2.6px;
+            font-weight: 760;
+        }
+
+        .page-heading > p {
+            max-width: 390px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        /* =====================================================
+           PROFILE HERO
+        ===================================================== */
 
         .hero-card {
-            background:
-                var(--card);
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 22px;
-
-            padding: 30px;
-
+            position: relative;
+            overflow: hidden;
+            padding: clamp(25px, 3vw, 38px);
             display: flex;
-
             align-items: center;
-
-            justify-content:
-                space-between;
-
-            gap: 30px;
-
-            box-shadow:
-                0 12px 35px
-                rgba(72,42,13,.05);
+            justify-content: space-between;
+            gap: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            background: var(--surface);
+            box-shadow: var(--shadow);
         }
 
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            right: -90px;
+            top: -120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,130,0,.14), rgba(255,130,0,0) 68%);
+            pointer-events: none;
+        }
 
         .profile-info {
+            position: relative;
+            z-index: 2;
             display: flex;
-
             align-items: center;
-
             gap: 20px;
         }
 
-
         .avatar {
-            width: 82px;
-            height: 82px;
-
-            border-radius: 50%;
-
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--orange),
-                    var(--orange-light)
-                );
-
-            color: white;
-
-            font-size: 31px;
-
-            font-weight: 700;
-
-            box-shadow:
-                0 0 0 5px #fff,
-                0 0 0 8px #ffe0bf;
+            width: 76px;
+            height: 76px;
+            flex: 0 0 76px;
+            display: grid;
+            place-items: center;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-2));
+            color: #fff;
+            font-size: 28px;
+            font-weight: 800;
+            box-shadow: 0 12px 28px rgba(255,130,0,.20);
         }
-
 
         .greeting {
-            font-size: 26px;
-
-            letter-spacing: -0.6px;
-
             margin-bottom: 5px;
+            font-size: clamp(25px, 2.6vw, 36px);
+            line-height: 1;
+            letter-spacing: -1.4px;
         }
-
 
         .user-email {
-            color:
-                var(--muted);
-
-            font-size: 14px;
-
-            margin-bottom: 10px;
+            margin-bottom: 11px;
+            color: var(--muted);
+            font-size: 13px;
+            overflow-wrap: anywhere;
         }
 
-
         .edit-link {
-            color:
-                var(--orange);
-
-            font-size: 14px;
-
-            font-weight: 600;
-
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 750;
             text-decoration: none;
         }
 
         .edit-link:hover {
-            text-decoration:
-                underline;
+            text-decoration: underline;
         }
 
-
-        /* =========================================
-           CONTA CONECTADA
-        ========================================= */
+        .hero-meta {
+            position: relative;
+            z-index: 2;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
 
         .account-badge {
-            padding: 14px 18px;
-
-            border-radius: 14px;
-
-            background: #fff4e8;
-
-            display: flex;
-
+            min-height: 42px;
+            padding: 0 13px;
+            display: inline-flex;
             align-items: center;
-
-            gap: 10px;
-
-            font-size: 13px;
-
-            font-weight: 600;
+            gap: 9px;
+            border: 1px solid #e5f4e9;
+            border-radius: 999px;
+            background: var(--success-bg);
+            color: var(--success);
+            font-size: 11px;
+            font-weight: 800;
         }
-
 
         .account-badge-icon {
-            width: 32px;
-            height: 32px;
-
-            border-radius: 10px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            background:
-                var(--orange);
-
-            color: white;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #23a24d;
+            box-shadow: 0 0 0 4px rgba(35,162,77,.10);
         }
 
+        .account-caption {
+            color: var(--muted-2);
+            font-size: 11px;
+        }
 
-        /* =========================================
-           GRID
-        ========================================= */
+        /* =====================================================
+           OVERVIEW
+        ===================================================== */
 
-        .grid {
+        .overview-grid {
+            margin-top: 22px;
             display: grid;
-
-            grid-template-columns:
-                1.4fr 1fr;
-
-            gap: 24px;
-
-            margin-top: 24px;
+            grid-template-columns: minmax(0, 1.45fr) minmax(310px, .85fr);
+            gap: 22px;
         }
-
 
         .card {
-            background:
-                var(--card);
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 20px;
-
-            padding: 28px;
-
-            box-shadow:
-                0 10px 30px
-                rgba(72,42,13,.035);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            box-shadow: 0 10px 35px rgba(18,18,18,.035);
         }
 
+        .card-pad {
+            padding: 26px;
+        }
+
+        .section-head {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .section-kicker {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--muted-2);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
 
         .card-title {
-            font-size: 22px;
-
-            letter-spacing: -0.4px;
-
             margin-bottom: 5px;
+            font-size: 21px;
+            letter-spacing: -.7px;
         }
-
 
         .card-subtitle {
-            color:
-                var(--muted);
-
-            font-size: 14px;
-
+            color: var(--muted);
+            font-size: 12px;
             line-height: 1.5;
-
-            margin-bottom: 24px;
         }
 
+        /* =====================================================
+           SUBSCRIPTION CARD
+        ===================================================== */
 
-        /* =========================================
-           CONFIGURAÇÕES
-        ========================================= */
+        .subscription-card {
+            position: relative;
+            overflow: hidden;
+            padding: 28px;
+            min-height: 255px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: var(--radius-lg);
+            background: #151515;
+            color: #fff;
+        }
+
+        .subscription-card::before {
+            content: "";
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            right: -130px;
+            top: -190px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,130,0,.36), rgba(255,130,0,0) 67%);
+        }
+
+        .subscription-top,
+        .subscription-bottom {
+            position: relative;
+            z-index: 2;
+        }
+
+        .subscription-label {
+            margin-bottom: 9px;
+            color: rgba(255,255,255,.50);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .subscription-name {
+            margin-bottom: 7px;
+            font-size: clamp(26px, 3vw, 42px);
+            letter-spacing: -1.8px;
+            line-height: 1;
+        }
+
+        .subscription-desc {
+            max-width: 480px;
+            color: rgba(255,255,255,.58);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .subscription-bottom {
+            margin-top: 30px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .subscription-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: rgba(255,255,255,.78);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .subscription-status::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #858585;
+        }
+
+        .ghost-button {
+            min-height: 42px;
+            padding: 0 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 11px;
+            background: rgba(255,255,255,.08);
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+            transition: background .18s ease;
+        }
+
+        .ghost-button:hover {
+            background: rgba(255,255,255,.14);
+        }
+
+        /* =====================================================
+           QUICK STATUS
+        ===================================================== */
+
+        .quick-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .quick-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f1;
+        }
+
+        .quick-row:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .quick-label {
+            margin-bottom: 3px;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+        }
+
+        .quick-value {
+            font-size: 13px;
+            font-weight: 750;
+        }
+
+        .quick-pill {
+            flex: 0 0 auto;
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: var(--orange-soft);
+            color: #9d5000;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        /* =====================================================
+           MAIN DASHBOARD GRID
+        ===================================================== */
+
+        .dashboard-grid {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0,1fr));
+            gap: 22px;
+        }
+
+        .security-card {
+            grid-column: span 7;
+        }
+
+        .products-card {
+            grid-column: span 5;
+        }
+
+        .payments-card {
+            grid-column: span 5;
+        }
+
+        .data-card {
+            grid-column: span 7;
+        }
+
+        /* =====================================================
+           SETTINGS
+        ===================================================== */
 
         .settings-list {
             display: flex;
-
             flex-direction: column;
         }
 
-
         .settings-item {
             display: flex;
-
             align-items: center;
-
-            gap: 14px;
-
-            padding: 17px 0;
-
-            border-top:
-                1px solid #f0ece8;
+            gap: 13px;
+            padding: 15px 0;
+            border-top: 1px solid #f0f0f1;
         }
-
 
         .settings-item:first-child {
-            border-top: 0;
-
             padding-top: 0;
+            border-top: 0;
         }
-
 
         .item-icon {
-            width: 42px;
-            height: 42px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            flex-shrink: 0;
-
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+            display: grid;
+            place-items: center;
             border-radius: 12px;
-
-            background: #fff1e2;
-
-            color:
-                var(--orange);
-
-            font-size: 19px;
+            background: var(--orange-soft);
+            color: var(--orange);
         }
 
+        .item-icon svg {
+            width: 19px;
+            height: 19px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
 
         .item-content {
             flex: 1;
+            min-width: 0;
         }
-
 
         .item-title {
-            font-size: 14px;
-
-            font-weight: 650;
-
             margin-bottom: 3px;
+            font-size: 13px;
+            font-weight: 750;
         }
-
 
         .item-description {
-            color:
-                var(--muted);
-
-            font-size: 12px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.4;
         }
-
 
         .item-arrow {
-            color: #aaa;
-
-            font-size: 18px;
+            color: #b0b0b0;
+            font-size: 19px;
         }
 
+        /* =====================================================
+           PRODUCTS
+        ===================================================== */
 
-        /* =========================================
-           PRODUTOS
-        ========================================= */
+        .products-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
         .product {
-            padding: 17px;
-
-            border:
-                1px solid #eee7e0;
-
-            border-radius: 14px;
-
+            padding: 13px;
             display: flex;
-
             align-items: center;
-
-            gap: 14px;
+            gap: 12px;
+            border: 1px solid #eeeeef;
+            border-radius: 14px;
+            background: var(--surface-2);
         }
-
-
-        .product + .product {
-            margin-top: 11px;
-        }
-
 
         .product-logo {
-            width: 44px;
-            height: 44px;
-
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            display: grid;
+            place-items: center;
             border-radius: 12px;
-
-            background:
-                var(--orange);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            color: white;
-
-            font-size: 14px;
-
-            font-weight: 800;
+            background: #161616;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 850;
+            letter-spacing: -.4px;
         }
 
+        .product-logo.orange {
+            background: linear-gradient(135deg, var(--orange), var(--orange-2));
+        }
 
         .product-name {
-            font-size: 14px;
-
-            font-weight: 700;
-
             margin-bottom: 2px;
+            font-size: 12px;
+            font-weight: 780;
         }
-
 
         .product-status {
-            color:
-                var(--muted);
-
-            font-size: 12px;
+            color: var(--muted);
+            font-size: 10px;
         }
 
-
-        /* =========================================
-           DADOS
-        ========================================= */
-
-        .data-card {
-            margin-top: 24px;
+        .product-arrow {
+            margin-left: auto;
+            color: #b5b5b5;
         }
 
+        /* =====================================================
+           PAYMENTS
+        ===================================================== */
+
+        .payment-empty {
+            min-height: 170px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            border: 1px dashed #dedee1;
+            border-radius: 15px;
+            background: #fafafa;
+        }
+
+        .payment-symbol {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 13px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #f0f0f1;
+            color: #666;
+        }
+
+        .payment-symbol svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .payment-empty strong {
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .payment-empty p {
+            max-width: 330px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+        /* =====================================================
+           DATA
+        ===================================================== */
+
+        .data-list {
+            display: flex;
+            flex-direction: column;
+        }
 
         .data-row {
             display: grid;
-
-            grid-template-columns:
-                170px 1fr auto;
-
-            gap: 20px;
-
+            grid-template-columns: 145px minmax(0,1fr) auto;
+            gap: 18px;
             align-items: center;
-
-            padding: 18px 0;
-
-            border-top:
-                1px solid #f0ece8;
+            padding: 16px 0;
+            border-top: 1px solid #f0f0f1;
         }
 
-
-        .data-row:first-of-type {
+        .data-row:first-child {
+            padding-top: 0;
             border-top: 0;
         }
 
-
         .data-label {
-            color:
-                var(--muted);
-
-            font-size: 13px;
+            color: var(--muted);
+            font-size: 11px;
         }
 
-
         .data-value {
-            font-size: 14px;
-
-            font-weight: 600;
-
+            font-size: 12px;
+            font-weight: 700;
             overflow-wrap: anywhere;
         }
 
-
         .status {
             display: inline-flex;
-
             align-items: center;
-
             gap: 7px;
-
-            color: #17813b;
-
-            font-size: 12px;
-
-            font-weight: 600;
+            color: var(--success);
+            font-size: 10px;
+            font-weight: 750;
         }
 
-
         .status-dot {
-            width: 8px;
-            height: 8px;
-
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-
             background: #22a447;
         }
 
+        /* =====================================================
+           FOOT / LOGOUT
+        ===================================================== */
 
-        /* =========================================
-           SAIR
-        ========================================= */
-
-        .logout-area {
-            margin-top: 24px;
-
+        .account-actions {
+            margin-top: 22px;
+            padding: 21px 24px;
             display: flex;
-
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: #fff;
         }
 
-
-        .logout {
-            border:
-                1px solid #eadfd5;
-
-            border-radius: 10px;
-
-            background: white;
-
-            color: #bf2b2b;
-
-            padding: 12px 18px;
-
-            font: inherit;
-
-            font-size: 13px;
-
-            font-weight: 650;
-
-            cursor: pointer;
-
-            transition: .2s ease;
-        }
-
-
-        .logout:hover {
-            background: #fff4f4;
-        }
-
-
-        /* =========================================
-           FOOTER
-        ========================================= */
-
-        .footer {
-            max-width: 1080px;
-
-            margin: 0 auto;
-
-            padding:
-                28px 24px 40px;
-
-            color: #969696;
-
+        .account-actions-copy strong {
+            display: block;
+            margin-bottom: 4px;
             font-size: 12px;
         }
 
-
-        /* =========================================
-           CARREGAMENTO
-        ========================================= */
-
-        .account-loading {
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 99999;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            background: #ffffff;
-
-            opacity: 1;
-
-            visibility: visible;
-
-            transition:
-                opacity .45s ease,
-                visibility .45s ease;
+        .account-actions-copy p {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.45;
         }
 
-
-        .account-loading.hidden {
-            opacity: 0;
-
-            visibility: hidden;
-
-            pointer-events: none;
-        }
-
-
-        .loading-brand {
-            font-size: 38px;
-
-            line-height: 1;
-
-            letter-spacing: -1px;
-
-            animation:
-                loadingBrandEnter
-                .65s
-                cubic-bezier(.22,1,.36,1)
-                forwards;
-        }
-
-
-        .loading-brand-conta {
-            color: #ff9a30;
-
-            font-weight: 400;
-        }
-
-
-        .loading-brand-onlinside {
-            color: #ff8200;
-
+        .logout {
+            min-height: 42px;
+            padding: 0 16px;
+            border: 1px solid #f0dada;
+            border-radius: 11px;
+            background: #fff;
+            color: var(--danger);
+            font: inherit;
+            font-size: 11px;
             font-weight: 800;
+            cursor: pointer;
+            transition: background .18s ease;
         }
 
-
-        @keyframes loadingBrandEnter {
-
-            from {
-                opacity: 0;
-
-                transform:
-                    translateY(7px);
-            }
-
-            to {
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-            }
-
+        .logout:hover {
+            background: #fff5f5;
         }
 
+        .footer {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 28px 40px;
+            color: #9a9a9a;
+            font-size: 10px;
+        }
 
-        /* =========================================
-           MOBILE
-        ========================================= */
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 980px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-card,
+            .products-card,
+            .payments-card,
+            .data-card {
+                grid-column: span 12;
+            }
+
+            .products-card,
+            .payments-card {
+                grid-column: span 6;
+            }
+        }
 
         @media (max-width: 760px) {
-
             .topbar-inner {
-                grid-template-columns:
-                    auto 1fr auto;
-
+                grid-template-columns: auto 1fr auto;
                 padding: 0 16px;
             }
-
 
             .menu-button span:last-child,
             .profile-button .profile-text {
                 display: none;
             }
 
+            .menu-button {
+                width: 42px;
+                padding: 0;
+                justify-content: center;
+            }
+
+            .profile-button {
+                width: 42px;
+                padding: 4px;
+            }
 
             .brand {
-                font-size: 21px;
+                font-size: 20px;
             }
-
 
             .page {
-                padding:
-                    22px 16px 40px;
+                padding: 28px 16px 48px;
             }
 
+            .page-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .page-heading > p {
+                max-width: 100%;
+            }
 
             .hero-card {
-                align-items:
-                    flex-start;
-
-                flex-direction:
-                    column;
-
-                padding: 24px;
-            }
-
-
-            .profile-info {
-                align-items:
-                    flex-start;
-            }
-
-
-            .avatar {
-                width: 64px;
-                height: 64px;
-
-                font-size: 25px;
-            }
-
-
-            .greeting {
-                font-size: 22px;
-            }
-
-
-            .account-badge {
-                width: 100%;
-            }
-
-
-            .grid {
-                grid-template-columns:
-                    1fr;
-            }
-
-
-            .card {
+                align-items: flex-start;
+                flex-direction: column;
                 padding: 22px;
             }
 
+            .profile-info {
+                align-items: flex-start;
+            }
+
+            .avatar {
+                width: 62px;
+                height: 62px;
+                flex-basis: 62px;
+                border-radius: 18px;
+                font-size: 23px;
+            }
+
+            .hero-meta {
+                width: 100%;
+                min-width: 0;
+                align-items: flex-start;
+            }
+
+            .overview-grid,
+            .dashboard-grid {
+                gap: 14px;
+            }
+
+            .products-card,
+            .payments-card {
+                grid-column: span 12;
+            }
+
+            .card-pad {
+                padding: 21px;
+            }
+
+            .subscription-card {
+                min-height: 240px;
+                padding: 22px;
+            }
+
+            .subscription-bottom {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .ghost-button {
+                width: 100%;
+            }
 
             .data-row {
-                grid-template-columns:
-                    1fr;
-
-                gap: 6px;
+                grid-template-columns: 1fr;
+                gap: 5px;
             }
 
-
-            .logout-area {
-                justify-content:
-                    stretch;
+            .status {
+                margin-top: 2px;
             }
 
+            .account-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
 
             .logout {
                 width: 100%;
             }
 
+            .footer {
+                padding: 0 16px 32px;
+            }
         }
 
-
-        @media (max-width: 480px) {
-
+        @media (max-width: 430px) {
             .loading-brand {
-                font-size: 32px;
+                font-size: 31px;
             }
 
+            .profile-info {
+                width: 100%;
+                gap: 14px;
+            }
+
+            .greeting {
+                font-size: 24px;
+            }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================================
-         CARREGAMENTO INICIAL
-    ========================================== -->
-
+    <!-- CARREGAMENTO -->
     <div
         id="accountLoading"
         class="account-loading"
         aria-live="polite"
         aria-label="Carregando Conta Onlinside"
     >
-
         <div class="loading-brand">
-
-            <span class="loading-brand-conta">
-                Conta
-            </span>
-
-            <span class="loading-brand-onlinside">
-                Onlinside
-            </span>
-
+            <span class="loading-brand-conta">Conta</span>
+            <span class="loading-brand-onlinside">Onlinside</span>
         </div>
-
     </div>
 
 
+    <!-- MENU LATERAL -->
+    <div id="drawerOverlay" class="drawer-overlay"></div>
 
-    <!-- =========================================
-         TOPO
-    ========================================== -->
-
-    <header class="topbar">
-
-        <div class="topbar-inner">
-
-            <button
-                class="menu-button"
-                type="button"
-            >
-
-                <span class="menu-icon">
-                    ☰
-                </span>
-
-                <span>
-                    Menu
-                </span>
-
-            </button>
-
-
-            <div class="brand">
-
-                <span class="brand-conta">
-                    Conta
-                </span>
-
-                <span class="brand-onlinside">
-                    Onlinside
-                </span>
-
+    <aside id="accountDrawer" class="account-drawer" aria-hidden="true">
+        <div class="drawer-top">
+            <div class="drawer-brand">
+                <span class="brand-conta">Conta</span>
+                <span class="brand-onlinside">Onlinside</span>
             </div>
 
-
-            <button
-                class="profile-button"
-                type="button"
-            >
-
-                <span
-                    class="mini-avatar"
-                    id="miniAvatar"
-                >
-                    O
-                </span>
-
-
-                <span
-                    class="profile-text"
-                    id="profileText"
-                >
-                    Minha conta
-                </span>
-
-            </button>
-
+            <button id="drawerClose" class="drawer-close" type="button" aria-label="Fechar menu">×</button>
         </div>
 
+        <nav class="drawer-nav" aria-label="Navegação da conta">
+            <a href="#visao-geral"><span class="drawer-dot"></span>Visão geral</a>
+            <a href="#assinaturas"><span class="drawer-dot"></span>Assinaturas</a>
+            <a href="#seguranca"><span class="drawer-dot"></span>Segurança</a>
+            <a href="#pagamentos"><span class="drawer-dot"></span>Pagamentos</a>
+            <a href="#produtos"><span class="drawer-dot"></span>Produtos Onlinside</a>
+            <a href="#dados"><span class="drawer-dot"></span>Dados da conta</a>
+        </nav>
+    </aside>
+
+
+    <!-- TOPO -->
+    <header class="topbar">
+        <div class="topbar-inner">
+
+            <button id="menuButton" class="menu-button" type="button" aria-label="Abrir menu">
+                <span class="menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 7h16M4 12h16M4 17h16"></path>
+                    </svg>
+                </span>
+                <span>Menu</span>
+            </button>
+
+            <div class="brand" aria-label="Conta Onlinside">
+                <span class="brand-conta">Conta</span>
+                <span class="brand-onlinside">Onlinside</span>
+            </div>
+
+            <a class="profile-button" href="#dados">
+                <span class="mini-avatar" id="miniAvatar">O</span>
+                <span class="profile-text" id="profileText">Minha conta</span>
+            </a>
+
+        </div>
     </header>
 
 
+    <main class="page" id="visao-geral">
 
-    <!-- =========================================
-         CONTEÚDO
-    ========================================== -->
+        <!-- CABEÇALHO DA PÁGINA -->
+        <div class="page-heading">
+            <div>
+                <div class="page-kicker">Conta Onlinside</div>
+                <h1>Minha conta</h1>
+            </div>
 
-    <main class="page">
+            <p>
+                Gerencie seus dados, segurança, assinaturas e produtos conectados em um só lugar.
+            </p>
+        </div>
 
 
-        <!-- PERFIL PRINCIPAL -->
-
-        <section class="hero-card">
-
+        <!-- PERFIL -->
+        <section class="hero-card" aria-labelledby="greeting">
             <div class="profile-info">
-
-
-                <div
-                    class="avatar"
-                    id="avatar"
-                >
-                    O
-                </div>
-
+                <div class="avatar" id="avatar">O</div>
 
                 <div>
+                    <h2 class="greeting" id="greeting">Olá!</h2>
+                    <p class="user-email" id="usuario">Verificando login...</p>
+                    <a class="edit-link" href="#dados">Editar dados pessoais →</a>
+                </div>
+            </div>
 
-                    <h1
-                        class="greeting"
-                        id="greeting"
-                    >
-                        Olá!
-                    </h1>
+            <div class="hero-meta">
+                <div class="account-badge">
+                    <span class="account-badge-icon"></span>
+                    <span>Conta Onlinside conectada</span>
+                </div>
+                <div class="account-caption">Uma conta para todos os produtos Onlinside</div>
+            </div>
+        </section>
 
 
-                    <p
-                        class="user-email"
-                        id="usuario"
-                    >
-                        Verificando login...
+        <!-- VISÃO GERAL -->
+        <section class="overview-grid" id="assinaturas">
+
+            <article class="subscription-card">
+                <div class="subscription-top">
+                    <div class="subscription-label">Sua assinatura</div>
+                    <h2 class="subscription-name">Onlinside Play</h2>
+                    <p class="subscription-desc">
+                        Seus planos e combos aparecerão aqui quando o sistema de assinaturas estiver conectado à sua Conta Onlinside.
                     </p>
-
-
-                    <a
-                        class="edit-link"
-                        href="#dados"
-                    >
-                        Editar dados pessoais →
-                    </a>
-
                 </div>
 
-            </div>
+                <div class="subscription-bottom">
+                    <div class="subscription-status">Assinatura ainda não conectada</div>
+                    <a class="ghost-button" href="#produtos">Ver produtos</a>
+                </div>
+            </article>
 
 
-            <div class="account-badge">
+            <article class="card quick-card" aria-label="Resumo da conta">
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">Resumo</span>
+                        <h2 class="card-title">Sua conta</h2>
+                        <p class="card-subtitle">Informações rápidas sobre o seu acesso.</p>
+                    </div>
+                </div>
 
-                <span class="account-badge-icon">
-                    O
-                </span>
+                <div class="quick-row">
+                    <div>
+                        <div class="quick-label">Status</div>
+                        <div class="quick-value">Conta ativa</div>
+                    </div>
+                    <span class="quick-pill">Conectada</span>
+                </div>
 
-                <span>
-                    Conta Onlinside conectada
-                </span>
+                <div class="quick-row">
+                    <div>
+                        <div class="quick-label">E-mail</div>
+                        <div class="quick-value">Verificado</div>
+                    </div>
+                    <span class="quick-pill">Protegido</span>
+                </div>
 
-            </div>
+                <div class="quick-row">
+                    <div>
+                        <div class="quick-label">Conta</div>
+                        <div class="quick-value">Onlinside</div>
+                    </div>
+                    <span class="quick-pill">Principal</span>
+                </div>
+            </article>
 
         </section>
 
 
-
-        <!-- =========================================
-             GRID PRINCIPAL
-        ========================================== -->
-
-        <div class="grid">
-
+        <!-- DASHBOARD -->
+        <div class="dashboard-grid">
 
             <!-- SEGURANÇA -->
-
-            <section class="card">
-
-                <h2 class="card-title">
-                    Segurança
-                </h2>
-
-
-                <p class="card-subtitle">
-                    Proteja sua conta e escolha como deseja entrar.
-                </p>
-
-
-                <div class="settings-list">
-
-
-                    <div class="settings-item">
-
-                        <div class="item-icon">
-                            🔑
-                        </div>
-
-
-                        <div class="item-content">
-
-                            <div class="item-title">
-                                Chave de acesso
-                            </div>
-
-                            <div class="item-description">
-                                Entre usando biometria, PIN ou dispositivo.
-                            </div>
-
-                        </div>
-
-
-                        <div class="item-arrow">
-                            ›
-                        </div>
-
+            <section class="card card-pad security-card" id="seguranca">
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">Conta e segurança</span>
+                        <h2 class="card-title">Proteja sua conta</h2>
+                        <p class="card-subtitle">Revise as principais opções de acesso e segurança.</p>
                     </div>
-
-
-
-                    <div class="settings-item">
-
-                        <div class="item-icon">
-                            🔐
-                        </div>
-
-
-                        <div class="item-content">
-
-                            <div class="item-title">
-                                Alterar senha
-                            </div>
-
-                            <div class="item-description">
-                                Atualize a senha da sua Conta Onlinside.
-                            </div>
-
-                        </div>
-
-
-                        <div class="item-arrow">
-                            ›
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="settings-item">
-
-                        <div class="item-icon">
-                            💻
-                        </div>
-
-
-                        <div class="item-content">
-
-                            <div class="item-title">
-                                Dispositivos conectados
-                            </div>
-
-                            <div class="item-description">
-                                Veja onde sua conta está sendo utilizada.
-                            </div>
-
-                        </div>
-
-
-                        <div class="item-arrow">
-                            ›
-                        </div>
-
-                    </div>
-
                 </div>
 
-            </section>
+                <div class="settings-list">
+                    <div class="settings-item">
+                        <div class="item-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="8" cy="15" r="3"></circle>
+                                <path d="M10.5 13 19 4.5M15 8.5l2 2M17.5 6l2 2"></path>
+                            </svg>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">Chave de acesso</div>
+                            <div class="item-description">Entre usando biometria, PIN ou um dispositivo compatível.</div>
+                        </div>
+                        <div class="item-arrow">›</div>
+                    </div>
 
+                    <div class="settings-item">
+                        <div class="item-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+                                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                            </svg>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">Alterar senha</div>
+                            <div class="item-description">Atualize a senha usada na sua Conta Onlinside.</div>
+                        </div>
+                        <div class="item-arrow">›</div>
+                    </div>
+
+                    <div class="settings-item">
+                        <div class="item-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+                                <path d="M8 21h8M12 17v4"></path>
+                            </svg>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">Dispositivos conectados</div>
+                            <div class="item-description">Veja onde a sua Conta Onlinside está sendo utilizada.</div>
+                        </div>
+                        <div class="item-arrow">›</div>
+                    </div>
+
+                    <div class="settings-item">
+                        <div class="item-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3 4.5 6v5c0 5 3 8.2 7.5 10 4.5-1.8 7.5-5 7.5-10V6L12 3Z"></path>
+                                <path d="m9.5 12 1.7 1.7 3.6-4"></path>
+                            </svg>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-title">Privacidade</div>
+                            <div class="item-description">Revise preferências de privacidade e uso dos seus dados.</div>
+                        </div>
+                        <div class="item-arrow">›</div>
+                    </div>
+                </div>
+            </section>
 
 
             <!-- PRODUTOS -->
-
-            <section class="card">
-
-                <h2 class="card-title">
-                    Produtos Onlinside
-                </h2>
-
-
-                <p class="card-subtitle">
-                    Acesse os serviços conectados à sua conta.
-                </p>
-
-
-                <div class="product">
-
-                    <div class="product-logo">
-                        360
-                    </div>
-
-
+            <section class="card card-pad products-card" id="produtos">
+                <div class="section-head">
                     <div>
-
-                        <div class="product-name">
-                            On360
-                        </div>
-
-                        <div class="product-status">
-                            Conta disponível
-                        </div>
-
+                        <span class="section-kicker">Ecossistema</span>
+                        <h2 class="card-title">Produtos Onlinside</h2>
+                        <p class="card-subtitle">Produtos que usam a sua Conta Onlinside.</p>
                     </div>
-
                 </div>
 
-
-
-                <div class="product">
-
-                    <div class="product-logo">
-                        T
+                <div class="products-list">
+                    <div class="product">
+                        <div class="product-logo orange">360</div>
+                        <div>
+                            <div class="product-name">On360</div>
+                            <div class="product-status">Conta disponível</div>
+                        </div>
+                        <div class="product-arrow">›</div>
                     </div>
 
+                    <div class="product">
+                        <div class="product-logo">Tech</div>
+                        <div>
+                            <div class="product-name">Tech</div>
+                            <div class="product-status">Acessar com Conta Onlinside</div>
+                        </div>
+                        <div class="product-arrow">›</div>
+                    </div>
 
+                    <div class="product">
+                        <div class="product-logo">Play</div>
+                        <div>
+                            <div class="product-name">Onlinside Play</div>
+                            <div class="product-status">Streaming e entretenimento</div>
+                        </div>
+                        <div class="product-arrow">›</div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- PAGAMENTOS -->
+            <section class="card card-pad payments-card" id="pagamentos">
+                <div class="section-head">
                     <div>
-
-                        <div class="product-name">
-                            Tech
-                        </div>
-
-                        <div class="product-status">
-                            Acessar com Conta Onlinside
-                        </div>
-
+                        <span class="section-kicker">Assinaturas</span>
+                        <h2 class="card-title">Pagamentos</h2>
+                        <p class="card-subtitle">Forma de pagamento, cobranças e histórico.</p>
                     </div>
-
                 </div>
 
+                <div class="payment-empty">
+                    <div class="payment-symbol" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="6" width="18" height="12" rx="2"></rect>
+                            <path d="M3 10h18M7 15h3"></path>
+                        </svg>
+                    </div>
+                    <strong>Nenhuma cobrança conectada</strong>
+                    <p>As informações de pagamento aparecerão aqui quando o sistema de assinaturas for integrado.</p>
+                </div>
+            </section>
+
+
+            <!-- DADOS -->
+            <section class="card card-pad data-card" id="dados">
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">Perfil</span>
+                        <h2 class="card-title">Dados da conta</h2>
+                        <p class="card-subtitle">Informações usadas na sua Conta Onlinside.</p>
+                    </div>
+                </div>
+
+                <div class="data-list">
+                    <div class="data-row">
+                        <div class="data-label">E-mail</div>
+                        <div class="data-value" id="emailData">Verificando...</div>
+                        <div class="status"><span class="status-dot"></span>Verificado</div>
+                    </div>
+
+                    <div class="data-row">
+                        <div class="data-label">Status</div>
+                        <div class="data-value">Conta ativa</div>
+                        <div class="status"><span class="status-dot"></span>Conectada</div>
+                    </div>
+
+                    <div class="data-row">
+                        <div class="data-label">Conta principal</div>
+                        <div class="data-value">Conta Onlinside</div>
+                        <div class="status"><span class="status-dot"></span>Ativa</div>
+                    </div>
+                </div>
             </section>
 
         </div>
 
 
-
-        <!-- =========================================
-             DADOS
-        ========================================== -->
-
-        <section
-            class="card data-card"
-            id="dados"
-        >
-
-            <h2 class="card-title">
-                Dados da conta
-            </h2>
-
-
-            <p class="card-subtitle">
-                Informações utilizadas na sua Conta Onlinside.
-            </p>
-
-
-            <div class="data-row">
-
-                <div class="data-label">
-                    E-mail
-                </div>
-
-
-                <div
-                    class="data-value"
-                    id="emailData"
-                >
-                    Verificando...
-                </div>
-
-
-                <div class="status">
-
-                    <span class="status-dot"></span>
-
-                    Verificado
-
-                </div>
-
+        <!-- SAIR -->
+        <section class="account-actions">
+            <div class="account-actions-copy">
+                <strong>Sair da sua conta</strong>
+                <p>Encerra a sessão da Conta Onlinside neste navegador.</p>
             </div>
 
-
-
-            <div class="data-row">
-
-                <div class="data-label">
-                    Status
-                </div>
-
-
-                <div class="data-value">
-                    Conta ativa
-                </div>
-
-
-                <div class="status">
-
-                    <span class="status-dot"></span>
-
-                    Conectada
-
-                </div>
-
-            </div>
-
+            <button type="button" id="logout" class="logout">Sair da Conta Onlinside</button>
         </section>
-
-
-
-        <!-- =========================================
-             SAIR
-        ========================================== -->
-
-        <div class="logout-area">
-
-            <button
-                type="button"
-                id="logout"
-                class="logout"
-            >
-                Sair da Conta Onlinside
-            </button>
-
-        </div>
 
     </main>
 
-
-
-    <!-- =========================================
-         RODAPÉ
-    ========================================== -->
 
     <footer class="footer">
         Conta Onlinside
     </footer>
 
 
+    <!-- MENU LATERAL -->
+    <script>
+        (function () {
+            const menuButton = document.getElementById('menuButton');
+            const drawer = document.getElementById('accountDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const closeButton = document.getElementById('drawerClose');
+            const drawerLinks = drawer ? drawer.querySelectorAll('a') : [];
 
-    <!-- =========================================
-         FIREBASE
-    ========================================== -->
+            function openDrawer() {
+                if (!drawer || !overlay) return;
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+                drawer.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeDrawer() {
+                if (!drawer || !overlay) return;
+                drawer.classList.remove('open');
+                overlay.classList.remove('open');
+                drawer.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            if (menuButton) menuButton.addEventListener('click', openDrawer);
+            if (closeButton) closeButton.addEventListener('click', closeDrawer);
+            if (overlay) overlay.addEventListener('click', closeDrawer);
+            drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') closeDrawer();
+            });
+        })();
+    </script>
 
     <script type="module">
 
@@ -1717,5 +1915,4 @@
     </script>
 
 </body>
-
 </html>
