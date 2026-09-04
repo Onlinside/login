@@ -3,56 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f5f6f8">
+    <meta name="theme-color" content="#f6f7f8">
     <title>Minha conta — Conta Onlinside</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
             --orange: #ff8200;
             --orange-2: #ff9a30;
-            --orange-soft: #fff2e4;
-            --background: #f5f6f8;
+            --orange-soft: #fff4e8;
+            --bg: #f6f7f8;
             --surface: #ffffff;
             --surface-2: #fafafa;
             --text: #121212;
-            --muted: #717171;
-            --muted-2: #9b9b9b;
-            --border: #e9e9eb;
-            --success: #16803d;
-            --success-bg: #eef9f1;
-            --danger: #bd2c2c;
-            --shadow: 0 18px 50px rgba(18,18,18,.055);
-            --radius-xl: 26px;
-            --radius-lg: 20px;
-            --radius-md: 15px;
+            --muted: #6f7379;
+            --muted-2: #989ca2;
+            --border: #e8eaed;
+            --border-strong: #dfe2e6;
+            --success: #187a3c;
+            --success-bg: #eef8f1;
+            --danger: #b62c2c;
+            --shadow: 0 18px 55px rgba(20, 24, 28, .055);
+            --radius-xl: 24px;
+            --radius-lg: 18px;
+            --radius-md: 14px;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             min-height: 100vh;
-            background: var(--background);
+            background: var(--bg);
             color: var(--text);
             font-family: "Garet", Arial, Helvetica, sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        a {
-            color: inherit;
-        }
+        a { color: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
 
         /* =====================================================
            LOADING
@@ -84,15 +73,8 @@
             animation: loadingBrandEnter .65s cubic-bezier(.22,1,.36,1) forwards;
         }
 
-        .loading-brand-conta {
-            color: var(--orange-2);
-            font-weight: 400;
-        }
-
-        .loading-brand-onlinside {
-            color: var(--orange);
-            font-weight: 800;
-        }
+        .loading-brand-conta { color: var(--orange-2); font-weight: 400; }
+        .loading-brand-onlinside { color: var(--orange); font-weight: 800; }
 
         @keyframes loadingBrandEnter {
             from { opacity: 0; transform: translateY(7px); }
@@ -100,27 +82,27 @@
         }
 
         /* =====================================================
-           TOPBAR
+           TOPO
         ===================================================== */
 
         .topbar {
             position: sticky;
             top: 0;
             z-index: 80;
-            height: 74px;
+            height: 72px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,.055);
-            background: rgba(255,255,255,.86);
+            border-bottom: 1px solid rgba(15, 20, 25, .06);
+            background: rgba(255,255,255,.88);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
         }
 
         .topbar-inner {
             width: 100%;
-            max-width: 1240px;
+            max-width: 1360px;
             margin: 0 auto;
-            padding: 0 28px;
+            padding: 0 26px;
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
@@ -128,37 +110,34 @@
 
         .menu-button {
             justify-self: start;
-            min-height: 42px;
-            padding: 0 12px;
-            display: inline-flex;
+            min-height: 40px;
+            padding: 0 11px;
+            display: none;
             align-items: center;
-            gap: 9px;
+            gap: 8px;
             border: 0;
-            border-radius: 12px;
+            border-radius: 11px;
             background: transparent;
             color: var(--text);
             font: inherit;
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
-            transition: background .18s ease;
         }
 
-        .menu-button:hover {
-            background: #f2f2f3;
-        }
+        .menu-button:hover { background: #f2f3f4; }
 
         .menu-icon {
-            width: 20px;
-            height: 20px;
+            width: 19px;
+            height: 19px;
             display: grid;
             place-items: center;
             color: var(--orange);
         }
 
         .menu-icon svg {
-            width: 20px;
-            height: 20px;
+            width: 19px;
+            height: 19px;
             fill: none;
             stroke: currentColor;
             stroke-width: 1.9;
@@ -167,29 +146,22 @@
 
         .brand {
             justify-self: center;
-            font-size: 24px;
+            font-size: 23px;
             letter-spacing: -.8px;
             white-space: nowrap;
         }
 
-        .brand-conta {
-            color: var(--orange-2);
-            font-weight: 400;
-        }
-
-        .brand-onlinside {
-            color: var(--orange);
-            font-weight: 800;
-        }
+        .brand-conta { color: var(--orange-2); font-weight: 400; }
+        .brand-onlinside { color: var(--orange); font-weight: 800; }
 
         .profile-button {
             justify-self: end;
-            min-height: 44px;
-            padding: 5px 13px 5px 5px;
+            min-height: 42px;
+            padding: 5px 12px 5px 5px;
             display: inline-flex;
             align-items: center;
-            gap: 9px;
-            border: 1px solid #f0e6dc;
+            gap: 8px;
+            border: 1px solid #eee3d8;
             border-radius: 999px;
             background: #fff7ef;
             color: #222;
@@ -199,9 +171,9 @@
         }
 
         .mini-avatar {
-            width: 32px;
-            height: 32px;
-            flex: 0 0 32px;
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
             display: grid;
             place-items: center;
             border-radius: 50%;
@@ -211,7 +183,684 @@
         }
 
         /* =====================================================
-           DRAWER
+           LAYOUT PRINCIPAL
+        ===================================================== */
+
+        .account-shell {
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 28px 26px 70px;
+            display: grid;
+            grid-template-columns: 236px minmax(0, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-card {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: rgba(255,255,255,.74);
+            box-shadow: 0 10px 30px rgba(20,24,28,.025);
+        }
+
+        .sidebar-label {
+            margin-bottom: 12px;
+            color: var(--muted-2);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding-bottom: 16px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-avatar {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--orange-soft);
+            color: var(--orange);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .sidebar-name {
+            font-size: 13px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .sidebar-caption {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .side-nav a {
+            min-height: 42px;
+            padding: 0 11px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 11px;
+            color: #4b4f54;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            transition: .18s ease;
+        }
+
+        .side-nav a:hover,
+        .side-nav a.active {
+            background: #fff;
+            color: var(--text);
+            box-shadow: 0 7px 20px rgba(20,24,28,.05);
+        }
+
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            color: #8d9298;
+        }
+
+        .nav-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .main-content { min-width: 0; }
+
+        /* =====================================================
+           CABEÇALHO / IDENTIDADE DA CONTA
+        ===================================================== */
+
+        .page-heading {
+            margin-bottom: 22px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 34px;
+        }
+
+        .page-kicker {
+            margin-bottom: 7px;
+            color: var(--orange);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .page-heading h1 {
+            font-size: clamp(34px, 4vw, 56px);
+            line-height: .98;
+            letter-spacing: -2.6px;
+        }
+
+        .page-heading p {
+            max-width: 470px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .identity-card {
+            padding: 26px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+            gap: 26px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .identity-main {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            flex: 0 0 70px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--orange-2));
+            color: #fff;
+            font-size: 26px;
+            font-weight: 800;
+            box-shadow: 0 0 0 5px #fff, 0 0 0 7px #ffe7cf;
+        }
+
+        .greeting {
+            margin-bottom: 4px;
+            font-size: clamp(25px, 2.4vw, 36px);
+            letter-spacing: -1.3px;
+        }
+
+        .user-email {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .account-state {
+            margin-top: 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--success);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .state-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #24a453;
+        }
+
+        .identity-explainer {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 17px;
+            background: #fafbfc;
+            border: 1px solid #eef0f2;
+        }
+
+        .identity-explainer strong {
+            margin-bottom: 7px;
+            font-size: 13px;
+        }
+
+        .identity-explainer p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        /* =====================================================
+           FAIXA DE ORIENTAÇÃO
+        ===================================================== */
+
+        .clarity-strip {
+            margin-top: 16px;
+            padding: 15px 18px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 1px;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            background: var(--border);
+            overflow: hidden;
+        }
+
+        .clarity-item {
+            min-height: 74px;
+            padding: 14px 16px;
+            background: #fff;
+        }
+
+        .clarity-number {
+            margin-bottom: 6px;
+            color: var(--orange);
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .clarity-item strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 12px;
+        }
+
+        .clarity-item span {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* =====================================================
+           SEÇÕES
+        ===================================================== */
+
+        .section-block { margin-top: 34px; }
+
+        .section-head {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .section-kicker {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--orange);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .section-head h2 {
+            font-size: clamp(23px, 2.1vw, 31px);
+            letter-spacing: -1px;
+        }
+
+        .section-head p {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .section-note {
+            max-width: 330px;
+            color: var(--muted-2);
+            font-size: 11px;
+            line-height: 1.45;
+            text-align: right;
+        }
+
+        /* =====================================================
+           PRODUTOS
+        ===================================================== */
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 13px;
+        }
+
+        .product-card {
+            min-height: 164px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            background: var(--surface);
+            transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--border-strong);
+            box-shadow: 0 13px 32px rgba(20,24,28,.055);
+        }
+
+        .product-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .product-mark {
+            min-width: 45px;
+            height: 45px;
+            padding: 0 10px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #f1f2f3;
+            color: #30343a;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: -.3px;
+        }
+
+        .product-mark.orange {
+            background: var(--orange-soft);
+            color: var(--orange);
+        }
+
+        .product-type {
+            padding: 5px 8px;
+            border-radius: 999px;
+            background: #f4f5f6;
+            color: #777c82;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+        }
+
+        .product-card h3 {
+            margin-top: 15px;
+            font-size: 15px;
+            letter-spacing: -.3px;
+        }
+
+        .product-card p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+        .product-meta {
+            margin-top: auto;
+            padding-top: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            color: #656a70;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .free-pill {
+            padding: 4px 7px;
+            border-radius: 999px;
+            background: var(--success-bg);
+            color: var(--success);
+            font-size: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        /* =====================================================
+           ASSINATURAS
+        ===================================================== */
+
+        .subscription-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(230px, .65fr);
+            gap: 16px;
+        }
+
+        .subscription-card,
+        .subscription-help {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: #fff;
+        }
+
+        .subscription-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 190px;
+        }
+
+        .subscription-card h3 {
+            margin-bottom: 7px;
+            font-size: 21px;
+            letter-spacing: -.7px;
+        }
+
+        .subscription-card p,
+        .subscription-help p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .subscription-status {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .neutral-pill {
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: #f2f3f4;
+            color: #666b70;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .outline-button {
+            min-height: 38px;
+            padding: 0 13px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-strong);
+            border-radius: 10px;
+            background: #fff;
+            color: #2e3236;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .subscription-help {
+            background: #fafbfc;
+        }
+
+        .subscription-help strong {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 12px;
+        }
+
+        /* =====================================================
+           CONTA / SEGURANÇA / PAGAMENTO
+        ===================================================== */
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 14px;
+        }
+
+        .management-card {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .management-head {
+            padding: 19px 20px 14px;
+        }
+
+        .management-head h3 {
+            font-size: 17px;
+            letter-spacing: -.4px;
+        }
+
+        .management-head p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+        .settings-list { border-top: 1px solid var(--border); }
+
+        .settings-item {
+            min-height: 62px;
+            padding: 12px 16px;
+            display: grid;
+            grid-template-columns: 34px minmax(0,1fr) auto;
+            gap: 11px;
+            align-items: center;
+            border-top: 1px solid #f0f1f2;
+        }
+
+        .settings-item:first-child { border-top: 0; }
+
+        .item-icon {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #f5f6f7;
+            color: #62676d;
+        }
+
+        .item-icon svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .item-title {
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .item-description {
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .item-arrow {
+            color: #a4a8ad;
+            font-size: 18px;
+        }
+
+        .data-list { border-top: 1px solid var(--border); }
+
+        .data-row {
+            min-height: 62px;
+            padding: 12px 16px;
+            display: grid;
+            grid-template-columns: 110px minmax(0,1fr) auto;
+            gap: 14px;
+            align-items: center;
+            border-top: 1px solid #f0f1f2;
+        }
+
+        .data-row:first-child { border-top: 0; }
+        .data-label { color: var(--muted); font-size: 11px; }
+        .data-value { font-size: 12px; font-weight: 800; overflow-wrap: anywhere; }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--success);
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #24a453;
+        }
+
+        .payment-empty {
+            padding: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .payment-empty strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 12px;
+        }
+
+        .payment-empty p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* =====================================================
+           SAIR
+        ===================================================== */
+
+        .account-actions {
+            margin-top: 34px;
+            padding: 19px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            background: #fff;
+        }
+
+        .account-actions strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+
+        .account-actions p {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .logout {
+            min-height: 39px;
+            padding: 0 14px;
+            border: 1px solid #ead8d8;
+            border-radius: 10px;
+            background: #fff;
+            color: var(--danger);
+            font: inherit;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .logout:hover { background: #fff7f7; }
+
+        .footer {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 26px 34px;
+            color: #9a9da1;
+            font-size: 10px;
+        }
+
+        /* =====================================================
+           DRAWER MOBILE
         ===================================================== */
 
         .drawer-overlay {
@@ -224,19 +873,16 @@
             transition: .22s ease;
         }
 
-        .drawer-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
 
         .account-drawer {
             position: fixed;
             z-index: 90;
             top: 0;
             left: 0;
-            width: min(360px, 88vw);
+            width: min(330px, 88vw);
             height: 100dvh;
-            padding: 22px;
+            padding: 20px;
             background: #fff;
             border-right: 1px solid var(--border);
             box-shadow: 24px 0 70px rgba(0,0,0,.10);
@@ -245,907 +891,122 @@
             overflow-y: auto;
         }
 
-        .account-drawer.open {
-            transform: translateX(0);
-        }
+        .account-drawer.open { transform: translateX(0); }
 
         .drawer-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 18px;
-            padding-bottom: 22px;
+            padding-bottom: 18px;
             border-bottom: 1px solid var(--border);
         }
 
-        .drawer-brand {
-            font-size: 20px;
-            letter-spacing: -.6px;
-        }
+        .drawer-brand { font-size: 20px; letter-spacing: -.6px; }
 
         .drawer-close {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border: 0;
-            border-radius: 12px;
-            background: #f4f4f5;
-            color: #222;
-            font-size: 21px;
+            border-radius: 10px;
+            background: #f4f5f6;
+            font: inherit;
+            font-size: 22px;
             cursor: pointer;
         }
 
         .drawer-nav {
-            padding-top: 18px;
+            margin-top: 14px;
             display: flex;
             flex-direction: column;
             gap: 5px;
         }
 
         .drawer-nav a {
-            min-height: 48px;
-            padding: 0 13px;
+            min-height: 44px;
+            padding: 0 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            border-radius: 13px;
-            color: #333;
+            gap: 10px;
+            border-radius: 11px;
+            color: #4d5156;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 650;
-            transition: background .18s ease, color .18s ease;
+            font-size: 12px;
+            font-weight: 700;
         }
 
-        .drawer-nav a:hover {
-            background: var(--orange-soft);
-            color: #9a4b00;
-        }
+        .drawer-nav a:hover { background: #f6f7f8; }
 
         .drawer-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--orange);
-            flex: 0 0 auto;
-        }
-
-        /* =====================================================
-           PAGE
-        ===================================================== */
-
-        .page {
-            width: 100%;
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 44px 28px 70px;
-        }
-
-        .page-heading {
-            margin-bottom: 24px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .page-kicker {
-            margin-bottom: 8px;
-            color: var(--orange);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-        }
-
-        .page-heading h1 {
-            font-size: clamp(34px, 4vw, 56px);
-            line-height: .98;
-            letter-spacing: -2.6px;
-            font-weight: 760;
-        }
-
-        .page-heading > p {
-            max-width: 390px;
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.55;
-        }
-
-        /* =====================================================
-           PROFILE HERO
-        ===================================================== */
-
-        .hero-card {
-            position: relative;
-            overflow: hidden;
-            padding: clamp(25px, 3vw, 38px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 32px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            background: var(--surface);
-            box-shadow: var(--shadow);
-        }
-
-        .hero-card::after {
-            content: "";
-            position: absolute;
-            width: 280px;
-            height: 280px;
-            right: -90px;
-            top: -120px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,130,0,.14), rgba(255,130,0,0) 68%);
-            pointer-events: none;
-        }
-
-        .profile-info {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .avatar {
-            width: 76px;
-            height: 76px;
-            flex: 0 0 76px;
-            display: grid;
-            place-items: center;
-            border-radius: 22px;
-            background: linear-gradient(135deg, var(--orange), var(--orange-2));
-            color: #fff;
-            font-size: 28px;
-            font-weight: 800;
-            box-shadow: 0 12px 28px rgba(255,130,0,.20);
-        }
-
-        .greeting {
-            margin-bottom: 5px;
-            font-size: clamp(25px, 2.6vw, 36px);
-            line-height: 1;
-            letter-spacing: -1.4px;
-        }
-
-        .user-email {
-            margin-bottom: 11px;
-            color: var(--muted);
-            font-size: 13px;
-            overflow-wrap: anywhere;
-        }
-
-        .edit-link {
-            color: var(--orange);
-            font-size: 12px;
-            font-weight: 750;
-            text-decoration: none;
-        }
-
-        .edit-link:hover {
-            text-decoration: underline;
-        }
-
-        .hero-meta {
-            position: relative;
-            z-index: 2;
-            min-width: 250px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        .account-badge {
-            min-height: 42px;
-            padding: 0 13px;
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            border: 1px solid #e5f4e9;
-            border-radius: 999px;
-            background: var(--success-bg);
-            color: var(--success);
-            font-size: 11px;
-            font-weight: 800;
-        }
-
-        .account-badge-icon {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #23a24d;
-            box-shadow: 0 0 0 4px rgba(35,162,77,.10);
-        }
-
-        .account-caption {
-            color: var(--muted-2);
-            font-size: 11px;
-        }
-
-        /* =====================================================
-           OVERVIEW
-        ===================================================== */
-
-        .overview-grid {
-            margin-top: 22px;
-            display: grid;
-            grid-template-columns: minmax(0, 1.45fr) minmax(310px, .85fr);
-            gap: 22px;
-        }
-
-        .card {
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            background: var(--surface);
-            box-shadow: 0 10px 35px rgba(18,18,18,.035);
-        }
-
-        .card-pad {
-            padding: 26px;
-        }
-
-        .section-head {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 22px;
-        }
-
-        .section-kicker {
-            display: block;
-            margin-bottom: 7px;
-            color: var(--muted-2);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .card-title {
-            margin-bottom: 5px;
-            font-size: 21px;
-            letter-spacing: -.7px;
-        }
-
-        .card-subtitle {
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        /* =====================================================
-           SUBSCRIPTION CARD
-        ===================================================== */
-
-        .subscription-card {
-            position: relative;
-            overflow: hidden;
-            padding: 28px;
-            min-height: 255px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-radius: var(--radius-lg);
-            background: #151515;
-            color: #fff;
-        }
-
-        .subscription-card::before {
-            content: "";
-            position: absolute;
-            width: 340px;
-            height: 340px;
-            right: -130px;
-            top: -190px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,130,0,.36), rgba(255,130,0,0) 67%);
-        }
-
-        .subscription-top,
-        .subscription-bottom {
-            position: relative;
-            z-index: 2;
-        }
-
-        .subscription-label {
-            margin-bottom: 9px;
-            color: rgba(255,255,255,.50);
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .subscription-name {
-            margin-bottom: 7px;
-            font-size: clamp(26px, 3vw, 42px);
-            letter-spacing: -1.8px;
-            line-height: 1;
-        }
-
-        .subscription-desc {
-            max-width: 480px;
-            color: rgba(255,255,255,.58);
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        .subscription-bottom {
-            margin-top: 30px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .subscription-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            color: rgba(255,255,255,.78);
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .subscription-status::before {
-            content: "";
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: #858585;
-        }
-
-        .ghost-button {
-            min-height: 42px;
-            padding: 0 16px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255,255,255,.16);
-            border-radius: 11px;
-            background: rgba(255,255,255,.08);
-            color: #fff;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 800;
-            transition: background .18s ease;
-        }
-
-        .ghost-button:hover {
-            background: rgba(255,255,255,.14);
+            background: #d5d8dc;
         }
 
         /* =====================================================
-           QUICK STATUS
+           RESPONSIVO
         ===================================================== */
 
-        .quick-card {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
+        @media (max-width: 1080px) {
+            .account-shell { grid-template-columns: 210px minmax(0,1fr); gap: 22px; }
+            .products-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
         }
 
-        .quick-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f0f0f1;
+        @media (max-width: 860px) {
+            .menu-button { display: inline-flex; }
+            .sidebar { display: none; }
+            .account-shell { display: block; padding-top: 22px; }
+            .topbar-inner { padding: 0 18px; }
+            .identity-card { grid-template-columns: 1fr; }
+            .clarity-strip { grid-template-columns: 1fr; }
+            .clarity-item + .clarity-item { border-top: 1px solid var(--border); }
+            .subscription-panel { grid-template-columns: 1fr; }
         }
 
-        .quick-row:last-child {
-            padding-bottom: 0;
-            border-bottom: 0;
-        }
-
-        .quick-label {
-            margin-bottom: 3px;
-            color: var(--muted);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .8px;
-        }
-
-        .quick-value {
-            font-size: 13px;
-            font-weight: 750;
-        }
-
-        .quick-pill {
-            flex: 0 0 auto;
-            padding: 6px 9px;
-            border-radius: 999px;
-            background: var(--orange-soft);
-            color: #9d5000;
-            font-size: 9px;
-            font-weight: 800;
-        }
-
-        /* =====================================================
-           MAIN DASHBOARD GRID
-        ===================================================== */
-
-        .dashboard-grid {
-            margin-top: 22px;
-            display: grid;
-            grid-template-columns: repeat(12, minmax(0,1fr));
-            gap: 22px;
-        }
-
-        .security-card {
-            grid-column: span 7;
-        }
-
-        .products-card {
-            grid-column: span 5;
-        }
-
-        .payments-card {
-            grid-column: span 5;
-        }
-
-        .data-card {
-            grid-column: span 7;
-        }
-
-        /* =====================================================
-           SETTINGS
-        ===================================================== */
-
-        .settings-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .settings-item {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 15px 0;
-            border-top: 1px solid #f0f0f1;
-        }
-
-        .settings-item:first-child {
-            padding-top: 0;
-            border-top: 0;
-        }
-
-        .item-icon {
-            width: 40px;
-            height: 40px;
-            flex: 0 0 40px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            background: var(--orange-soft);
-            color: var(--orange);
-        }
-
-        .item-icon svg {
-            width: 19px;
-            height: 19px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .item-content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .item-title {
-            margin-bottom: 3px;
-            font-size: 13px;
-            font-weight: 750;
-        }
-
-        .item-description {
-            color: var(--muted);
-            font-size: 11px;
-            line-height: 1.4;
-        }
-
-        .item-arrow {
-            color: #b0b0b0;
-            font-size: 19px;
-        }
-
-        /* =====================================================
-           PRODUCTS
-        ===================================================== */
-
-        .products-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .product {
-            padding: 13px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid #eeeeef;
-            border-radius: 14px;
-            background: var(--surface-2);
-        }
-
-        .product-logo {
-            width: 42px;
-            height: 42px;
-            flex: 0 0 42px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            background: #161616;
-            color: #fff;
-            font-size: 11px;
-            font-weight: 850;
-            letter-spacing: -.4px;
-        }
-
-        .product-logo.orange {
-            background: linear-gradient(135deg, var(--orange), var(--orange-2));
-        }
-
-        .product-name {
-            margin-bottom: 2px;
-            font-size: 12px;
-            font-weight: 780;
-        }
-
-        .product-status {
-            color: var(--muted);
-            font-size: 10px;
-        }
-
-        .product-arrow {
-            margin-left: auto;
-            color: #b5b5b5;
-        }
-
-        /* =====================================================
-           PAYMENTS
-        ===================================================== */
-
-        .payment-empty {
-            min-height: 170px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-            border: 1px dashed #dedee1;
-            border-radius: 15px;
-            background: #fafafa;
-        }
-
-        .payment-symbol {
-            width: 42px;
-            height: 42px;
-            margin-bottom: 13px;
-            display: grid;
-            place-items: center;
-            border-radius: 12px;
-            background: #f0f0f1;
-            color: #666;
-        }
-
-        .payment-symbol svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .payment-empty strong {
-            margin-bottom: 5px;
-            font-size: 13px;
-        }
-
-        .payment-empty p {
-            max-width: 330px;
-            color: var(--muted);
-            font-size: 11px;
-            line-height: 1.45;
-        }
-
-        /* =====================================================
-           DATA
-        ===================================================== */
-
-        .data-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .data-row {
-            display: grid;
-            grid-template-columns: 145px minmax(0,1fr) auto;
-            gap: 18px;
-            align-items: center;
-            padding: 16px 0;
-            border-top: 1px solid #f0f0f1;
-        }
-
-        .data-row:first-child {
-            padding-top: 0;
-            border-top: 0;
-        }
-
-        .data-label {
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .data-value {
-            font-size: 12px;
-            font-weight: 700;
-            overflow-wrap: anywhere;
-        }
-
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            color: var(--success);
-            font-size: 10px;
-            font-weight: 750;
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #22a447;
-        }
-
-        /* =====================================================
-           FOOT / LOGOUT
-        ===================================================== */
-
-        .account-actions {
-            margin-top: 22px;
-            padding: 21px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            background: #fff;
-        }
-
-        .account-actions-copy strong {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 12px;
-        }
-
-        .account-actions-copy p {
-            color: var(--muted);
-            font-size: 10px;
-            line-height: 1.45;
-        }
-
-        .logout {
-            min-height: 42px;
-            padding: 0 16px;
-            border: 1px solid #f0dada;
-            border-radius: 11px;
-            background: #fff;
-            color: var(--danger);
-            font: inherit;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: background .18s ease;
-        }
-
-        .logout:hover {
-            background: #fff5f5;
-        }
-
-        .footer {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 28px 40px;
-            color: #9a9a9a;
-            font-size: 10px;
-        }
-
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-        @media (max-width: 980px) {
-            .overview-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .security-card,
-            .products-card,
-            .payments-card,
-            .data-card {
-                grid-column: span 12;
-            }
-
-            .products-card,
-            .payments-card {
-                grid-column: span 6;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .topbar-inner {
-                grid-template-columns: auto 1fr auto;
-                padding: 0 16px;
-            }
-
-            .menu-button span:last-child,
-            .profile-button .profile-text {
-                display: none;
-            }
-
-            .menu-button {
-                width: 42px;
-                padding: 0;
-                justify-content: center;
-            }
-
-            .profile-button {
-                width: 42px;
-                padding: 4px;
-            }
-
-            .brand {
-                font-size: 20px;
-            }
-
-            .page {
-                padding: 28px 16px 48px;
-            }
-
-            .page-heading {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .page-heading > p {
-                max-width: 100%;
-            }
-
-            .hero-card {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 22px;
-            }
-
-            .profile-info {
-                align-items: flex-start;
-            }
-
-            .avatar {
-                width: 62px;
-                height: 62px;
-                flex-basis: 62px;
-                border-radius: 18px;
-                font-size: 23px;
-            }
-
-            .hero-meta {
-                width: 100%;
-                min-width: 0;
-                align-items: flex-start;
-            }
-
-            .overview-grid,
-            .dashboard-grid {
-                gap: 14px;
-            }
-
-            .products-card,
-            .payments-card {
-                grid-column: span 12;
-            }
-
-            .card-pad {
-                padding: 21px;
-            }
-
-            .subscription-card {
-                min-height: 240px;
-                padding: 22px;
-            }
-
-            .subscription-bottom {
-                align-items: stretch;
-                flex-direction: column;
-            }
-
-            .ghost-button {
-                width: 100%;
-            }
-
-            .data-row {
-                grid-template-columns: 1fr;
-                gap: 5px;
-            }
-
-            .status {
-                margin-top: 2px;
-            }
-
-            .account-actions {
-                align-items: stretch;
-                flex-direction: column;
-            }
-
-            .logout {
-                width: 100%;
-            }
-
-            .footer {
-                padding: 0 16px 32px;
-            }
+        @media (max-width: 720px) {
+            .topbar { height: 66px; }
+            .topbar-inner { grid-template-columns: 1fr auto 1fr; }
+            .menu-button span:last-child, .profile-text { display: none; }
+            .brand { font-size: 20px; }
+            .account-shell { padding: 20px 16px 50px; }
+            .page-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
+            .page-heading p { max-width: 100%; }
+            .identity-card { padding: 21px; }
+            .identity-main { align-items: flex-start; }
+            .avatar { width: 58px; height: 58px; flex-basis: 58px; font-size: 22px; }
+            .products-grid { grid-template-columns: 1fr; }
+            .management-grid { grid-template-columns: 1fr; }
+            .section-head { align-items: flex-start; flex-direction: column; gap: 7px; }
+            .section-note { max-width: 100%; text-align: left; }
+            .data-row { grid-template-columns: 1fr; gap: 5px; }
+            .account-actions { align-items: stretch; flex-direction: column; }
+            .logout { width: 100%; }
+            .footer { padding: 0 16px 28px; }
         }
 
         @media (max-width: 430px) {
-            .loading-brand {
-                font-size: 31px;
-            }
-
-            .profile-info {
-                width: 100%;
-                gap: 14px;
-            }
-
-            .greeting {
-                font-size: 24px;
-            }
+            .identity-main { flex-direction: column; }
+            .product-card { min-height: 150px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            *, *::before, *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-            }
+            * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- CARREGAMENTO -->
-    <div
-        id="accountLoading"
-        class="account-loading"
-        aria-live="polite"
-        aria-label="Carregando Conta Onlinside"
-    >
+    <div id="accountLoading" class="account-loading" aria-live="polite" aria-label="Carregando Conta Onlinside">
         <div class="loading-brand">
             <span class="loading-brand-conta">Conta</span>
             <span class="loading-brand-onlinside">Onlinside</span>
         </div>
     </div>
 
-
-    <!-- MENU LATERAL -->
+    <!-- DRAWER MOBILE -->
     <div id="drawerOverlay" class="drawer-overlay"></div>
 
     <aside id="accountDrawer" class="account-drawer" aria-hidden="true">
@@ -1154,30 +1015,25 @@
                 <span class="brand-conta">Conta</span>
                 <span class="brand-onlinside">Onlinside</span>
             </div>
-
             <button id="drawerClose" class="drawer-close" type="button" aria-label="Fechar menu">×</button>
         </div>
 
         <nav class="drawer-nav" aria-label="Navegação da conta">
             <a href="#visao-geral"><span class="drawer-dot"></span>Visão geral</a>
-            <a href="#assinaturas"><span class="drawer-dot"></span>Assinaturas</a>
-            <a href="#seguranca"><span class="drawer-dot"></span>Segurança</a>
-            <a href="#pagamentos"><span class="drawer-dot"></span>Pagamentos</a>
             <a href="#produtos"><span class="drawer-dot"></span>Produtos Onlinside</a>
-            <a href="#dados"><span class="drawer-dot"></span>Dados da conta</a>
+            <a href="#assinaturas"><span class="drawer-dot"></span>Assinaturas</a>
+            <a href="#seguranca"><span class="drawer-dot"></span>Segurança e acesso</a>
+            <a href="#dados"><span class="drawer-dot"></span>Dados e privacidade</a>
+            <a href="#pagamentos"><span class="drawer-dot"></span>Pagamentos</a>
         </nav>
     </aside>
-
 
     <!-- TOPO -->
     <header class="topbar">
         <div class="topbar-inner">
-
             <button id="menuButton" class="menu-button" type="button" aria-label="Abrir menu">
                 <span class="menu-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M4 7h16M4 12h16M4 17h16"></path>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
                 </span>
                 <span>Menu</span>
             </button>
@@ -1191,294 +1047,327 @@
                 <span class="mini-avatar" id="miniAvatar">O</span>
                 <span class="profile-text" id="profileText">Minha conta</span>
             </a>
-
         </div>
     </header>
 
+    <div class="account-shell">
 
-    <main class="page" id="visao-geral">
+        <!-- NAVEGAÇÃO DESKTOP -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="sidebar-label">Sua conta</div>
 
-        <!-- CABEÇALHO DA PÁGINA -->
-        <div class="page-heading">
-            <div>
-                <div class="page-kicker">Conta Onlinside</div>
-                <h1>Minha conta</h1>
+                <div class="sidebar-profile">
+                    <div class="sidebar-avatar">O</div>
+                    <div>
+                        <div class="sidebar-name">Conta Onlinside</div>
+                        <div class="sidebar-caption">Conta principal</div>
+                    </div>
+                </div>
+
+                <nav class="side-nav" aria-label="Navegação da conta">
+                    <a class="active" href="#visao-geral">
+                        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V20H4Z"></path><path d="M9 20v-6h6v6"></path></svg></span>
+                        Visão geral
+                    </a>
+                    <a href="#produtos">
+                        <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><rect x="14" y="14" width="6" height="6" rx="1"></rect></svg></span>
+                        Produtos
+                    </a>
+                    <a href="#assinaturas">
+                        <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path></svg></span>
+                        Assinaturas
+                    </a>
+                    <a href="#seguranca">
+                        <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+                        Segurança
+                    </a>
+                    <a href="#dados">
+                        <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M5 21a7 7 0 0 1 14 0"></path></svg></span>
+                        Dados e privacidade
+                    </a>
+                    <a href="#pagamentos">
+                        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"></path><path d="M4 11h16"></path></svg></span>
+                        Pagamentos
+                    </a>
+                </nav>
             </div>
+        </aside>
 
-            <p>
-                Gerencie seus dados, segurança, assinaturas e produtos conectados em um só lugar.
-            </p>
-        </div>
+        <!-- CONTEÚDO -->
+        <main class="main-content" id="visao-geral">
 
-
-        <!-- PERFIL -->
-        <section class="hero-card" aria-labelledby="greeting">
-            <div class="profile-info">
-                <div class="avatar" id="avatar">O</div>
-
+            <div class="page-heading">
                 <div>
-                    <h2 class="greeting" id="greeting">Olá!</h2>
-                    <p class="user-email" id="usuario">Verificando login...</p>
-                    <a class="edit-link" href="#dados">Editar dados pessoais →</a>
+                    <div class="page-kicker">Conta Onlinside</div>
+                    <h1>Minha conta</h1>
                 </div>
+                <p>
+                    Sua Conta Onlinside é o ponto central para acessar produtos, controlar assinaturas e gerenciar segurança e dados pessoais.
+                </p>
             </div>
 
-            <div class="hero-meta">
-                <div class="account-badge">
-                    <span class="account-badge-icon"></span>
-                    <span>Conta Onlinside conectada</span>
+            <!-- IDENTIDADE -->
+            <section class="identity-card" aria-labelledby="greeting">
+                <div class="identity-main">
+                    <div class="avatar" id="avatar">O</div>
+                    <div>
+                        <h2 class="greeting" id="greeting">Olá!</h2>
+                        <p class="user-email" id="usuario">Verificando login...</p>
+                        <div class="account-state"><span class="state-dot"></span>Conta Onlinside conectada</div>
+                    </div>
                 </div>
-                <div class="account-caption">Uma conta para todos os produtos Onlinside</div>
-            </div>
-        </section>
 
-
-        <!-- VISÃO GERAL -->
-        <section class="overview-grid" id="assinaturas">
-
-            <article class="subscription-card">
-                <div class="subscription-top">
-                    <div class="subscription-label">Sua assinatura</div>
-                    <h2 class="subscription-name">Onlinside Play</h2>
-                    <p class="subscription-desc">
-                        Seus planos e combos aparecerão aqui quando o sistema de assinaturas estiver conectado à sua Conta Onlinside.
+                <div class="identity-explainer">
+                    <strong>Uma conta. Vários produtos.</strong>
+                    <p>
+                        A Conta Onlinside identifica você em todo o ecossistema. Produtos e assinaturas são gerenciados separadamente para deixar tudo mais claro.
                     </p>
-                </div>
-
-                <div class="subscription-bottom">
-                    <div class="subscription-status">Assinatura ainda não conectada</div>
-                    <a class="ghost-button" href="#produtos">Ver produtos</a>
-                </div>
-            </article>
-
-
-            <article class="card quick-card" aria-label="Resumo da conta">
-                <div class="section-head">
-                    <div>
-                        <span class="section-kicker">Resumo</span>
-                        <h2 class="card-title">Sua conta</h2>
-                        <p class="card-subtitle">Informações rápidas sobre o seu acesso.</p>
-                    </div>
-                </div>
-
-                <div class="quick-row">
-                    <div>
-                        <div class="quick-label">Status</div>
-                        <div class="quick-value">Conta ativa</div>
-                    </div>
-                    <span class="quick-pill">Conectada</span>
-                </div>
-
-                <div class="quick-row">
-                    <div>
-                        <div class="quick-label">E-mail</div>
-                        <div class="quick-value">Verificado</div>
-                    </div>
-                    <span class="quick-pill">Protegido</span>
-                </div>
-
-                <div class="quick-row">
-                    <div>
-                        <div class="quick-label">Conta</div>
-                        <div class="quick-value">Onlinside</div>
-                    </div>
-                    <span class="quick-pill">Principal</span>
-                </div>
-            </article>
-
-        </section>
-
-
-        <!-- DASHBOARD -->
-        <div class="dashboard-grid">
-
-            <!-- SEGURANÇA -->
-            <section class="card card-pad security-card" id="seguranca">
-                <div class="section-head">
-                    <div>
-                        <span class="section-kicker">Conta e segurança</span>
-                        <h2 class="card-title">Proteja sua conta</h2>
-                        <p class="card-subtitle">Revise as principais opções de acesso e segurança.</p>
-                    </div>
-                </div>
-
-                <div class="settings-list">
-                    <div class="settings-item">
-                        <div class="item-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="8" cy="15" r="3"></circle>
-                                <path d="M10.5 13 19 4.5M15 8.5l2 2M17.5 6l2 2"></path>
-                            </svg>
-                        </div>
-                        <div class="item-content">
-                            <div class="item-title">Chave de acesso</div>
-                            <div class="item-description">Entre usando biometria, PIN ou um dispositivo compatível.</div>
-                        </div>
-                        <div class="item-arrow">›</div>
-                    </div>
-
-                    <div class="settings-item">
-                        <div class="item-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <rect x="5" y="10" width="14" height="10" rx="2"></rect>
-                                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-                            </svg>
-                        </div>
-                        <div class="item-content">
-                            <div class="item-title">Alterar senha</div>
-                            <div class="item-description">Atualize a senha usada na sua Conta Onlinside.</div>
-                        </div>
-                        <div class="item-arrow">›</div>
-                    </div>
-
-                    <div class="settings-item">
-                        <div class="item-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <rect x="3" y="5" width="18" height="12" rx="2"></rect>
-                                <path d="M8 21h8M12 17v4"></path>
-                            </svg>
-                        </div>
-                        <div class="item-content">
-                            <div class="item-title">Dispositivos conectados</div>
-                            <div class="item-description">Veja onde a sua Conta Onlinside está sendo utilizada.</div>
-                        </div>
-                        <div class="item-arrow">›</div>
-                    </div>
-
-                    <div class="settings-item">
-                        <div class="item-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 3 4.5 6v5c0 5 3 8.2 7.5 10 4.5-1.8 7.5-5 7.5-10V6L12 3Z"></path>
-                                <path d="m9.5 12 1.7 1.7 3.6-4"></path>
-                            </svg>
-                        </div>
-                        <div class="item-content">
-                            <div class="item-title">Privacidade</div>
-                            <div class="item-description">Revise preferências de privacidade e uso dos seus dados.</div>
-                        </div>
-                        <div class="item-arrow">›</div>
-                    </div>
                 </div>
             </section>
 
+            <!-- EXPLICAÇÃO CLARA -->
+            <div class="clarity-strip" aria-label="Como a Conta Onlinside funciona">
+                <div class="clarity-item">
+                    <div class="clarity-number">01</div>
+                    <strong>Sua Conta</strong>
+                    <span>É o seu login único na Onlinside.</span>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-number">02</div>
+                    <strong>Produtos</strong>
+                    <span>São os serviços e marcas que usam a sua conta.</span>
+                </div>
+                <div class="clarity-item">
+                    <div class="clarity-number">03</div>
+                    <strong>Assinaturas</strong>
+                    <span>São os planos e combos contratados por você.</span>
+                </div>
+            </div>
 
             <!-- PRODUTOS -->
-            <section class="card card-pad products-card" id="produtos">
+            <section class="section-block" id="produtos">
                 <div class="section-head">
                     <div>
                         <span class="section-kicker">Ecossistema</span>
-                        <h2 class="card-title">Produtos Onlinside</h2>
-                        <p class="card-subtitle">Produtos que usam a sua Conta Onlinside.</p>
+                        <h2>Produtos Onlinside</h2>
+                        <p>Veja os produtos ligados à Conta Onlinside sem misturar isso com as suas assinaturas.</p>
                     </div>
+                    <div class="section-note">O acesso a um produto não significa, necessariamente, que existe uma assinatura ativa.</div>
                 </div>
 
-                <div class="products-list">
-                    <div class="product">
-                        <div class="product-logo orange">360</div>
-                        <div>
-                            <div class="product-name">On360</div>
-                            <div class="product-status">Conta disponível</div>
+                <div class="products-grid">
+                    <article class="product-card">
+                        <div class="product-top">
+                            <div class="product-mark orange">Play</div>
+                            <span class="product-type">Streaming</span>
                         </div>
-                        <div class="product-arrow">›</div>
-                    </div>
+                        <h3>Onlinside Play</h3>
+                        <p>Streaming, canais, programas, esportes e produções originais.</p>
+                        <div class="product-meta"><span>Planos e combos</span><span>›</span></div>
+                    </article>
 
-                    <div class="product">
-                        <div class="product-logo">Tech</div>
-                        <div>
-                            <div class="product-name">Tech</div>
-                            <div class="product-status">Acessar com Conta Onlinside</div>
+                    <article class="product-card">
+                        <div class="product-top">
+                            <div class="product-mark">NSN</div>
+                            <span class="product-type">Canal</span>
                         </div>
-                        <div class="product-arrow">›</div>
-                    </div>
+                        <h3>NSNTV</h3>
+                        <p>Canal com assinatura própria e opção de combo com o Onlinside Play.</p>
+                        <div class="product-meta"><span>Assinatura separada</span><span>›</span></div>
+                    </article>
 
-                    <div class="product">
-                        <div class="product-logo">Play</div>
-                        <div>
-                            <div class="product-name">Onlinside Play</div>
-                            <div class="product-status">Streaming e entretenimento</div>
+                    <article class="product-card">
+                        <div class="product-top">
+                            <div class="product-mark">360</div>
+                            <span class="product-type">Notícias</span>
                         </div>
-                        <div class="product-arrow">›</div>
-                    </div>
+                        <h3>On360</h3>
+                        <p>Informação e cobertura jornalística integrada à Conta Onlinside.</p>
+                        <div class="product-meta"><span>Produto Onlinside</span><span>›</span></div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-top">
+                            <div class="product-mark">M</div>
+                            <span class="product-type">Revista</span>
+                        </div>
+                        <h3>Maison</h3>
+                        <p>Revista digital e conteúdos editoriais do universo Maison.</p>
+                        <div class="product-meta"><span>Digital</span><span>›</span></div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-top">
+                            <div class="product-mark">OC</div>
+                            <span class="product-type">Jornal</span>
+                        </div>
+                        <h3>Jornal O Cruzeiro</h3>
+                        <p>Edições digitais, reportagens e conteúdos jornalísticos.</p>
+                        <div class="product-meta"><span>Digital</span><span>›</span></div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-top">
+                            <div class="product-mark">TV</div>
+                            <span class="free-pill">Grátis</span>
+                        </div>
+                        <h3>TV Onlinside + OneTV</h3>
+                        <p>Canais gratuitos disponíveis dentro do ecossistema Onlinside.</p>
+                        <div class="product-meta"><span>Acesso gratuito</span><span>›</span></div>
+                    </article>
                 </div>
             </section>
 
-
-            <!-- PAGAMENTOS -->
-            <section class="card card-pad payments-card" id="pagamentos">
+            <!-- ASSINATURAS -->
+            <section class="section-block" id="assinaturas">
                 <div class="section-head">
                     <div>
-                        <span class="section-kicker">Assinaturas</span>
-                        <h2 class="card-title">Pagamentos</h2>
-                        <p class="card-subtitle">Forma de pagamento, cobranças e histórico.</p>
+                        <span class="section-kicker">Planos e combos</span>
+                        <h2>Suas assinaturas</h2>
+                        <p>Esta área será o lugar para controlar Onlinside Play, NSNTV, revistas, jornais e combos.</p>
                     </div>
                 </div>
 
-                <div class="payment-empty">
-                    <div class="payment-symbol" aria-hidden="true">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="6" width="18" height="12" rx="2"></rect>
-                            <path d="M3 10h18M7 15h3"></path>
-                        </svg>
-                    </div>
-                    <strong>Nenhuma cobrança conectada</strong>
-                    <p>As informações de pagamento aparecerão aqui quando o sistema de assinaturas for integrado.</p>
+                <div class="subscription-panel">
+                    <article class="subscription-card">
+                        <div>
+                            <h3>Assinaturas da sua conta</h3>
+                            <p>
+                                O sistema de assinaturas ainda não está conectado a esta página. Quando integrarmos, aqui aparecerão plano atual, produtos contratados, próxima cobrança e opções de gerenciamento.
+                            </p>
+                        </div>
+
+                        <div class="subscription-status">
+                            <span class="neutral-pill">Integração pendente</span>
+                            <a class="outline-button" href="#pagamentos">Ver pagamentos</a>
+                        </div>
+                    </article>
+
+                    <aside class="subscription-help">
+                        <strong>Qual é a diferença?</strong>
+                        <p>
+                            Produto é o serviço da Onlinside. Assinatura é o plano que libera conteúdos ou benefícios pagos dentro desse produto.
+                        </p>
+                    </aside>
                 </div>
             </section>
 
-
-            <!-- DADOS -->
-            <section class="card card-pad data-card" id="dados">
+            <!-- GERENCIAMENTO -->
+            <section class="section-block">
                 <div class="section-head">
                     <div>
-                        <span class="section-kicker">Perfil</span>
-                        <h2 class="card-title">Dados da conta</h2>
-                        <p class="card-subtitle">Informações usadas na sua Conta Onlinside.</p>
+                        <span class="section-kicker">Gerenciamento</span>
+                        <h2>Conta, segurança e dados</h2>
+                        <p>Configurações da sua Conta Onlinside ficam separadas dos produtos para evitar confusão.</p>
                     </div>
                 </div>
 
-                <div class="data-list">
-                    <div class="data-row">
-                        <div class="data-label">E-mail</div>
-                        <div class="data-value" id="emailData">Verificando...</div>
-                        <div class="status"><span class="status-dot"></span>Verificado</div>
-                    </div>
+                <div class="management-grid">
 
-                    <div class="data-row">
-                        <div class="data-label">Status</div>
-                        <div class="data-value">Conta ativa</div>
-                        <div class="status"><span class="status-dot"></span>Conectada</div>
-                    </div>
+                    <section class="management-card" id="seguranca">
+                        <div class="management-head">
+                            <h3>Segurança e acesso</h3>
+                            <p>Controle como você entra na sua Conta Onlinside.</p>
+                        </div>
 
-                    <div class="data-row">
-                        <div class="data-label">Conta principal</div>
-                        <div class="data-value">Conta Onlinside</div>
-                        <div class="status"><span class="status-dot"></span>Ativa</div>
-                    </div>
+                        <div class="settings-list">
+                            <div class="settings-item">
+                                <div class="item-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="3"></circle><path d="M10.5 13 19 4.5M15 8.5l2 2M17.5 6l2 2"></path></svg></div>
+                                <div><div class="item-title">Chave de acesso</div><div class="item-description">Biometria, PIN ou dispositivo compatível.</div></div>
+                                <div class="item-arrow">›</div>
+                            </div>
+
+                            <div class="settings-item">
+                                <div class="item-icon"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></div>
+                                <div><div class="item-title">Alterar senha</div><div class="item-description">Atualize a senha da sua conta.</div></div>
+                                <div class="item-arrow">›</div>
+                            </div>
+
+                            <div class="settings-item">
+                                <div class="item-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></div>
+                                <div><div class="item-title">Dispositivos conectados</div><div class="item-description">Veja onde sua conta está sendo usada.</div></div>
+                                <div class="item-arrow">›</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="management-card" id="dados">
+                        <div class="management-head">
+                            <h3>Dados e privacidade</h3>
+                            <p>Informações principais da sua Conta Onlinside.</p>
+                        </div>
+
+                        <div class="data-list">
+                            <div class="data-row">
+                                <div class="data-label">E-mail</div>
+                                <div class="data-value" id="emailData">Verificando...</div>
+                                <div class="status"><span class="status-dot"></span>Verificado</div>
+                            </div>
+
+                            <div class="data-row">
+                                <div class="data-label">Status</div>
+                                <div class="data-value">Conta ativa</div>
+                                <div class="status"><span class="status-dot"></span>Conectada</div>
+                            </div>
+
+                            <div class="data-row">
+                                <div class="data-label">Tipo</div>
+                                <div class="data-value">Conta Onlinside</div>
+                                <div class="status"><span class="status-dot"></span>Principal</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="management-card" id="pagamentos">
+                        <div class="management-head">
+                            <h3>Pagamentos</h3>
+                            <p>Cobranças e formas de pagamento de produtos pagos.</p>
+                        </div>
+
+                        <div class="payment-empty">
+                            <strong>Nenhuma informação de cobrança conectada</strong>
+                            <p>Quando o sistema de assinaturas for integrado, esta área mostrará próxima cobrança, forma de pagamento e histórico.</p>
+                        </div>
+                    </section>
+
+                    <section class="management-card">
+                        <div class="management-head">
+                            <h3>Preferências da conta</h3>
+                            <p>Configurações gerais que valem para os produtos Onlinside.</p>
+                        </div>
+
+                        <div class="settings-list">
+                            <div class="settings-item">
+                                <div class="item-icon"><svg viewBox="0 0 24 24"><path d="M12 3 4.5 6v5c0 5 3 8.2 7.5 10 4.5-1.8 7.5-5 7.5-10V6L12 3Z"></path><path d="m9.5 12 1.7 1.7 3.6-4"></path></svg></div>
+                                <div><div class="item-title">Privacidade</div><div class="item-description">Revise preferências de privacidade e dados.</div></div>
+                                <div class="item-arrow">›</div>
+                            </div>
+
+                            <div class="settings-item">
+                                <div class="item-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14M7 12h10M9 18h6"></path></svg></div>
+                                <div><div class="item-title">Comunicações</div><div class="item-description">Escolha quais avisos deseja receber.</div></div>
+                                <div class="item-arrow">›</div>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
             </section>
 
-        </div>
+            <section class="account-actions">
+                <div>
+                    <strong>Sair da Conta Onlinside</strong>
+                    <p>Encerra a sessão desta conta neste navegador.</p>
+                </div>
+                <button type="button" id="logout" class="logout">Sair</button>
+            </section>
 
+        </main>
+    </div>
 
-        <!-- SAIR -->
-        <section class="account-actions">
-            <div class="account-actions-copy">
-                <strong>Sair da sua conta</strong>
-                <p>Encerra a sessão da Conta Onlinside neste navegador.</p>
-            </div>
+    <footer class="footer">Conta Onlinside · Uma conta para os produtos Onlinside</footer>
 
-            <button type="button" id="logout" class="logout">Sair da Conta Onlinside</button>
-        </section>
-
-    </main>
-
-
-    <footer class="footer">
-        Conta Onlinside
-    </footer>
-
-
-    <!-- MENU LATERAL -->
     <script>
         (function () {
             const menuButton = document.getElementById('menuButton');
@@ -1507,14 +1396,11 @@
             if (closeButton) closeButton.addEventListener('click', closeDrawer);
             if (overlay) overlay.addEventListener('click', closeDrawer);
             drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
-
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape') closeDrawer();
-            });
+            document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeDrawer(); });
         })();
     </script>
 
-    <script type="module">
+<script type="module">
 
 
         /* =========================================
