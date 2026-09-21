@@ -299,10 +299,36 @@
     }
 
     .footer {
-      margin-top: 13px;
-      color: rgba(255,255,255,.86);
-      font-size: 12px;
+      width: min(100%, 760px);
+      margin-top: 16px;
+      color: #d7dde3;
+      font-size: 11px;
+      line-height: 1.6;
       text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 14px;
+      margin-bottom: 8px;
+    }
+
+    .footer a {
+      color: #d7dde3;
+      text-decoration: none;
+    }
+
+    .footer a:hover,
+    .footer a:focus-visible {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-copy {
+      color: #c8cfd6;
     }
 
     @media (max-width: 600px) {
@@ -456,9 +482,19 @@
       </div>
     </section>
 
-    <p class="footer">
-      Conta Onlinside • Onlinsideplay
-    </p>
+    <footer class="footer">
+      <nav class="footer-links" aria-label="Informações legais">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+        <a href="#">Contrato de Assinatura</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Ajuda</a>
+      </nav>
+
+      <p class="footer-copy">
+        © 2026 Onlinside. Todos os direitos reservados. Onlinsideplay faz parte do universo Onlinside.
+      </p>
+    </footer>
   </main>
 
   <script type="module">
