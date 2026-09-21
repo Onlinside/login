@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#075085">
+  <title>Entrar — Onlinsideplay</title>
+
+  <style>
+    :root {
+      --azul: #075085;
+      --verde: #00d2a0;
+      --texto: #111827;
+      --texto-suave: #5f6672;
+      --borda: #dfe3e8;
+      --campo: #eef0f3;
+      --erro: #b42318;
+      --card: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: 32px 20px;
+      font-family: "Garet", Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background: linear-gradient(135deg, var(--azul) 0%, #087d8d 50%, var(--verde) 100%);
+    }
+
+    .page {
+      width: 100%;
+      min-height: calc(100vh - 64px);
+      min-height: calc(100svh - 64px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wordmark {
+      margin-bottom: 26px;
+      color: #ffffff;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -2px;
+      text-align: center;
+    }
+
+    .wordmark .play {
+      color: #50f0cb;
+    }
+
+    .wordmark-subtitle {
+      display: block;
+      margin-top: 11px;
+      color: rgba(255,255,255,.82);
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+
+    .card {
+      width: min(100%, 640px);
+      padding: 38px 48px 34px;
+      border-radius: 26px;
+      background: var(--card);
+      box-shadow: 0 26px 70px rgba(0, 31, 53, .22);
+    }
+
+    .account-brand {
+      margin-bottom: 20px;
+      color: #2f3742;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .account-brand strong {
+      display: block;
+      margin-top: 2px;
+      color: #111827;
+      font-size: 22px;
+      letter-spacing: -.6px;
+    }
+
+    .account-brand strong .play {
+      color: #00a985;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: clamp(27px, 4vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    .description {
+      margin-bottom: 24px;
+      color: var(--texto-suave);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      height: 58px;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-bottom-color: #60656d;
+      border-radius: 8px 8px 2px 2px;
+      outline: none;
+      background: var(--campo);
+      color: var(--texto);
+      font: inherit;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: var(--azul);
+      box-shadow: 0 0 0 3px rgba(7, 80, 133, .12);
+    }
+
+    #password {
+      padding-right: 76px;
+    }
+
+    .show-password {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: #4b5563;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .forgot {
+      display: block;
+      width: fit-content;
+      margin: 6px 0 15px auto;
+      color: var(--azul);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .primary-button,
+    .code-button,
+    .verify-button {
+      width: 100%;
+      min-height: 56px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .primary-button,
+    .verify-button {
+      border: 0;
+      background: #050505;
+      color: #ffffff;
+    }
+
+    .primary-button:disabled,
+    .verify-button:disabled {
+      opacity: .65;
+      cursor: default;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 19px 0;
+      color: #7a818c;
+      font-size: 13px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--borda);
+    }
+
+    .code-button {
+      border: 2px solid #111827;
+      background: #ffffff;
+      color: #111827;
+    }
+
+    .code-help {
+      margin-top: 7px;
+      color: #68707c;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .code-section {
+      display: none;
+      margin-top: 17px;
+    }
+
+    .code-section.active {
+      display: block;
+    }
+
+    .code-section p {
+      margin-bottom: 10px;
+      color: var(--texto-suave);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .code-input {
+      text-align: center;
+      letter-spacing: 8px;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .verify-button {
+      margin-top: 10px;
+      background: linear-gradient(90deg, var(--azul), var(--verde));
+    }
+
+    .message {
+      display: none;
+      margin-top: 13px;
+      color: var(--erro);
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .universe {
+      margin-top: 22px;
+      padding-top: 19px;
+      border-top: 1px solid var(--borda);
+    }
+
+    .universe strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+
+    .universe p {
+      color: var(--texto-suave);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: rgba(255,255,255,.86);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 22px 14px;
+      }
+
+      .page {
+        min-height: calc(100vh - 44px);
+        min-height: calc(100svh - 44px);
+      }
+
+      .wordmark {
+        margin-bottom: 20px;
+        letter-spacing: -1.3px;
+      }
+
+      .wordmark-subtitle {
+        letter-spacing: 3px;
+        font-size: 9px;
+      }
+
+      .card {
+        padding: 30px 22px 26px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="wordmark" aria-label="Onlinsideplay">
+      onlinside<span class="play">play</span>
+      <span class="wordmark-subtitle">Histórias sem limites</span>
+    </div>
+
+    <section class="card" aria-labelledby="login-title">
+      <div class="account-brand">
+        Minha Conta
+        <strong>onlinside<span class="play">play</span></strong>
+      </div>
+
+      <h1 id="login-title">Entre na sua conta</h1>
+
+      <p class="description">
+        Acesse o Onlinsideplay com a sua Conta Onlinside.
+      </p>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <input
+            type="email"
+            id="email"
+            placeholder="E-mail"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="field input-wrap">
+          <input
+            type="password"
+            id="password"
+            placeholder="Senha"
+            autocomplete="current-password"
+            required
+          >
+
+          <button
+            type="button"
+            id="showPassword"
+            class="show-password"
+            aria-label="Mostrar senha"
+          >
+            Mostrar
+          </button>
+        </div>
+
+        <a class="forgot" href="../recuperar-senha.html">
+          Esqueceu sua senha?
+        </a>
+
+        <button
+          type="submit"
+          id="loginButton"
+          class="primary-button"
+        >
+          Entrar
+        </button>
+      </form>
+
+      <p id="mensagem" class="message" role="alert"></p>
+
+      <div class="divider"><span>ou</span></div>
+
+      <button
+        type="button"
+        id="codeButton"
+        class="code-button"
+      >
+        Entrar com código de acesso
+      </button>
+
+      <p class="code-help">
+        Receba um código no seu e-mail.
+      </p>
+
+      <section id="codeSection" class="code-section">
+        <p>
+          Digite o código de 6 dígitos enviado para o seu e-mail.
+        </p>
+
+        <input
+          type="text"
+          id="accessCode"
+          class="code-input"
+          inputmode="numeric"
+          maxlength="6"
+          placeholder="000000"
+          autocomplete="one-time-code"
+        >
+
+        <button
+          type="button"
+          id="verifyCodeButton"
+          class="verify-button"
+        >
+          Verificar código
+        </button>
+      </section>
+
+      <div class="universe">
+        <strong>O Onlinsideplay faz parte do universo Onlinside</strong>
+        <p>
+          Uma única Conta Onlinside para acessar os produtos e serviços do universo Onlinside.
+        </p>
+      </div>
+    </section>
+
+    <p class="footer">
+      Conta Onlinside • Onlinsideplay
+    </p>
+  </main>
+
+  <script type="module">
+    import { auth } from "../firebase.js";
+
+    import {
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    const HOST_TESTE =
+      "samueldesousasantos1785619701880.1161322.meusitehostgator.com.br";
+
+    const URL_PADRAO =
+      "https://" + HOST_TESTE + "/";
+
+    const DIRETORIOS_WORDPRESS = [
+      "on360",
+      "one",
+      "oncamarim"
+    ];
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const emailInput =
+      document.getElementById("email");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const showPassword =
+      document.getElementById("showPassword");
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+    const mensagem =
+      document.getElementById("mensagem");
+
+    const codeButton =
+      document.getElementById("codeButton");
+
+    const codeSection =
+      document.getElementById("codeSection");
+
+    const accessCode =
+      document.getElementById("accessCode");
+
+    const verifyCodeButton =
+      document.getElementById("verifyCodeButton");
+
+    function mostrarMensagem(texto) {
+      mensagem.textContent = texto;
+      mensagem.classList.add("show");
+    }
+
+    function limparMensagem() {
+      mensagem.textContent = "";
+      mensagem.classList.remove("show");
+    }
+
+    function returnUrlPermitida(url) {
+      try {
+        const destino = new URL(url);
+
+        return (
+          destino.protocol === "https:" &&
+          destino.hostname === HOST_TESTE
+        );
+      } catch {
+        return false;
+      }
+    }
+
+    function descobrirBaseWordPress(returnUrl) {
+      const destino = new URL(returnUrl);
+
+      const partes =
+        destino.pathname
+          .split("/")
+          .filter(Boolean);
+
+      const primeiroDiretorio =
+        partes.length
+          ? partes[0].toLowerCase()
+          : "";
+
+      if (
+        DIRETORIOS_WORDPRESS.includes(
+          primeiroDiretorio
+        )
+      ) {
+        return (
+          destino.origin +
+          "/" +
+          primeiroDiretorio
+        );
+      }
+
+      return destino.origin;
+    }
+
+    function obterDestinoSSO() {
+      let returnUrl =
+        sessionStorage.getItem(
+          "onlinside_return_url"
+        );
+
+      if (
+        !returnUrl ||
+        !returnUrlPermitida(returnUrl)
+      ) {
+        returnUrl = URL_PADRAO;
+      }
+
+      return {
+        returnUrl,
+        wordpressUrl:
+          descobrirBaseWordPress(returnUrl)
+      };
+    }
+
+    const parametros =
+      new URLSearchParams(window.location.search);
+
+    const returnUrl =
+      parametros.get("return_url");
+
+    if (
+      returnUrl &&
+      returnUrlPermitida(returnUrl)
+    ) {
+      sessionStorage.setItem(
+        "onlinside_return_url",
+        returnUrl
+      );
+    }
+
+    const emailSalvo =
+      localStorage.getItem(
+        "onlinside_email"
+      );
+
+    if (emailSalvo) {
+      emailInput.value = emailSalvo;
+    }
+
+    showPassword.addEventListener(
+      "click",
+      function () {
+        const mostrar =
+          passwordInput.type ===
+          "password";
+
+        passwordInput.type =
+          mostrar
+            ? "text"
+            : "password";
+
+        showPassword.textContent =
+          mostrar
+            ? "Ocultar"
+            : "Mostrar";
+
+        showPassword.setAttribute(
+          "aria-label",
+          mostrar
+            ? "Ocultar senha"
+            : "Mostrar senha"
+        );
+      }
+    );
+
+    loginForm.addEventListener(
+      "submit",
+      async function (event) {
+        event.preventDefault();
+        limparMensagem();
+
+        const email =
+          emailInput.value.trim();
+
+        const senha =
+          passwordInput.value;
+
+        if (!email) {
+          mostrarMensagem(
+            "Digite seu e-mail."
+          );
+
+          emailInput.focus();
+          return;
+        }
+
+        if (!senha) {
+          mostrarMensagem(
+            "Digite sua senha."
+          );
+
+          passwordInput.focus();
+          return;
+        }
+
+        if (loginButton.disabled) {
+          return;
+        }
+
+        loginButton.disabled = true;
+        loginButton.textContent =
+          "Entrando...";
+
+        localStorage.setItem(
+          "onlinside_email",
+          email
+        );
+
+        try {
+          const resultado =
+            await signInWithEmailAndPassword(
+              auth,
+              email,
+              senha
+            );
+
+          const usuario =
+            resultado.user;
+
+          if (!usuario.emailVerified) {
+            window.location.href =
+              "../confirmar-email.html";
+
+            return;
+          }
+
+          const idToken =
+            await usuario.getIdToken(true);
+
+          const destinoSSO =
+            obterDestinoSSO();
+
+          const form =
+            document.createElement("form");
+
+          form.method = "POST";
+
+          form.action =
+            destinoSSO.wordpressUrl +
+            "/wp-admin/admin-post.php";
+
+          form.style.display = "none";
+
+          const actionInput =
+            document.createElement("input");
+
+          actionInput.type = "hidden";
+          actionInput.name = "action";
+          actionInput.value =
+            "onlinside_sso_login";
+
+          form.appendChild(actionInput);
+
+          const tokenInput =
+            document.createElement("input");
+
+          tokenInput.type = "hidden";
+          tokenInput.name = "token";
+          tokenInput.value = idToken;
+
+          form.appendChild(tokenInput);
+
+          const returnInput =
+            document.createElement("input");
+
+          returnInput.type = "hidden";
+          returnInput.name = "return_url";
+          returnInput.value =
+            destinoSSO.returnUrl;
+
+          form.appendChild(returnInput);
+
+          sessionStorage.removeItem(
+            "onlinside_return_url"
+          );
+
+          document.body.appendChild(form);
+          form.submit();
+
+        } catch (error) {
+          console.error(
+            "Erro no login:",
+            error
+          );
+
+          loginButton.disabled = false;
+          loginButton.textContent =
+            "Entrar";
+
+          mostrarMensagem(
+            "E-mail ou senha incorretos."
+          );
+        }
+      }
+    );
+
+    codeButton.addEventListener(
+      "click",
+      function () {
+        codeSection.classList.toggle(
+          "active"
+        );
+
+        if (
+          codeSection.classList.contains(
+            "active"
+          )
+        ) {
+          accessCode.focus();
+        }
+      }
+    );
+
+    accessCode.addEventListener(
+      "input",
+      function () {
+        this.value =
+          this.value
+            .replace(/\D/g, "")
+            .slice(0, 6);
+      }
+    );
+
+    verifyCodeButton.addEventListener(
+      "click",
+      function () {
+        limparMensagem();
+
+        const codigo =
+          accessCode.value.trim();
+
+        if (codigo.length !== 6) {
+          mostrarMensagem(
+            "Digite o código de 6 dígitos."
+          );
+
+          return;
+        }
+
+        mostrarMensagem(
+          "A verificação por código ainda será configurada."
+        );
+      }
+    );
+
+    window.addEventListener(
+      "pageshow",
+      function () {
+        loginButton.disabled = false;
+        loginButton.textContent =
+          "Entrar";
+      }
+    );
+  </script>
+</body>
+</html>
