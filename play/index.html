@@ -15,7 +15,7 @@
       --azul: #075085;
       --verde: #00d2a0;
       --texto: #111827;
-      --texto-suave: #5f6672;
+      --texto-suave: #626975;
       --borda: #dfe3e8;
       --campo: #eef0f3;
       --erro: #b42318;
@@ -36,31 +36,32 @@
     body {
       min-height: 100vh;
       min-height: 100svh;
-      padding: 32px 20px;
+      padding: 28px 18px;
       font-family: "Garet", Arial, Helvetica, sans-serif;
       color: var(--texto);
-      background: linear-gradient(135deg, var(--azul) 0%, #087d8d 50%, var(--verde) 100%);
+      background:
+        linear-gradient(135deg, var(--azul) 0%, #087d8d 50%, var(--verde) 100%);
+    }
+
+    button,
+    input {
+      font: inherit;
     }
 
     .page {
       width: 100%;
-      min-height: calc(100vh - 64px);
-      min-height: calc(100svh - 64px);
+      min-height: calc(100vh - 56px);
+      min-height: calc(100svh - 56px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       opacity: 0;
       transform: translate3d(0, 34px, 0);
-      animation: loginDrawerEnter .56s cubic-bezier(.22, 1, .36, 1) forwards;
+      animation: pageEnter .56s cubic-bezier(.22, 1, .36, 1) forwards;
     }
 
-    @keyframes loginDrawerEnter {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 34px, 0);
-      }
-
+    @keyframes pageEnter {
       to {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -68,10 +69,10 @@
     }
 
     .wordmark {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       color: #ffffff;
       font-family: "Tenor Sans", Arial, sans-serif;
-      font-size: clamp(30px, 4vw, 44px);
+      font-size: clamp(30px, 4vw, 43px);
       line-height: 1;
       font-weight: 400;
       letter-spacing: -1px;
@@ -86,25 +87,28 @@
       display: block;
       margin-top: 8px;
       color: rgba(255,255,255,.82);
+      font-family: "Garet", Arial, Helvetica, sans-serif;
       font-size: 9px;
       line-height: 1.2;
       font-weight: 600;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
     }
 
     .card {
-      width: min(100%, 520px);
-      padding: 28px 34px 26px;
-      border-radius: 22px;
+      width: min(100%, 500px);
+      min-height: 330px;
+      padding: 27px 32px 25px;
+      border-radius: 21px;
       background: var(--card);
-      box-shadow: 0 22px 56px rgba(0, 31, 53, .20);
+      box-shadow: 0 22px 56px rgba(0,31,53,.20);
+      overflow: hidden;
     }
 
     .account-brand {
       margin-bottom: 14px;
-      color: #2f3742;
-      font-size: 13px;
+      color: #343b45;
+      font-size: 12px;
       line-height: 1.25;
     }
 
@@ -112,26 +116,89 @@
       display: block;
       margin-top: 2px;
       color: #111827;
-      font-size: 19px;
-      letter-spacing: -.6px;
+      font-size: 18px;
+      letter-spacing: -.5px;
     }
 
     .account-brand strong .play {
       color: #00a985;
     }
 
-    h1 {
+    .stage {
+      display: none;
+    }
+
+    .stage.active {
+      display: block;
+      animation: stageUp .38s cubic-bezier(.22, 1, .36, 1) both;
+    }
+
+    @keyframes stageUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 22px, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    h1,
+    h2 {
       margin-bottom: 8px;
-      font-size: clamp(24px, 3.5vw, 29px);
+      color: var(--texto);
       line-height: 1.15;
-      letter-spacing: -1px;
+      letter-spacing: -.8px;
+    }
+
+    h1 {
+      font-size: clamp(24px, 3.4vw, 29px);
+    }
+
+    h2 {
+      font-size: 24px;
     }
 
     .description {
       margin-bottom: 18px;
       color: var(--texto-suave);
-      font-size: 15px;
-      line-height: 1.55;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .email-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 42px;
+      margin-bottom: 17px;
+      padding: 8px 12px;
+      border: 1px solid var(--borda);
+      border-radius: 10px;
+      background: #f8f9fa;
+      color: #303641;
+      font-size: 13px;
+    }
+
+    .email-pill span {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .change-email,
+    .back-methods {
+      border: 0;
+      background: transparent;
+      color: var(--azul);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     .field {
@@ -145,20 +212,19 @@
     input {
       width: 100%;
       height: 50px;
-      padding: 0 17px;
+      padding: 0 16px;
       border: 1px solid transparent;
       border-bottom-color: #60656d;
       border-radius: 8px 8px 2px 2px;
       outline: none;
       background: var(--campo);
       color: var(--texto);
-      font: inherit;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     input:focus {
       border-color: var(--azul);
-      box-shadow: 0 0 0 3px rgba(7, 80, 133, .12);
+      box-shadow: 0 0 0 3px rgba(7,80,133,.12);
     }
 
     #password {
@@ -168,35 +234,23 @@
     .show-password {
       position: absolute;
       top: 50%;
-      right: 14px;
+      right: 13px;
       transform: translateY(-50%);
       border: 0;
       background: transparent;
       color: #4b5563;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       cursor: pointer;
     }
 
-    .forgot {
-      display: block;
-      width: fit-content;
-      margin: 6px 0 15px auto;
-      color: var(--azul);
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
     .primary-button,
-    .code-button,
+    .method-button,
     .verify-button {
       width: 100%;
-      min-height: 50px;
+      min-height: 49px;
       border-radius: 999px;
-      font: inherit;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       cursor: pointer;
     }
@@ -214,69 +268,120 @@
       cursor: default;
     }
 
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin: 15px 0;
-      color: #7a818c;
-      font-size: 13px;
+    .method-list {
+      display: grid;
+      gap: 10px;
     }
 
-    .divider::before,
-    .divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--borda);
-    }
-
-    .code-button {
-      border: 2px solid #111827;
+    .method-button {
+      border: 1.5px solid #1c232c;
       background: #ffffff;
       color: #111827;
+      text-align: left;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .code-help {
-      margin-top: 7px;
-      color: #68707c;
-      font-size: 13px;
-      text-align: center;
+    .method-button::after {
+      content: "›";
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 400;
     }
 
-    .code-section {
-      display: none;
-      margin-top: 17px;
-    }
-
-    .code-section.active {
+    .method-hint {
       display: block;
+      margin-top: 3px;
+      color: #727985;
+      font-size: 11px;
+      font-weight: 500;
     }
 
-    .code-section p {
-      margin-bottom: 10px;
-      color: var(--texto-suave);
-      font-size: 13px;
-      line-height: 1.5;
+    .forgot {
+      display: block;
+      width: fit-content;
+      margin: 6px 0 14px auto;
+      color: var(--azul);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .back-methods {
+      display: block;
+      margin: 14px auto 0;
     }
 
     .code-input {
       text-align: center;
       letter-spacing: 8px;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 800;
     }
 
     .verify-button {
       margin-top: 10px;
-      background: linear-gradient(90deg, var(--azul), var(--verde));
+      background:
+        linear-gradient(90deg, var(--azul), var(--verde));
+    }
+
+    .loading-stage {
+      min-height: 220px;
+      text-align: center;
+      place-items: center;
+      align-content: center;
+    }
+
+    .loading-stage.active {
+      display: grid;
+    }
+
+    .gradient-spinner {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background:
+        conic-gradient(
+          from 0deg,
+          var(--azul),
+          var(--verde),
+          var(--azul)
+        );
+      -webkit-mask:
+        radial-gradient(
+          farthest-side,
+          transparent calc(100% - 6px),
+          #000 0
+        );
+      mask:
+        radial-gradient(
+          farthest-side,
+          transparent calc(100% - 6px),
+          #000 0
+        );
+      animation: spinnerRotate .8s linear infinite;
+    }
+
+    @keyframes spinnerRotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      color: var(--texto-suave);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .message {
       display: none;
-      margin-top: 13px;
+      margin-top: 12px;
       color: var(--erro);
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.45;
       text-align: center;
     }
@@ -286,26 +391,26 @@
     }
 
     .universe {
-      margin-top: 17px;
+      margin-top: 18px;
       padding-top: 15px;
       border-top: 1px solid var(--borda);
     }
 
     .universe strong {
       display: block;
-      margin-bottom: 7px;
-      font-size: 15px;
+      margin-bottom: 5px;
+      font-size: 13px;
     }
 
     .universe p {
       color: var(--texto-suave);
-      font-size: 13px;
-      line-height: 1.55;
+      font-size: 12px;
+      line-height: 1.5;
     }
 
     .footer {
       width: min(100%, 760px);
-      margin-top: 16px;
+      margin-top: 15px;
       color: #d7dde3;
       font-size: 11px;
       line-height: 1.6;
@@ -316,8 +421,8 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 6px 14px;
-      margin-bottom: 8px;
+      gap: 5px 13px;
+      margin-bottom: 7px;
     }
 
     .footer a {
@@ -338,40 +443,50 @@
 
     @media (max-width: 600px) {
       body {
-        padding: 22px 14px;
+        padding: 21px 13px;
       }
 
       .page {
-        min-height: calc(100vh - 44px);
-        min-height: calc(100svh - 44px);
+        min-height: calc(100vh - 42px);
+        min-height: calc(100svh - 42px);
       }
 
       .wordmark {
-        margin-bottom: 15px;
-        letter-spacing: -1.3px;
+        margin-bottom: 14px;
+        letter-spacing: -1px;
       }
 
       .wordmark-subtitle {
+        font-size: 8px;
         letter-spacing: 3px;
-        font-size: 9px;
       }
 
       .card {
-        width: min(100%, 460px);
-        padding: 24px 19px 22px;
-        border-radius: 19px;
+        width: min(100%, 450px);
+        min-height: 315px;
+        padding: 23px 18px 21px;
+        border-radius: 18px;
       }
 
       h1 {
-        font-size: 25px;
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 22px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .page {
+      .page,
+      .stage.active {
         opacity: 1;
         transform: none;
         animation: none;
+      }
+
+      .gradient-spinner {
+        animation-duration: 1.6s;
       }
     }
   </style>
@@ -384,81 +499,137 @@
       <span class="wordmark-subtitle">Histórias sem limites</span>
     </div>
 
-    <section class="card" aria-labelledby="login-title">
+    <section class="card" aria-live="polite">
       <div class="account-brand">
         Minha Conta
         <strong>onlinside<span class="play">play</span></strong>
       </div>
 
-      <h1 id="login-title">Entre na sua conta</h1>
+      <section id="emailStage" class="stage active">
+        <h1>Entre na sua conta</h1>
 
-      <p class="description">
-        Acesse o Onlinsideplay com a sua Conta Onlinside.
-      </p>
+        <p class="description">
+          Primeiro, digite o e-mail da sua Conta Onlinside.
+        </p>
 
-      <form id="loginForm" novalidate>
-        <div class="field">
-          <input
-            type="email"
-            id="email"
-            placeholder="E-mail"
-            autocomplete="email"
-            required
-          >
-        </div>
-
-        <div class="field input-wrap">
-          <input
-            type="password"
-            id="password"
-            placeholder="Senha"
-            autocomplete="current-password"
-            required
-          >
+        <form id="emailForm" novalidate>
+          <div class="field">
+            <input
+              type="email"
+              id="email"
+              placeholder="E-mail"
+              autocomplete="email"
+              required
+            >
+          </div>
 
           <button
-            type="button"
-            id="showPassword"
-            class="show-password"
-            aria-label="Mostrar senha"
+            type="submit"
+            id="continueButton"
+            class="primary-button"
           >
-            Mostrar
+            Continuar
+          </button>
+        </form>
+      </section>
+
+      <section id="loadingStage" class="stage loading-stage" aria-label="Carregando">
+        <div>
+          <div class="gradient-spinner" aria-hidden="true"></div>
+          <p class="loading-text">Preparando as opções de acesso...</p>
+        </div>
+      </section>
+
+      <section id="methodStage" class="stage">
+        <h2>Como você quer entrar?</h2>
+
+        <p class="description">
+          Escolha uma forma de acessar a sua conta.
+        </p>
+
+        <div class="email-pill">
+          <span id="selectedEmail"></span>
+          <button type="button" class="change-email" id="changeEmail">
+            Alterar
           </button>
         </div>
 
-        <a class="forgot" href="../recuperar-senha.html">
-          Esqueceu sua senha?
-        </a>
+        <div class="method-list">
+          <button type="button" class="method-button" id="passwordMethod">
+            <span>
+              Entrar com senha
+              <span class="method-hint">Use a senha da sua Conta Onlinside</span>
+            </span>
+          </button>
 
-        <button
-          type="submit"
-          id="loginButton"
-          class="primary-button"
-        >
-          Entrar
+          <button type="button" class="method-button" id="codeMethod">
+            <span>
+              Entrar com código de acesso
+              <span class="method-hint">Receba um código de 6 dígitos no e-mail</span>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section id="passwordStage" class="stage">
+        <h2>Digite sua senha</h2>
+
+        <p class="description">
+          Entre usando a senha da sua Conta Onlinside.
+        </p>
+
+        <div class="email-pill">
+          <span id="passwordEmail"></span>
+        </div>
+
+        <form id="passwordForm">
+          <div class="field input-wrap">
+            <input
+              type="password"
+              id="password"
+              placeholder="Senha"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              id="showPassword"
+              class="show-password"
+              aria-label="Mostrar senha"
+            >
+              Mostrar
+            </button>
+          </div>
+
+          <a class="forgot" href="../recuperar-senha.html">
+            Esqueceu sua senha?
+          </a>
+
+          <button
+            type="submit"
+            id="loginButton"
+            class="primary-button"
+          >
+            Entrar
+          </button>
+        </form>
+
+        <button type="button" class="back-methods" data-back-methods>
+          Escolher outra forma de entrar
         </button>
-      </form>
+      </section>
 
-      <p id="mensagem" class="message" role="alert"></p>
+      <section id="codeStage" class="stage">
+        <h2>Código de acesso</h2>
 
-      <div class="divider"><span>ou</span></div>
-
-      <button
-        type="button"
-        id="codeButton"
-        class="code-button"
-      >
-        Entrar com código de acesso
-      </button>
-
-      <p class="code-help">
-        Receba um código no seu e-mail.
-      </p>
-
-      <section id="codeSection" class="code-section">
-        <p>
+        <p class="description">
           Digite o código de 6 dígitos enviado para o seu e-mail.
         </p>
+
+        <div class="email-pill">
+          <span id="codeEmail"></span>
+        </div>
 
         <input
           type="text"
@@ -477,7 +648,13 @@
         >
           Verificar código
         </button>
+
+        <button type="button" class="back-methods" data-back-methods>
+          Escolher outra forma de entrar
+        </button>
       </section>
+
+      <p id="mensagem" class="message" role="alert"></p>
 
       <div class="universe">
         <strong>O Onlinsideplay faz parte do universo Onlinside</strong>
@@ -521,35 +698,50 @@
       "oncamarim"
     ];
 
-    const loginForm =
-      document.getElementById("loginForm");
+    const emailStage = document.getElementById("emailStage");
+    const loadingStage = document.getElementById("loadingStage");
+    const methodStage = document.getElementById("methodStage");
+    const passwordStage = document.getElementById("passwordStage");
+    const codeStage = document.getElementById("codeStage");
 
-    const emailInput =
-      document.getElementById("email");
+    const emailForm = document.getElementById("emailForm");
+    const emailInput = document.getElementById("email");
+    const continueButton = document.getElementById("continueButton");
 
-    const passwordInput =
-      document.getElementById("password");
+    const selectedEmail = document.getElementById("selectedEmail");
+    const passwordEmail = document.getElementById("passwordEmail");
+    const codeEmail = document.getElementById("codeEmail");
+    const changeEmail = document.getElementById("changeEmail");
 
-    const showPassword =
-      document.getElementById("showPassword");
+    const passwordMethod = document.getElementById("passwordMethod");
+    const codeMethod = document.getElementById("codeMethod");
 
-    const loginButton =
-      document.getElementById("loginButton");
+    const passwordForm = document.getElementById("passwordForm");
+    const passwordInput = document.getElementById("password");
+    const showPassword = document.getElementById("showPassword");
+    const loginButton = document.getElementById("loginButton");
 
-    const mensagem =
-      document.getElementById("mensagem");
+    const accessCode = document.getElementById("accessCode");
+    const verifyCodeButton = document.getElementById("verifyCodeButton");
+    const backMethods = document.querySelectorAll("[data-back-methods]");
 
-    const codeButton =
-      document.getElementById("codeButton");
+    const mensagem = document.getElementById("mensagem");
 
-    const codeSection =
-      document.getElementById("codeSection");
+    let emailAtual = "";
 
-    const accessCode =
-      document.getElementById("accessCode");
+    function trocarEtapa(stage) {
+      [
+        emailStage,
+        loadingStage,
+        methodStage,
+        passwordStage,
+        codeStage
+      ].forEach(function (item) {
+        item.classList.remove("active");
+      });
 
-    const verifyCodeButton =
-      document.getElementById("verifyCodeButton");
+      stage.classList.add("active");
+    }
 
     function mostrarMensagem(texto) {
       mensagem.textContent = texto;
@@ -559,6 +751,12 @@
     function limparMensagem() {
       mensagem.textContent = "";
       mensagem.classList.remove("show");
+    }
+
+    function atualizarEmailNaTela(email) {
+      selectedEmail.textContent = email;
+      passwordEmail.textContent = email;
+      codeEmail.textContent = email;
     }
 
     function returnUrlPermitida(url) {
@@ -647,6 +845,110 @@
       emailInput.value = emailSalvo;
     }
 
+    emailForm.addEventListener(
+      "submit",
+      function (event) {
+        event.preventDefault();
+        limparMensagem();
+
+        const email =
+          emailInput.value.trim();
+
+        if (!email) {
+          mostrarMensagem("Digite seu e-mail.");
+          emailInput.focus();
+          return;
+        }
+
+        if (!emailInput.checkValidity()) {
+          mostrarMensagem("Digite um e-mail válido.");
+          emailInput.focus();
+          return;
+        }
+
+        if (continueButton.disabled) {
+          return;
+        }
+
+        continueButton.disabled = true;
+        emailAtual = email;
+
+        localStorage.setItem(
+          "onlinside_email",
+          emailAtual
+        );
+
+        atualizarEmailNaTela(emailAtual);
+        trocarEtapa(loadingStage);
+
+        window.setTimeout(
+          function () {
+            continueButton.disabled = false;
+            trocarEtapa(methodStage);
+          },
+          720
+        );
+      }
+    );
+
+    changeEmail.addEventListener(
+      "click",
+      function () {
+        limparMensagem();
+        trocarEtapa(emailStage);
+
+        window.setTimeout(
+          function () {
+            emailInput.focus();
+            emailInput.select();
+          },
+          80
+        );
+      }
+    );
+
+    passwordMethod.addEventListener(
+      "click",
+      function () {
+        limparMensagem();
+        trocarEtapa(passwordStage);
+
+        window.setTimeout(
+          function () {
+            passwordInput.focus();
+          },
+          80
+        );
+      }
+    );
+
+    codeMethod.addEventListener(
+      "click",
+      function () {
+        limparMensagem();
+        trocarEtapa(codeStage);
+
+        window.setTimeout(
+          function () {
+            accessCode.focus();
+          },
+          80
+        );
+      }
+    );
+
+    backMethods.forEach(
+      function (button) {
+        button.addEventListener(
+          "click",
+          function () {
+            limparMensagem();
+            trocarEtapa(methodStage);
+          }
+        );
+      }
+    );
+
     showPassword.addEventListener(
       "click",
       function () {
@@ -673,32 +975,22 @@
       }
     );
 
-    loginForm.addEventListener(
+    passwordForm.addEventListener(
       "submit",
       async function (event) {
         event.preventDefault();
         limparMensagem();
 
-        const email =
-          emailInput.value.trim();
-
         const senha =
           passwordInput.value;
 
-        if (!email) {
-          mostrarMensagem(
-            "Digite seu e-mail."
-          );
-
-          emailInput.focus();
+        if (!emailAtual) {
+          trocarEtapa(emailStage);
           return;
         }
 
         if (!senha) {
-          mostrarMensagem(
-            "Digite sua senha."
-          );
-
+          mostrarMensagem("Digite sua senha.");
           passwordInput.focus();
           return;
         }
@@ -708,19 +1000,13 @@
         }
 
         loginButton.disabled = true;
-        loginButton.textContent =
-          "Entrando...";
-
-        localStorage.setItem(
-          "onlinside_email",
-          email
-        );
+        loginButton.textContent = "Entrando...";
 
         try {
           const resultado =
             await signInWithEmailAndPassword(
               auth,
-              email,
+              emailAtual,
               senha
             );
 
@@ -794,29 +1080,11 @@
           );
 
           loginButton.disabled = false;
-          loginButton.textContent =
-            "Entrar";
+          loginButton.textContent = "Entrar";
 
           mostrarMensagem(
             "E-mail ou senha incorretos."
           );
-        }
-      }
-    );
-
-    codeButton.addEventListener(
-      "click",
-      function () {
-        codeSection.classList.toggle(
-          "active"
-        );
-
-        if (
-          codeSection.classList.contains(
-            "active"
-          )
-        ) {
-          accessCode.focus();
         }
       }
     );
@@ -857,8 +1125,8 @@
       "pageshow",
       function () {
         loginButton.disabled = false;
-        loginButton.textContent =
-          "Entrar";
+        loginButton.textContent = "Entrar";
+        continueButton.disabled = false;
       }
     );
   </script>
