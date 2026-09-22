@@ -765,7 +765,11 @@
 
         return (
           destino.protocol === "https:" &&
-          destino.hostname === HOST_TESTE
+          destino.hostname === HOST_TESTE &&
+          (
+            destino.pathname === "/onlinsideplay" ||
+            destino.pathname.startsWith("/onlinsideplay/")
+          )
         );
       } catch {
         return false;
@@ -800,10 +804,13 @@
       return destino.origin;
     }
 
+    const CHAVE_RETORNO_PLAY =
+      "onlinsideplay_return_url";
+
     function obterDestinoSSO() {
       let returnUrl =
         sessionStorage.getItem(
-          "onlinside_return_url"
+          CHAVE_RETORNO_PLAY
         );
 
       if (
@@ -826,15 +833,32 @@
     const returnUrl =
       parametros.get("return_url");
 
+    /*
+     * O login do Onlinsideplay usa uma chave própria.
+     * Isso impede que um return_url antigo do ON360/ONE/Oncamarim
+     * envie a sessão para outro WordPress.
+     */
     if (
       returnUrl &&
       returnUrlPermitida(returnUrl)
     ) {
       sessionStorage.setItem(
-        "onlinside_return_url",
+        CHAVE_RETORNO_PLAY,
         returnUrl
       );
+    } else {
+      sessionStorage.setItem(
+        CHAVE_RETORNO_PLAY,
+        URL_PADRAO
+      );
     }
+
+    /*
+     * Remove a chave antiga compartilhada entre produtos.
+     */
+    sessionStorage.removeItem(
+      "onlinside_return_url"
+    );
 
     const emailSalvo =
       localStorage.getItem(
@@ -1065,6 +1089,10 @@
             destinoSSO.returnUrl;
 
           form.appendChild(returnInput);
+
+          sessionStorage.removeItem(
+            CHAVE_RETORNO_PLAY
+          );
 
           sessionStorage.removeItem(
             "onlinside_return_url"
