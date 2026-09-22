@@ -1090,6 +1090,42 @@
 
           form.appendChild(returnInput);
 
+          /*
+           * Dados visuais do perfil.
+           * A autenticação continua sendo validada pelo ID token.
+           * Estes campos servem somente para o Onlinsideplay
+           * mostrar nome e avatar imediatamente após o retorno.
+           */
+          const profileNameInput =
+            document.createElement("input");
+
+          profileNameInput.type = "hidden";
+          profileNameInput.name = "profile_name";
+          profileNameInput.value =
+            usuario.displayName || "";
+
+          form.appendChild(profileNameInput);
+
+          const profileEmailInput =
+            document.createElement("input");
+
+          profileEmailInput.type = "hidden";
+          profileEmailInput.name = "profile_email";
+          profileEmailInput.value =
+            usuario.email || "";
+
+          form.appendChild(profileEmailInput);
+
+          const profilePhotoInput =
+            document.createElement("input");
+
+          profilePhotoInput.type = "hidden";
+          profilePhotoInput.name = "profile_photo";
+          profilePhotoInput.value =
+            usuario.photoURL || "";
+
+          form.appendChild(profilePhotoInput);
+
           sessionStorage.removeItem(
             CHAVE_RETORNO_PLAY
           );
