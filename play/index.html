@@ -1085,8 +1085,36 @@
 
           returnInput.type = "hidden";
           returnInput.name = "return_url";
+
+          /*
+           * O nome/avatar vão no fragmento (#) do return_url.
+           * Assim o Onlinsideplay consegue montar o perfil imediatamente
+           * e esses dados não ficam no query string da página.
+           */
+          const returnUrlComPerfil =
+            new URL(
+              destinoSSO.returnUrl
+            );
+
+          const perfilVisual = {
+            name:
+              usuario.displayName || "",
+            email:
+              usuario.email || "",
+            photo:
+              usuario.photoURL || ""
+          };
+
+          returnUrlComPerfil.hash =
+            "onlinside_profile=" +
+            encodeURIComponent(
+              JSON.stringify(
+                perfilVisual
+              )
+            );
+
           returnInput.value =
-            destinoSSO.returnUrl;
+            returnUrlComPerfil.toString();
 
           form.appendChild(returnInput);
 
